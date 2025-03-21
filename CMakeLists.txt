@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(Physics-engine-2D)
+project(PhysicalSimulation)
 set(INCLUDE_DIR ./include/GLAD/ 
                 ./include/imgui/ 
                 ./include/Graphics/ 

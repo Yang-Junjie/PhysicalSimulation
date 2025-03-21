@@ -1,3 +1,3 @@
-D:/C++/PhysicsEngine/build/CMakeFiles/Physics-engine-2D.dir
-D:/C++/PhysicsEngine/build/CMakeFiles/edit_cache.dir
-D:/C++/PhysicsEngine/build/CMakeFiles/rebuild_cache.dir
+D:/C++/PhysicalSimulation/build/CMakeFiles/PhysicalSimulation.dir
+D:/C++/PhysicalSimulation/build/CMakeFiles/edit_cache.dir
+D:/C++/PhysicalSimulation/build/CMakeFiles/rebuild_cache.dir

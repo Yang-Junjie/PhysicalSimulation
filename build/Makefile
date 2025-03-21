@@ -56,10 +56,10 @@ RM = D:\Cmake\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\C++\PhysicsEngine
+CMAKE_SOURCE_DIR = D:\C++\PhysicalSimulation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\C++\PhysicsEngine\build
+CMAKE_BINARY_DIR = D:\C++\PhysicalSimulation\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\C++\PhysicsEngine\build\CMakeFiles D:\C++\PhysicsEngine\build\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\C++\PhysicalSimulation\build\CMakeFiles D:\C++\PhysicalSimulation\build\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\C++\PhysicsEngine\build\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\C++\PhysicalSimulation\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -116,24 +116,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Physics-engine-2D
+# Target rules for targets named PhysicalSimulation
 
 # Build rule for target.
-Physics-engine-2D: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Physics-engine-2D
-.PHONY : Physics-engine-2D
+PhysicalSimulation: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 PhysicalSimulation
+.PHONY : PhysicalSimulation
 
 # fast build rule for target.
-Physics-engine-2D/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/build
-.PHONY : Physics-engine-2D/fast
+PhysicalSimulation/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/build
+.PHONY : PhysicalSimulation/fast
 
 src/GLAD/glad.obj: src/GLAD/glad.c.obj
 .PHONY : src/GLAD/glad.obj
 
 # target to build an object file
 src/GLAD/glad.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/GLAD/glad.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/GLAD/glad.c.obj
 .PHONY : src/GLAD/glad.c.obj
 
 src/GLAD/glad.i: src/GLAD/glad.c.i
@@ -141,7 +141,7 @@ src/GLAD/glad.i: src/GLAD/glad.c.i
 
 # target to preprocess a source file
 src/GLAD/glad.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/GLAD/glad.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/GLAD/glad.c.i
 .PHONY : src/GLAD/glad.c.i
 
 src/GLAD/glad.s: src/GLAD/glad.c.s
@@ -149,7 +149,7 @@ src/GLAD/glad.s: src/GLAD/glad.c.s
 
 # target to generate assembly for a file
 src/GLAD/glad.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/GLAD/glad.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/GLAD/glad.c.s
 .PHONY : src/GLAD/glad.c.s
 
 src/Graphics/OERender.obj: src/Graphics/OERender.cpp.obj
@@ -157,7 +157,7 @@ src/Graphics/OERender.obj: src/Graphics/OERender.cpp.obj
 
 # target to build an object file
 src/Graphics/OERender.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/Graphics/OERender.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OERender.cpp.obj
 .PHONY : src/Graphics/OERender.cpp.obj
 
 src/Graphics/OERender.i: src/Graphics/OERender.cpp.i
@@ -165,7 +165,7 @@ src/Graphics/OERender.i: src/Graphics/OERender.cpp.i
 
 # target to preprocess a source file
 src/Graphics/OERender.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/Graphics/OERender.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OERender.cpp.i
 .PHONY : src/Graphics/OERender.cpp.i
 
 src/Graphics/OERender.s: src/Graphics/OERender.cpp.s
@@ -173,7 +173,7 @@ src/Graphics/OERender.s: src/Graphics/OERender.cpp.s
 
 # target to generate assembly for a file
 src/Graphics/OERender.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/Graphics/OERender.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OERender.cpp.s
 .PHONY : src/Graphics/OERender.cpp.s
 
 src/Graphics/OEShader.obj: src/Graphics/OEShader.cpp.obj
@@ -181,7 +181,7 @@ src/Graphics/OEShader.obj: src/Graphics/OEShader.cpp.obj
 
 # target to build an object file
 src/Graphics/OEShader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/Graphics/OEShader.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OEShader.cpp.obj
 .PHONY : src/Graphics/OEShader.cpp.obj
 
 src/Graphics/OEShader.i: src/Graphics/OEShader.cpp.i
@@ -189,7 +189,7 @@ src/Graphics/OEShader.i: src/Graphics/OEShader.cpp.i
 
 # target to preprocess a source file
 src/Graphics/OEShader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/Graphics/OEShader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OEShader.cpp.i
 .PHONY : src/Graphics/OEShader.cpp.i
 
 src/Graphics/OEShader.s: src/Graphics/OEShader.cpp.s
@@ -197,7 +197,7 @@ src/Graphics/OEShader.s: src/Graphics/OEShader.cpp.s
 
 # target to generate assembly for a file
 src/Graphics/OEShader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/Graphics/OEShader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OEShader.cpp.s
 .PHONY : src/Graphics/OEShader.cpp.s
 
 src/Graphics/OEWindow.obj: src/Graphics/OEWindow.cpp.obj
@@ -205,7 +205,7 @@ src/Graphics/OEWindow.obj: src/Graphics/OEWindow.cpp.obj
 
 # target to build an object file
 src/Graphics/OEWindow.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/Graphics/OEWindow.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OEWindow.cpp.obj
 .PHONY : src/Graphics/OEWindow.cpp.obj
 
 src/Graphics/OEWindow.i: src/Graphics/OEWindow.cpp.i
@@ -213,7 +213,7 @@ src/Graphics/OEWindow.i: src/Graphics/OEWindow.cpp.i
 
 # target to preprocess a source file
 src/Graphics/OEWindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/Graphics/OEWindow.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OEWindow.cpp.i
 .PHONY : src/Graphics/OEWindow.cpp.i
 
 src/Graphics/OEWindow.s: src/Graphics/OEWindow.cpp.s
@@ -221,7 +221,7 @@ src/Graphics/OEWindow.s: src/Graphics/OEWindow.cpp.s
 
 # target to generate assembly for a file
 src/Graphics/OEWindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/Graphics/OEWindow.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OEWindow.cpp.s
 .PHONY : src/Graphics/OEWindow.cpp.s
 
 src/imgui/imgui.obj: src/imgui/imgui.cpp.obj
@@ -229,7 +229,7 @@ src/imgui/imgui.obj: src/imgui/imgui.cpp.obj
 
 # target to build an object file
 src/imgui/imgui.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui.cpp.obj
 .PHONY : src/imgui/imgui.cpp.obj
 
 src/imgui/imgui.i: src/imgui/imgui.cpp.i
@@ -237,7 +237,7 @@ src/imgui/imgui.i: src/imgui/imgui.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui.cpp.i
 .PHONY : src/imgui/imgui.cpp.i
 
 src/imgui/imgui.s: src/imgui/imgui.cpp.s
@@ -245,7 +245,7 @@ src/imgui/imgui.s: src/imgui/imgui.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui.cpp.s
 .PHONY : src/imgui/imgui.cpp.s
 
 src/imgui/imgui_demo.obj: src/imgui/imgui_demo.cpp.obj
@@ -253,7 +253,7 @@ src/imgui/imgui_demo.obj: src/imgui/imgui_demo.cpp.obj
 
 # target to build an object file
 src/imgui/imgui_demo.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_demo.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_demo.cpp.obj
 .PHONY : src/imgui/imgui_demo.cpp.obj
 
 src/imgui/imgui_demo.i: src/imgui/imgui_demo.cpp.i
@@ -261,7 +261,7 @@ src/imgui/imgui_demo.i: src/imgui/imgui_demo.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_demo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_demo.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_demo.cpp.i
 .PHONY : src/imgui/imgui_demo.cpp.i
 
 src/imgui/imgui_demo.s: src/imgui/imgui_demo.cpp.s
@@ -269,7 +269,7 @@ src/imgui/imgui_demo.s: src/imgui/imgui_demo.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_demo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_demo.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_demo.cpp.s
 .PHONY : src/imgui/imgui_demo.cpp.s
 
 src/imgui/imgui_draw.obj: src/imgui/imgui_draw.cpp.obj
@@ -277,7 +277,7 @@ src/imgui/imgui_draw.obj: src/imgui/imgui_draw.cpp.obj
 
 # target to build an object file
 src/imgui/imgui_draw.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_draw.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_draw.cpp.obj
 .PHONY : src/imgui/imgui_draw.cpp.obj
 
 src/imgui/imgui_draw.i: src/imgui/imgui_draw.cpp.i
@@ -285,7 +285,7 @@ src/imgui/imgui_draw.i: src/imgui/imgui_draw.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_draw.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_draw.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_draw.cpp.i
 .PHONY : src/imgui/imgui_draw.cpp.i
 
 src/imgui/imgui_draw.s: src/imgui/imgui_draw.cpp.s
@@ -293,7 +293,7 @@ src/imgui/imgui_draw.s: src/imgui/imgui_draw.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_draw.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_draw.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_draw.cpp.s
 .PHONY : src/imgui/imgui_draw.cpp.s
 
 src/imgui/imgui_impl_glfw.obj: src/imgui/imgui_impl_glfw.cpp.obj
@@ -301,7 +301,7 @@ src/imgui/imgui_impl_glfw.obj: src/imgui/imgui_impl_glfw.cpp.obj
 
 # target to build an object file
 src/imgui/imgui_impl_glfw.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_impl_glfw.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_impl_glfw.cpp.obj
 .PHONY : src/imgui/imgui_impl_glfw.cpp.obj
 
 src/imgui/imgui_impl_glfw.i: src/imgui/imgui_impl_glfw.cpp.i
@@ -309,7 +309,7 @@ src/imgui/imgui_impl_glfw.i: src/imgui/imgui_impl_glfw.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_impl_glfw.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_impl_glfw.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_impl_glfw.cpp.i
 .PHONY : src/imgui/imgui_impl_glfw.cpp.i
 
 src/imgui/imgui_impl_glfw.s: src/imgui/imgui_impl_glfw.cpp.s
@@ -317,7 +317,7 @@ src/imgui/imgui_impl_glfw.s: src/imgui/imgui_impl_glfw.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_impl_glfw.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_impl_glfw.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_impl_glfw.cpp.s
 .PHONY : src/imgui/imgui_impl_glfw.cpp.s
 
 src/imgui/imgui_impl_opengl3.obj: src/imgui/imgui_impl_opengl3.cpp.obj
@@ -325,7 +325,7 @@ src/imgui/imgui_impl_opengl3.obj: src/imgui/imgui_impl_opengl3.cpp.obj
 
 # target to build an object file
 src/imgui/imgui_impl_opengl3.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_impl_opengl3.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_impl_opengl3.cpp.obj
 .PHONY : src/imgui/imgui_impl_opengl3.cpp.obj
 
 src/imgui/imgui_impl_opengl3.i: src/imgui/imgui_impl_opengl3.cpp.i
@@ -333,7 +333,7 @@ src/imgui/imgui_impl_opengl3.i: src/imgui/imgui_impl_opengl3.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_impl_opengl3.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_impl_opengl3.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_impl_opengl3.cpp.i
 .PHONY : src/imgui/imgui_impl_opengl3.cpp.i
 
 src/imgui/imgui_impl_opengl3.s: src/imgui/imgui_impl_opengl3.cpp.s
@@ -341,7 +341,7 @@ src/imgui/imgui_impl_opengl3.s: src/imgui/imgui_impl_opengl3.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_impl_opengl3.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_impl_opengl3.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_impl_opengl3.cpp.s
 .PHONY : src/imgui/imgui_impl_opengl3.cpp.s
 
 src/imgui/imgui_tables.obj: src/imgui/imgui_tables.cpp.obj
@@ -349,7 +349,7 @@ src/imgui/imgui_tables.obj: src/imgui/imgui_tables.cpp.obj
 
 # target to build an object file
 src/imgui/imgui_tables.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_tables.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_tables.cpp.obj
 .PHONY : src/imgui/imgui_tables.cpp.obj
 
 src/imgui/imgui_tables.i: src/imgui/imgui_tables.cpp.i
@@ -357,7 +357,7 @@ src/imgui/imgui_tables.i: src/imgui/imgui_tables.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_tables.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_tables.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_tables.cpp.i
 .PHONY : src/imgui/imgui_tables.cpp.i
 
 src/imgui/imgui_tables.s: src/imgui/imgui_tables.cpp.s
@@ -365,7 +365,7 @@ src/imgui/imgui_tables.s: src/imgui/imgui_tables.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_tables.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_tables.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_tables.cpp.s
 .PHONY : src/imgui/imgui_tables.cpp.s
 
 src/imgui/imgui_widgets.obj: src/imgui/imgui_widgets.cpp.obj
@@ -373,7 +373,7 @@ src/imgui/imgui_widgets.obj: src/imgui/imgui_widgets.cpp.obj
 
 # target to build an object file
 src/imgui/imgui_widgets.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_widgets.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_widgets.cpp.obj
 .PHONY : src/imgui/imgui_widgets.cpp.obj
 
 src/imgui/imgui_widgets.i: src/imgui/imgui_widgets.cpp.i
@@ -381,7 +381,7 @@ src/imgui/imgui_widgets.i: src/imgui/imgui_widgets.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_widgets.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_widgets.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_widgets.cpp.i
 .PHONY : src/imgui/imgui_widgets.cpp.i
 
 src/imgui/imgui_widgets.s: src/imgui/imgui_widgets.cpp.s
@@ -389,7 +389,7 @@ src/imgui/imgui_widgets.s: src/imgui/imgui_widgets.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_widgets.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_widgets.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_widgets.cpp.s
 .PHONY : src/imgui/imgui_widgets.cpp.s
 
 src/main.obj: src/main.cpp.obj
@@ -397,7 +397,7 @@ src/main.obj: src/main.cpp.obj
 
 # target to build an object file
 src/main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/main.cpp.obj
 .PHONY : src/main.cpp.obj
 
 src/main.i: src/main.cpp.i
@@ -405,7 +405,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -413,7 +413,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Physics-engine-2D.dir\build.make CMakeFiles/Physics-engine-2D.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -424,7 +424,7 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... Physics-engine-2D
+	@echo ... PhysicalSimulation
 	@echo ... src/GLAD/glad.obj
 	@echo ... src/GLAD/glad.i
 	@echo ... src/GLAD/glad.s

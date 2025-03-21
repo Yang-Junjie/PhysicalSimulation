@@ -70,7 +70,6 @@ void BatchRenderer::addRect(const glm::vec3 &p0, const glm::vec3 &p1, const glm:
 {
     addTriangle(p0,p1,p2,c0,c1,c2);
     addTriangle(p2,p3,p0,c2,c3,c0);
-
 }
 void BatchRenderer::endBatch()
 {

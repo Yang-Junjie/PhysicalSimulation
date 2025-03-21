@@ -1,74 +1,74 @@
 [
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\gcc.exe  @CMakeFiles/Physics-engine-2D.dir/includes_C.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\GLAD\\glad.c.obj -c D:\\C++\\PhysicsEngine\\src\\GLAD\\glad.c",
-  "file": "D:/C++/PhysicsEngine/src/GLAD/glad.c",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/GLAD/glad.c.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\gcc.exe  @CMakeFiles/PhysicalSimulation.dir/includes_C.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\GLAD\\glad.c.obj -c D:\\C++\\PhysicalSimulation\\src\\GLAD\\glad.c",
+  "file": "D:/C++/PhysicalSimulation/src/GLAD/glad.c",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/GLAD/glad.c.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\Graphics\\OERender.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\Graphics\\OERender.cpp",
-  "file": "D:/C++/PhysicsEngine/src/Graphics/OERender.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/Graphics/OERender.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\Graphics\\OERender.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\Graphics\\OERender.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/Graphics/OERender.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/Graphics/OERender.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\Graphics\\OEShader.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\Graphics\\OEShader.cpp",
-  "file": "D:/C++/PhysicsEngine/src/Graphics/OEShader.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/Graphics/OEShader.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\Graphics\\OEShader.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\Graphics\\OEShader.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/Graphics/OEShader.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/Graphics/OEShader.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\Graphics\\OEWindow.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\Graphics\\OEWindow.cpp",
-  "file": "D:/C++/PhysicsEngine/src/Graphics/OEWindow.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/Graphics/OEWindow.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\Graphics\\OEWindow.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\Graphics\\OEWindow.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/Graphics/OEWindow.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/Graphics/OEWindow.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\imgui\\imgui.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\imgui\\imgui.cpp",
-  "file": "D:/C++/PhysicsEngine/src/imgui/imgui.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\imgui\\imgui.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\imgui\\imgui.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/imgui/imgui.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\imgui\\imgui_demo.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\imgui\\imgui_demo.cpp",
-  "file": "D:/C++/PhysicsEngine/src/imgui/imgui_demo.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_demo.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\imgui\\imgui_demo.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\imgui\\imgui_demo.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/imgui/imgui_demo.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_demo.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\imgui\\imgui_draw.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\imgui\\imgui_draw.cpp",
-  "file": "D:/C++/PhysicsEngine/src/imgui/imgui_draw.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_draw.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\imgui\\imgui_draw.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\imgui\\imgui_draw.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/imgui/imgui_draw.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_draw.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\imgui\\imgui_impl_glfw.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\imgui\\imgui_impl_glfw.cpp",
-  "file": "D:/C++/PhysicsEngine/src/imgui/imgui_impl_glfw.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_impl_glfw.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\imgui\\imgui_impl_glfw.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\imgui\\imgui_impl_glfw.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/imgui/imgui_impl_glfw.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_impl_glfw.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\imgui\\imgui_impl_opengl3.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\imgui\\imgui_impl_opengl3.cpp",
-  "file": "D:/C++/PhysicsEngine/src/imgui/imgui_impl_opengl3.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_impl_opengl3.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\imgui\\imgui_impl_opengl3.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\imgui\\imgui_impl_opengl3.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/imgui/imgui_impl_opengl3.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_impl_opengl3.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\imgui\\imgui_tables.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\imgui\\imgui_tables.cpp",
-  "file": "D:/C++/PhysicsEngine/src/imgui/imgui_tables.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_tables.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\imgui\\imgui_tables.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\imgui\\imgui_tables.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/imgui/imgui_tables.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_tables.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\imgui\\imgui_widgets.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\imgui\\imgui_widgets.cpp",
-  "file": "D:/C++/PhysicsEngine/src/imgui/imgui_widgets.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/imgui/imgui_widgets.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\imgui\\imgui_widgets.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\imgui\\imgui_widgets.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/imgui/imgui_widgets.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui_widgets.cpp.obj"
 },
 {
-  "directory": "D:/C++/PhysicsEngine/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/Physics-engine-2D.dir/includes_CXX.rsp -g -o CMakeFiles\\Physics-engine-2D.dir\\src\\main.cpp.obj -c D:\\C++\\PhysicsEngine\\src\\main.cpp",
-  "file": "D:/C++/PhysicsEngine/src/main.cpp",
-  "output": "CMakeFiles/Physics-engine-2D.dir/src/main.cpp.obj"
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\main.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\main.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/main.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/main.cpp.obj"
 }
 ]
