@@ -91,3 +91,22 @@ void BatchRenderer::flush()
 }
 
 
+void BatchRenderer::addCircle(const glm::vec3 &center, float radius, const glm::vec4 &color, int segments)
+{
+    if (segments < 3)
+        segments = 3; // 至少需要3个线段来形成一个多边形
+
+    float angleIncrement = 2.0f * M_PI / segments;
+    glm::vec3 previousPoint = center + glm::vec3(radius, 0.0f, 0.0f);
+
+    for (int i = 1; i <= segments; ++i)
+    {
+        float angle = i * angleIncrement;
+        glm::vec3 currentPoint = center + glm::vec3(radius * cos(angle), radius * sin(angle), 0.0f);
+
+        // 添加一个三角形，由圆心和两个相邻的顶点组成
+        addTriangle(center, previousPoint, currentPoint, color, color, color);
+
+        previousPoint = currentPoint;
+    }
+}

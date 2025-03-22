@@ -22,6 +22,7 @@ class OEWindow {
         void setKeyCallback(GLFWkeyfun callback);
         void setMouseButtonCallback(GLFWmousebuttonfun callback);
         void setScrollCallback(GLFWscrollfun callback);
+        void glfwSetFramebufferSizeCallback(GLFWwindow* window, int width, int height);
 
        
         GLFWwindow* getGLFWWindow();

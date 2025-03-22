@@ -1,10 +1,10 @@
 #include "OEGraphics.hpp"
 #include "OERender.hpp"
 #include "OEShader.hpp"
-OEWindow window(800, 600, "Physics Engine");
+OEWindow window(800, 800, "Physics Engine");
 
 void mainWindow(){
- 
+    
 }
 
 int main() {

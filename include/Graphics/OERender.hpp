@@ -29,6 +29,7 @@ public:
                      const glm::vec4 &c0, const glm::vec4 &c1, const glm::vec4 &c2);
 
     void addRect(const glm::vec3 &p0, const glm::vec3 &p1, const glm::vec3 &p2, const glm::vec3 &p3, const glm::vec4 &c0, const glm::vec4 &c1, const glm::vec4 &c2,const glm::vec4 &c3);
+    void addCircle(const glm::vec3 &center, float radius, const glm::vec4 &color, int segments);
     void endBatch();
 
     void flush();
