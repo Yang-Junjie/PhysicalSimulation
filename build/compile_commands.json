@@ -25,6 +25,18 @@
 },
 {
   "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\Math\\Vec2.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\Math\\Vec2.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/Math/Vec2.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/Math/Vec2.cpp.obj"
+},
+{
+  "directory": "D:/C++/PhysicalSimulation/build",
+  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\Math\\Vec3.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\Math\\Vec3.cpp",
+  "file": "D:/C++/PhysicalSimulation/src/Math/Vec3.cpp",
+  "output": "CMakeFiles/PhysicalSimulation.dir/src/Math/Vec3.cpp.obj"
+},
+{
+  "directory": "D:/C++/PhysicalSimulation/build",
   "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/PhysicalSimulation.dir/includes_CXX.rsp -g -o CMakeFiles\\PhysicalSimulation.dir\\src\\imgui\\imgui.cpp.obj -c D:\\C++\\PhysicalSimulation\\src\\imgui\\imgui.cpp",
   "file": "D:/C++/PhysicalSimulation/src/imgui/imgui.cpp",
   "output": "CMakeFiles/PhysicalSimulation.dir/src/imgui/imgui.cpp.obj"

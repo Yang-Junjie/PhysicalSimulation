@@ -79,6 +79,24 @@ void OEShader::setFloat(const std::string &name, float value) const
 {
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
+void OEShader::scale(float coeff)const
+{
+    GLint scaleFactorLocation = glGetUniformLocation(ID, "scaling");
+    glUniform1f(scaleFactorLocation, coeff);
+}
+
+void OEShader::setMat4(const std::string& name, const glm::mat4& mat) const
+{
+    GLint matrixLocation = glGetUniformLocation(ID, name.c_str());
+    glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(mat));
+}
+
+void OEShader::setupProjection(int width, int height) const
+{
+    float aspectRatio = static_cast<float>(width) / static_cast<float>(height);
+    glm::mat4 projection = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f);
+    setMat4("projection", projection);
+}
 
 void OEShader::checkCompileErrors(unsigned int shader, std::string type)
 {

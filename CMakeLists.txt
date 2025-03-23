@@ -5,6 +5,7 @@ set(INCLUDE_DIR ./include/Dependencies/
                 ./include/Dependencies/GLAD/ 
                 ./include/Dependencies/imgui/ 
                 ./include/Graphics/ 
+                ./include/Math/
                 ./include/)
 
 include_directories(${INCLUDE_DIR})
@@ -13,6 +14,7 @@ include_directories(${INCLUDE_DIR})
 file(GLOB_RECURSE SOURCE_FILE   ./src/*.cpp 
                                 ./src/GLAD/glad.c 
                                 ./src/imgui/*.cpp
+                                ./src/Math/*.cpp
                                 ./src/Graphics/*.cpp)
 add_executable(${PROJECT_NAME} ${SOURCE_FILE})
 

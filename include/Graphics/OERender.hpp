@@ -6,6 +6,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 
+
 class BatchRenderer
 {
 private:
@@ -20,8 +21,10 @@ private:
 
 public:
     BatchRenderer() = delete;
-
     BatchRenderer(size_t maxVertices, size_t maxIndices);
+    void setClearColor(float r, float g, float b, float a);
+    void clear();
+
 
     void beginBatch();
 

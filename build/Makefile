@@ -224,6 +224,54 @@ src/Graphics/OEWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Graphics/OEWindow.cpp.s
 .PHONY : src/Graphics/OEWindow.cpp.s
 
+src/Math/Vec2.obj: src/Math/Vec2.cpp.obj
+.PHONY : src/Math/Vec2.obj
+
+# target to build an object file
+src/Math/Vec2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Math/Vec2.cpp.obj
+.PHONY : src/Math/Vec2.cpp.obj
+
+src/Math/Vec2.i: src/Math/Vec2.cpp.i
+.PHONY : src/Math/Vec2.i
+
+# target to preprocess a source file
+src/Math/Vec2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Math/Vec2.cpp.i
+.PHONY : src/Math/Vec2.cpp.i
+
+src/Math/Vec2.s: src/Math/Vec2.cpp.s
+.PHONY : src/Math/Vec2.s
+
+# target to generate assembly for a file
+src/Math/Vec2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Math/Vec2.cpp.s
+.PHONY : src/Math/Vec2.cpp.s
+
+src/Math/Vec3.obj: src/Math/Vec3.cpp.obj
+.PHONY : src/Math/Vec3.obj
+
+# target to build an object file
+src/Math/Vec3.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Math/Vec3.cpp.obj
+.PHONY : src/Math/Vec3.cpp.obj
+
+src/Math/Vec3.i: src/Math/Vec3.cpp.i
+.PHONY : src/Math/Vec3.i
+
+# target to preprocess a source file
+src/Math/Vec3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Math/Vec3.cpp.i
+.PHONY : src/Math/Vec3.cpp.i
+
+src/Math/Vec3.s: src/Math/Vec3.cpp.s
+.PHONY : src/Math/Vec3.s
+
+# target to generate assembly for a file
+src/Math/Vec3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PhysicalSimulation.dir\build.make CMakeFiles/PhysicalSimulation.dir/src/Math/Vec3.cpp.s
+.PHONY : src/Math/Vec3.cpp.s
+
 src/imgui/imgui.obj: src/imgui/imgui.cpp.obj
 .PHONY : src/imgui/imgui.obj
 
@@ -437,6 +485,12 @@ help:
 	@echo ... src/Graphics/OEWindow.obj
 	@echo ... src/Graphics/OEWindow.i
 	@echo ... src/Graphics/OEWindow.s
+	@echo ... src/Math/Vec2.obj
+	@echo ... src/Math/Vec2.i
+	@echo ... src/Math/Vec2.s
+	@echo ... src/Math/Vec3.obj
+	@echo ... src/Math/Vec3.i
+	@echo ... src/Math/Vec3.s
 	@echo ... src/imgui/imgui.obj
 	@echo ... src/imgui/imgui.i
 	@echo ... src/imgui/imgui.s
