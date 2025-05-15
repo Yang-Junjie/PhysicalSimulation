@@ -9,20 +9,20 @@ namespace ps
     {
         constexpr real PointSize = 2.0f;
         constexpr int FillAlpha = 84;
-        const SDL_Color Yellow = {255, 235, 59};
-        const SDL_Color Red = {244, 67, 54};
-        const SDL_Color Blue = {55, 133, 205};
-        const SDL_Color LightBlue = {3, 169, 244};
-        const SDL_Color Cyan = {78, 184, 210};
-        const SDL_Color LightCyan = {0, 188, 212};
-        const SDL_Color Green = {15, 250, 14};
-        const SDL_Color Pink = {233, 30, 99};
-        const SDL_Color DarkGreen = {44, 113, 48};
-        const SDL_Color Gray = {189, 189, 189};
-        const SDL_Color Orange = {255, 138, 101};
-        const SDL_Color Teal = {29, 233, 182};
+        const SDL_Color Yellow = {255, 235, 59, 255};
+        const SDL_Color Red = {244, 67, 54, 255};
+        const SDL_Color Blue = {55, 133, 205, 255};
+        const SDL_Color LightBlue = {3, 169, 244, 255};
+        const SDL_Color Cyan = {78, 184, 210, 255};
+        const SDL_Color LightCyan = {0, 188, 212, 255};
+        const SDL_Color Green = {15, 250, 14, 255};
+        const SDL_Color Pink = {233, 30, 99, 255};
+        const SDL_Color DarkGreen = {44, 113, 48, 255};
+        const SDL_Color Gray = {189, 189, 189, 255};
+        const SDL_Color Orange = {255, 138, 101, 255};
+        const SDL_Color Teal = {29, 233, 182, 255};
         static real ScaleFactor = 1.0f;
-        
+
     }
     class RenderSDLImpl
     {

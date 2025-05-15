@@ -43,6 +43,10 @@ int main(int argc, char *argv[])
             break;
         }
         }
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+        SDL_RenderClear(renderer);
+
         // draw.renderLine(window, renderer, p1, p2, color);
         //  draw.renderPoint(window,renderer,{10,23},color);
         draw.renderLines(window, renderer, points, color);

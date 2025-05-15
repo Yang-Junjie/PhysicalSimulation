@@ -54,7 +54,7 @@ void ps::RenderSDLImpl::renderPolygon(SDL_Window *window, SDL_Renderer *renderer
      auto indices = polygon->indices();
      std::vector<SDL_Vertex> points;
      points.reserve(vertices.size());
-     SDL_FColor fillColor = {color.r/255.0f, color.g/255.0f, color.b/255.0f, RenderConstant::FillAlpha/255.0f};
+     SDL_FColor fillColor = {color.r / 255.0f, color.g / 255.0f, color.b / 255.0f, RenderConstant::FillAlpha / 255.0f};
      for (size_t i = 0; i < polygon->vertices().size(); ++i)
      {
           const Vector2 worldPos = shape.transform.translatePoint(
@@ -62,4 +62,19 @@ void ps::RenderSDLImpl::renderPolygon(SDL_Window *window, SDL_Renderer *renderer
           points.emplace_back(SDL_Vertex{toVector2f(worldPos), fillColor, {0, 0}});
      }
      SDL_RenderGeometry(renderer, NULL, points.data(), points.size(), indices.data(), indices.size());
+     renderLines(window, renderer, vertices, color);
+     // int lineWidth = 1;
+     // for (size_t i = 0; i < vertices.size(); ++i)
+     // {
+     //      const auto &a = vertices[i];
+     //      const auto &b = vertices[(i + 1) % vertices.size()];
+     //      for (int dx = -lineWidth / 2; dx <= lineWidth / 2; ++dx)
+     //      {
+     //           std::cout<<"dx: "<<dx<<std::endl;
+     //           for (int dy = -lineWidth / 2; dy <= lineWidth / 2; ++dy)
+     //           {
+     //                renderLine(window, renderer, {a.x_ + dx, a.y_ + dy}, {b.x_ + dx, b.y_ + dy}, color);
+     //           }
+     //      }
+     // }
 }
