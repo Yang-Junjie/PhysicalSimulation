@@ -48,33 +48,69 @@ void ps::RenderSDLImpl::renderLines(SDL_Window *window, SDL_Renderer *renderer, 
 void ps::RenderSDLImpl::renderPolygon(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape, const SDL_Color &color)
 {
      assert(shape.shape != nullptr);
-     assert(shape.shape->type() == ShapeType::Polygon);
-     auto polygon = static_cast<Polygon *>(shape.shape);
-     auto vertices = polygon->vertices();
-     auto indices = polygon->indices();
-     std::vector<SDL_Vertex> points;
-     points.reserve(vertices.size());
-     SDL_FColor fillColor = {color.r / 255.0f, color.g / 255.0f, color.b / 255.0f, RenderConstant::FillAlpha / 255.0f};
-     for (size_t i = 0; i < polygon->vertices().size(); ++i)
+    assert(shape.shape->type() == ShapeType::Polygon);
+    auto polygon = static_cast<Polygon *>(shape.shape);
+    auto vertices = polygon->vertices();
+    auto indices = polygon->indices();
+    std::vector<SDL_Vertex> points;
+    points.reserve(vertices.size());
+    SDL_FColor fillColor = {color.r / 255.0f, color.g / 255.0f, color.b / 255.0f, RenderConstant::FillAlpha / 255.0f};
+    for (size_t i = 0; i < vertices.size(); ++i)
+    {
+        const Vector2 worldPos = shape.transform.translatePoint(vertices[i] * RenderConstant::ScaleFactor);
+        points.emplace_back(SDL_Vertex{toVector2f(worldPos), fillColor, {0, 0}});
+    }
+    SDL_RenderGeometry(renderer, NULL, points.data(), points.size(), indices.data(), indices.size());
+
+    std::vector<Vector2> outline;
+    outline.reserve(points.size() + 1);
+    for (const auto& v : points) {
+        outline.emplace_back(Vector2{v.position.x, v.position.y});
+    }
+    if (!outline.empty()) {
+        outline.push_back(outline.front());
+    }
+    renderLines(window, renderer, outline, color);
+}
+
+void ps::RenderSDLImpl::renderCircle(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape, const SDL_Color &color)
+{
+     assert(shape.shape->type() == ShapeType::Circle);
+     auto circle = static_cast<Circle *>(shape.shape);
+     auto center = shape.transform.translatePoint(circle->center() * RenderConstant::ScaleFactor);
+     auto radius = circle->radius() * RenderConstant::ScaleFactor;
+
+     const int segments = RenderConstant::BasicCirclePointCount;
+     std::vector<SDL_Vertex> vertices;
+     vertices.reserve(segments + 2);
+     std::vector<int> indices;
+     indices.reserve(segments * 3);
+     std::vector<Vector2> outlinePoints;
+     outlinePoints.reserve(segments + 1);
+
+     SDL_FColor fillColor = {
+         color.r / 255.0f,
+         color.g / 255.0f,
+         color.b / 255.0f,
+         RenderConstant::FillAlpha / 255.0f};
+
+     vertices.emplace_back(SDL_Vertex{toVector2f(center), fillColor, {0, 0}});
+
+     for (int i = 0; i <= segments; ++i)
      {
-          const Vector2 worldPos = shape.transform.translatePoint(
-              polygon->vertices()[i] * RenderConstant::ScaleFactor);
-          points.emplace_back(SDL_Vertex{toVector2f(worldPos), fillColor, {0, 0}});
+          float theta = 2.0f * float(Constant::DoublePi) * float(i) / float(segments);
+          float x = center.x_ + radius * cosf(theta);
+          float y = center.y_ + radius * sinf(theta);
+          vertices.emplace_back(SDL_Vertex{SDL_FPoint{x, y}, fillColor, {0, 0}});
+          outlinePoints.emplace_back(Vector2{x, y});
+          if (i > 0)
+          {
+               indices.push_back(0);
+               indices.push_back(i);
+               indices.push_back(i + 1);
+          }
      }
-     SDL_RenderGeometry(renderer, NULL, points.data(), points.size(), indices.data(), indices.size());
-     renderLines(window, renderer, vertices, color);
-     // int lineWidth = 1;
-     // for (size_t i = 0; i < vertices.size(); ++i)
-     // {
-     //      const auto &a = vertices[i];
-     //      const auto &b = vertices[(i + 1) % vertices.size()];
-     //      for (int dx = -lineWidth / 2; dx <= lineWidth / 2; ++dx)
-     //      {
-     //           std::cout<<"dx: "<<dx<<std::endl;
-     //           for (int dy = -lineWidth / 2; dy <= lineWidth / 2; ++dy)
-     //           {
-     //                renderLine(window, renderer, {a.x_ + dx, a.y_ + dy}, {b.x_ + dx, b.y_ + dy}, color);
-     //           }
-     //      }
-     // }
+
+     SDL_RenderGeometry(renderer, NULL, vertices.data(), vertices.size(), indices.data(), indices.size());
+     renderLines(window, renderer, outlinePoints, color);
 }

@@ -3,3 +3,4 @@
 #include "ps_vector2.hpp"
 #include "ps_shape.hpp"
 #include "ps_polygon.hpp"
+#include "ps_circle.hpp"

@@ -9,6 +9,7 @@ namespace ps
     {
         constexpr real PointSize = 2.0f;
         constexpr int FillAlpha = 84;
+        constexpr int BasicCirclePointCount = 20;
         const SDL_Color Yellow = {255, 235, 59, 255};
         const SDL_Color Red = {244, 67, 54, 255};
         const SDL_Color Blue = {55, 133, 205, 255};
@@ -28,15 +29,17 @@ namespace ps
     {
     public:
         static SDL_FPoint toVector2f(const Vector2 &vector);
-        static void renderPoint(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point, const SDL_Color &color,
-                                real pointSize = RenderConstant::PointSize);
-        static void renderLine(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &p1, const Vector2 &p2,
-                               const SDL_Color &color);
-        static void renderPoints(SDL_Window *window, SDL_Renderer *renderer, const std::vector<Vector2> &points,
-                                 const SDL_Color &color);
+        static void renderPoint(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point,
+                                const SDL_Color &color, real pointSize = RenderConstant::PointSize);
+        static void renderLine(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &p1,
+                               const Vector2 &p2, const SDL_Color &color);
+        static void renderPoints(SDL_Window *window, SDL_Renderer *renderer,
+                                 const std::vector<Vector2> &points, const SDL_Color &color);
         static void renderLines(SDL_Window *window, SDL_Renderer *renderer,
                                 const std::vector<Vector2> &lines, const SDL_Color &color);
         static void renderPolygon(SDL_Window *window, SDL_Renderer *renderer,
                                   const ShapePrimitive &shape, const SDL_Color &color);
+        static void renderCircle(SDL_Window *window, SDL_Renderer *renderer,
+                                 const ShapePrimitive &shape, const SDL_Color &color);
     };
 }

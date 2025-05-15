@@ -27,6 +27,13 @@ int main(int argc, char *argv[])
     polygon.append({{0, 0}, {0, 100}, {100, 100}, {100, 0}});
     ps::ShapePrimitive shape;
     shape.shape = &polygon;
+    shape.transform.position = {100, 100};
+
+    ps::Circle circle;
+    circle.setRadius(50);
+    ps::ShapePrimitive shape2;
+    shape2.shape = &circle;
+    shape2.transform.position = {300, 300};
 
     SDL_Event event{};
     bool keep_going = true;
@@ -51,6 +58,7 @@ int main(int argc, char *argv[])
         //  draw.renderPoint(window,renderer,{10,23},color);
         draw.renderLines(window, renderer, points, color);
         draw.renderPolygon(window, renderer, shape, color);
+        draw.renderCircle(window, renderer, shape2, color);
         SDL_RenderPresent(renderer);
     }
 
