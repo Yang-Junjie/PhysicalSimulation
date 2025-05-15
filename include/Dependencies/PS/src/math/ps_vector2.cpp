@@ -2,10 +2,9 @@
 #include "ps_math.hpp"
 namespace ps
 {
-    Vector2::Vector2()
+    Vector2::Vector2() : x_(0.0f), y_(0.0f)
     {
     }
-
     Vector2::Vector2(const real &x, const real &y) : x_(x), y_(y)
     {
         assert(!std::isnan(x_));

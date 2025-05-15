@@ -7,7 +7,7 @@ namespace ps
     {
 
     public:
-        Vector2();
+		Vector2();
         Vector2(const real& _x, const real& _y);
         Vector2(const Vector2 &vec2);
         Vector2& operator=(const Vector2& copy);

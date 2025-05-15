@@ -3,6 +3,15 @@
 #include <limits>
 #include <cmath>
 #include <assert.h>
+#include <iostream>
+#include <vector>
+#include <optional>
+#include <initializer_list>
+#include <vector>
+#include <tuple>
+#include <optional>
+#include <list>
+
 #ifndef SINGLE_PRECISION
 using real = float;
 

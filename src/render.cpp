@@ -5,19 +5,19 @@ SDL_FPoint ps::RenderSDLImpl::toVector2f(const Vector2 &vector)
      return SDL_FPoint({vector.x_, vector.y_});
 }
 
-void ps::RenderSDLImpl::renderPoint(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point, const SDL_FColor &color, real pointSize)
+void ps::RenderSDLImpl::renderPoint(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point, const SDL_Color &color, real pointSize)
 {
      SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
      SDL_RenderPoint(renderer, point.x_, point.y_);
 }
 
-void ps::RenderSDLImpl::renderLine(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &p1, const Vector2 &p2, const SDL_FColor &color)
+void ps::RenderSDLImpl::renderLine(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &p1, const Vector2 &p2, const SDL_Color &color)
 {
      SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
      SDL_RenderLine(renderer, p1.x_, p1.y_, p2.x_, p2.y_);
 }
 
-void ps::RenderSDLImpl::renderPoints(SDL_Window *window, SDL_Renderer *renderer, const std::vector<Vector2> &points, const SDL_FColor &color)
+void ps::RenderSDLImpl::renderPoints(SDL_Window *window, SDL_Renderer *renderer, const std::vector<Vector2> &points, const SDL_Color &color)
 {
      std::vector<SDL_FPoint> vertices;
      vertices.reserve(points.size());
@@ -31,7 +31,7 @@ void ps::RenderSDLImpl::renderPoints(SDL_Window *window, SDL_Renderer *renderer,
      SDL_RenderPoints(renderer, vertices.data(), vertices.size());
 }
 
-void ps::RenderSDLImpl::renderLines(SDL_Window *window, SDL_Renderer *renderer, const std::vector<Vector2> &lines, const SDL_FColor &color)
+void ps::RenderSDLImpl::renderLines(SDL_Window *window, SDL_Renderer *renderer, const std::vector<Vector2> &lines, const SDL_Color &color)
 {
      std::vector<SDL_FPoint> vertices;
      vertices.reserve(lines.size() * 2);
@@ -41,6 +41,24 @@ void ps::RenderSDLImpl::renderLines(SDL_Window *window, SDL_Renderer *renderer, 
           point = toVector2f(elem);
           vertices.emplace_back(point);
      }
-     SDL_SetRenderDrawColor(renderer,  color.r, color.g, color.b, color.a);
+     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
      SDL_RenderLines(renderer, vertices.data(), vertices.size());
+}
+
+void ps::RenderSDLImpl::renderPolygon(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape, const SDL_Color &color)
+{
+     assert(shape.shape != nullptr);
+     assert(shape.shape->type() == ShapeType::Polygon);
+     auto polygon = static_cast<Polygon *>(shape.shape);
+     auto vertices = polygon->vertices();
+     std::vector<SDL_Vertex> points;
+     points.reserve(vertices.size());
+     SDL_FColor fillColor = {color.r/255.0f, color.g/255.0f, color.b/255.0f, RenderConstant::FillAlpha/255.0f};
+     for (size_t i = 0; i < polygon->vertices().size(); ++i)
+     {
+          const Vector2 worldPos = shape.transform.translatePoint(
+              polygon->vertices()[i] * RenderConstant::ScaleFactor);
+          points.emplace_back(SDL_Vertex{toVector2f(worldPos), fillColor, {0, 0}});
+     }
+     SDL_RenderGeometry(renderer, NULL, points.data(), points.size(), NULL, 0);
 }

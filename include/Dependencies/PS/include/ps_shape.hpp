@@ -12,45 +12,43 @@ namespace ps
 		Edge,
 		Circle
 	};
-	class  Shape
+	class Shape
 	{
 	public:
-
 		ShapeType type() const
 		{
 			return m_type;
 		}
 
-		virtual void scale(const real& factor) = 0;
+		virtual void scale(const real &factor) = 0;
 
-		virtual ~Shape()
-		{
+		virtual ~Shape() {
 		};
-		virtual bool contains(const Vector2& point, const real& epsilon = Constant::GeometryEpsilon) = 0;
+		virtual bool contains(const Vector2 &point, const real &epsilon = Constant::GeometryEpsilon) = 0;
 		virtual Vector2 center() const = 0;
 
 	protected:
 		ShapeType m_type;
 	};
 
-	struct  Transform
+	struct Transform
 	{
-		//refer https://docs.unity3d.com/ScriptReference/Transform.html
+		// refer https://docs.unity3d.com/ScriptReference/Transform.html
 		Vector2 position;
 		real rotation = 0;
 		real scale = 1.0f;
 
-		Vector2 translatePoint(const Vector2& source) const
+		Vector2 translatePoint(const Vector2 &source) const
 		{
 			return Matrix2x2(rotation).multiply(source) * scale + position;
 		}
 
-		Vector2 inverseTranslatePoint(const Vector2& source) const
+		Vector2 inverseTranslatePoint(const Vector2 &source) const
 		{
 			return Matrix2x2(-rotation).multiply(source - position) / scale;
 		}
 
-		Vector2 inverseRotatePoint(const Vector2& point) const
+		Vector2 inverseRotatePoint(const Vector2 &point) const
 		{
 			return Matrix2x2(-rotation).multiply(point);
 		}
@@ -59,13 +57,13 @@ namespace ps
 	/**
 	 * \brief Basic Shape Description Primitive. Including shape and transform.
 	 */
-	struct  ShapePrimitive
+	struct ShapePrimitive
 	{
 		ShapePrimitive() = default;
-		Shape* shape = nullptr;
+		Shape *shape = nullptr;
 		Transform transform;
 
-		bool contains(const Vector2& point, const real& epsilon = Constant::GeometryEpsilon) const
+		bool contains(const Vector2 &point, const real &epsilon = Constant::GeometryEpsilon) const
 		{
 			if (shape == nullptr)
 				return false;
