@@ -4,3 +4,5 @@
 #include "ps_shape.hpp"
 #include "ps_polygon.hpp"
 #include "ps_circle.hpp"
+#include "ps_edge.hpp"
+#include "ps_lineralg.hpp"

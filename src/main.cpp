@@ -32,6 +32,12 @@ int main(int argc, char *argv[])
     shape2.shape = &circle;
     shape2.transform.position = {300, 300};
 
+    ps::Edge edge;
+    edge.set({0, 0}, {500, 0});
+    ps::ShapePrimitive shape3;
+    shape3.shape = &edge;
+    shape3.transform.position = {100, 400};
+
     SDL_Event event{};
     bool keep_going = true;
 
@@ -53,7 +59,7 @@ int main(int argc, char *argv[])
 
         ps::RenderSDLImpl::renderPolygon(window, renderer, shape, blue);
         ps::RenderSDLImpl::renderCircle(window, renderer, shape2, red);
-
+        ps::RenderSDLImpl::renderEdge(window, renderer, shape3, green);
         SDL_RenderPresent(renderer);
     }
 

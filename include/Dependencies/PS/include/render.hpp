@@ -8,8 +8,11 @@ namespace ps
     namespace RenderConstant
     {
         constexpr real PointSize = 2.0f;
-        constexpr int FillAlpha = 84;
-        constexpr int BasicCirclePointCount = 32;
+        constexpr int BorderSize = 1;
+        constexpr int FillAlpha = 38;
+        constexpr int BasicCirclePointCount = 60;
+        constexpr real BasicDashLength = 0.04f;
+        constexpr real BasicDashGap = 0.04f;
         const SDL_Color Yellow = {255, 235, 59, 255};
         const SDL_Color Red = {244, 67, 54, 255};
         const SDL_Color Blue = {55, 133, 205, 255};
@@ -41,5 +44,7 @@ namespace ps
                                   const ShapePrimitive &shape, const SDL_Color &color);
         static void renderCircle(SDL_Window *window, SDL_Renderer *renderer,
                                  const ShapePrimitive &shape, const SDL_Color &color);
+        static void renderEdge(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape,
+                               const SDL_Color &color);
     };
 }

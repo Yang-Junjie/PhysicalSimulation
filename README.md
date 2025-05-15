@@ -1,5 +1,10 @@
 ## 引用
+[2D凸多边形碰撞检测算法](https://zhuanlan.zhihu.com/p/178841676)   
+[游戏物理引擎笔记](https://www.zhihu.com/column/c_1286651106643099648)  
+[jMonkeyEngine初学者教程（中文版）](https://www.jmecn.net/tutorial-for-beginners/chapter-16-physics-engine.html)  
+[游戏开发物理学](https://cread.jd.com/read/startRead.action?bookId=30358337&readType=1)   
 [SDL Wiki](https://wiki.libsdl.org/SDL3/Tutorials/FrontPage)  
 [unity3d Scripting API](https://docs.unity3d.com/ScriptReference/)  
 [Cppreference](https://zh.cppreference.com/)  
 [BOX2D](https://github.com/erincatto/box2d)  
+[ACRL](https://github.com/acrlw/Physics2D)  
