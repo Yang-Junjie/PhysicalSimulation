@@ -15,14 +15,11 @@ int main(int argc, char *argv[])
         SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
-    ps::RenderSDLImpl draw;
-    ps::Vector2 p1 = ps::Vector2(0.0f, 0.0f);
-    ps::Vector2 p2 = ps::Vector2(640.0f, 480.0f);
 
-    std::vector<ps::Vector2> vertices = {ps::Vector2(16.0f, 63.0f), ps::Vector2(32.0f, 180.0f)};
-    std::vector<ps::Vector2> points = {{100, 354}, {220, 230}, {140, 230}, {320, 100}, {500, 230}, {420, 230}, {540, 354}, {400, 354}, {100, 354}};
-    SDL_Color color = ps::RenderConstant::Blue;
-
+    SDL_Color blue = ps::RenderConstant::Blue;
+    SDL_Color green = ps::RenderConstant::Green;
+    SDL_Color red = ps::RenderConstant::Red;
+    
     ps::Polygon polygon;
     polygon.append({{0, 0}, {0, 100}, {100, 100}, {100, 0}});
     ps::ShapePrimitive shape;
@@ -54,11 +51,9 @@ int main(int argc, char *argv[])
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderClear(renderer);
 
-        // draw.renderLine(window, renderer, p1, p2, color);
-        //  draw.renderPoint(window,renderer,{10,23},color);
-        draw.renderLines(window, renderer, points, color);
-        draw.renderPolygon(window, renderer, shape, color);
-        draw.renderCircle(window, renderer, shape2, color);
+        ps::RenderSDLImpl::renderPolygon(window, renderer, shape, blue);
+        ps::RenderSDLImpl::renderCircle(window, renderer, shape2, red);
+
         SDL_RenderPresent(renderer);
     }
 

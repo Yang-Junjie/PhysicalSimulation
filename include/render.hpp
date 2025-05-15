@@ -9,7 +9,7 @@ namespace ps
     {
         constexpr real PointSize = 2.0f;
         constexpr int FillAlpha = 84;
-        constexpr int BasicCirclePointCount = 20;
+        constexpr int BasicCirclePointCount = 32;
         const SDL_Color Yellow = {255, 235, 59, 255};
         const SDL_Color Red = {244, 67, 54, 255};
         const SDL_Color Blue = {55, 133, 205, 255};
@@ -22,7 +22,7 @@ namespace ps
         const SDL_Color Gray = {189, 189, 189, 255};
         const SDL_Color Orange = {255, 138, 101, 255};
         const SDL_Color Teal = {29, 233, 182, 255};
-        static real ScaleFactor = 1.0f;
+        static real ScaleFactor = 0.5f;
 
     }
     class RenderSDLImpl

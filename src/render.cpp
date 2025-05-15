@@ -98,7 +98,7 @@ void ps::RenderSDLImpl::renderCircle(SDL_Window *window, SDL_Renderer *renderer,
 
      for (int i = 0; i <= segments; ++i)
      {
-          float theta = 2.0f * float(Constant::DoublePi) * float(i) / float(segments);
+          float theta =  float(i) / float(segments)*2.0f * float(Constant::Pi) ;
           float x = center.x_ + radius * cosf(theta);
           float y = center.y_ + radius * sinf(theta);
           vertices.emplace_back(SDL_Vertex{SDL_FPoint{x, y}, fillColor, {0, 0}});
