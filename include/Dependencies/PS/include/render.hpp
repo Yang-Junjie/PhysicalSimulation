@@ -32,11 +32,11 @@ namespace ps
     {
     public:
         static SDL_FPoint toVector2f(const Vector2 &vector);
-        static void renderPoint(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point,
-                                const SDL_Color &color, real pointSize = RenderConstant::PointSize);
+        static void renderPixle(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point,
+                                const SDL_Color &color);
         static void renderLine(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &p1,
                                const Vector2 &p2, const SDL_Color &color);
-        static void renderPoints(SDL_Window *window, SDL_Renderer *renderer,
+        static void renderPixles(SDL_Window *window, SDL_Renderer *renderer,
                                  const std::vector<Vector2> &points, const SDL_Color &color);
         static void renderLines(SDL_Window *window, SDL_Renderer *renderer,
                                 const std::vector<Vector2> &lines, const SDL_Color &color);
@@ -44,6 +44,10 @@ namespace ps
                                   const ShapePrimitive &shape, const SDL_Color &color);
         static void renderCircle(SDL_Window *window, SDL_Renderer *renderer,
                                  const ShapePrimitive &shape, const SDL_Color &color);
+        static void renderPoint(SDL_Window *window, SDL_Renderer *renderer,
+                               const Vector2 &point, const SDL_Color &color,real pointSize = RenderConstant::PointSize);
+        static void renderPoints(SDL_Window *window, SDL_Renderer *renderer,
+                                 const std::vector<Vector2> &points, const SDL_Color &color);
         static void renderEdge(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape,
                                const SDL_Color &color);
     };

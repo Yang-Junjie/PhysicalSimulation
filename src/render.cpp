@@ -5,7 +5,7 @@ SDL_FPoint ps::RenderSDLImpl::toVector2f(const Vector2 &vector)
      return SDL_FPoint({vector.x_, vector.y_});
 }
 
-void ps::RenderSDLImpl::renderPoint(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point, const SDL_Color &color, real pointSize)
+void ps::RenderSDLImpl::renderPixle(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point, const SDL_Color &color)
 {
      SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
      SDL_RenderPoint(renderer, point.x_, point.y_);
@@ -17,7 +17,7 @@ void ps::RenderSDLImpl::renderLine(SDL_Window *window, SDL_Renderer *renderer, c
      SDL_RenderLine(renderer, p1.x_, p1.y_, p2.x_, p2.y_);
 }
 
-void ps::RenderSDLImpl::renderPoints(SDL_Window *window, SDL_Renderer *renderer, const std::vector<Vector2> &points, const SDL_Color &color)
+void ps::RenderSDLImpl::renderPixles(SDL_Window *window, SDL_Renderer *renderer, const std::vector<Vector2> &points, const SDL_Color &color)
 {
      std::vector<SDL_FPoint> vertices;
      vertices.reserve(points.size());
@@ -115,6 +115,24 @@ void ps::RenderSDLImpl::renderCircle(SDL_Window *window, SDL_Renderer *renderer,
 
      SDL_RenderGeometry(renderer, NULL, vertices.data(), vertices.size(), indices.data(), indices.size());
      renderLines(window, renderer, outlinePoints, color);
+}
+
+void ps::RenderSDLImpl::renderPoint(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point, const SDL_Color &color, real pointSize)
+{
+     Circle circle;
+     circle.setRadius(pointSize);
+     ShapePrimitive shape;
+     shape.shape = &circle;
+     shape.transform.position = point;
+     renderCircle(window, renderer, shape, color);
+}
+
+void ps::RenderSDLImpl::renderPoints(SDL_Window *window, SDL_Renderer *renderer, const std::vector<Vector2> &points, const SDL_Color &color)
+{
+     for (const auto &point : points)
+     {
+          renderPoint(window, renderer, point, color);
+     }
 }
 
 void ps::RenderSDLImpl::renderEdge(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape, const SDL_Color &color)
