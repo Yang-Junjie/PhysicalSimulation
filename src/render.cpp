@@ -51,6 +51,7 @@ void ps::RenderSDLImpl::renderPolygon(SDL_Window *window, SDL_Renderer *renderer
      assert(shape.shape->type() == ShapeType::Polygon);
      auto polygon = static_cast<Polygon *>(shape.shape);
      auto vertices = polygon->vertices();
+     auto indices = polygon->indices();
      std::vector<SDL_Vertex> points;
      points.reserve(vertices.size());
      SDL_FColor fillColor = {color.r/255.0f, color.g/255.0f, color.b/255.0f, RenderConstant::FillAlpha/255.0f};
@@ -60,5 +61,5 @@ void ps::RenderSDLImpl::renderPolygon(SDL_Window *window, SDL_Renderer *renderer
               polygon->vertices()[i] * RenderConstant::ScaleFactor);
           points.emplace_back(SDL_Vertex{toVector2f(worldPos), fillColor, {0, 0}});
      }
-     SDL_RenderGeometry(renderer, NULL, points.data(), points.size(), NULL, 0);
+     SDL_RenderGeometry(renderer, NULL, points.data(), points.size(), indices.data(), indices.size());
 }

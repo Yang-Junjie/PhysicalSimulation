@@ -12,17 +12,24 @@ const std::vector<ps::Vector2> &ps::Polygon::vertices() const
     return m_vertices;
 }
 
+const std::vector<int> &ps::Polygon::indices() const
+{
+    return m_indices;
+}
+
 void ps::Polygon::append(const std::initializer_list<Vector2> &vertices)
 {
     for (const Vector2 &vertex : vertices)
         m_vertices.emplace_back(vertex);
-    //updateVertices();
+    updateIndex();
+    // updateVertices();
 }
 
 void ps::Polygon::append(const Vector2 &vertex)
 {
     m_vertices.emplace_back(vertex);
-    //updateVertices();
+    updateIndex();
+    // updateVertices();
 }
 
 ps::Vector2 ps::Polygon::center() const
@@ -58,4 +65,16 @@ void ps::Polygon::updateVertices()
     Vector2 center = this->center();
     for (auto &elem : m_vertices)
         elem -= center;
+}
+
+void ps::Polygon::updateIndex()
+{
+    for (size_t i = 0; i < m_vertices.size() - 2; i++)
+    {
+        m_indices.push_back(0);
+        for (size_t j = i + 1; j <= i + 2; j++)
+        {
+            m_indices.push_back(static_cast<int>(j));
+        }
+    }
 }

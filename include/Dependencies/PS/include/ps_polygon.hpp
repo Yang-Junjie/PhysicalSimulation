@@ -10,6 +10,7 @@ namespace ps
         Polygon();
 
         const std::vector<Vector2> &vertices() const;
+        const std::vector<int> &indices() const;
         void append(const std::initializer_list<Vector2> &vertices);
         void append(const Vector2 &vertex);
         Vector2 center() const override;
@@ -18,7 +19,9 @@ namespace ps
 
     protected:
         std::vector<Vector2> m_vertices;
+        std::vector<int> m_indices;
         void updateVertices();
+        void updateIndex();
     };
 }
 #endif

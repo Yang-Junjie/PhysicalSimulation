@@ -20,12 +20,11 @@ int main(int argc, char *argv[])
     ps::Vector2 p2 = ps::Vector2(640.0f, 480.0f);
 
     std::vector<ps::Vector2> vertices = {ps::Vector2(16.0f, 63.0f), ps::Vector2(32.0f, 180.0f)};
-    std::vector<ps::Vector2> points = {{ 100, 354 }, { 220, 230 }, { 140, 230 }, { 320, 100 }, { 500, 230 },
-        { 420, 230 }, { 540, 354 }, { 400, 354 }, { 100, 354 }};
+    std::vector<ps::Vector2> points = {{100, 354}, {220, 230}, {140, 230}, {320, 100}, {500, 230}, {420, 230}, {540, 354}, {400, 354}, {100, 354}};
     SDL_Color color = ps::RenderConstant::Blue;
-   
+
     ps::Polygon polygon;
-    polygon.append({{0, 0}, {100, 0}, {100, 100}});
+    polygon.append({{0, 0}, {0, 100}, {100, 100}, {100, 0}});
     ps::ShapePrimitive shape;
     shape.shape = &polygon;
 
