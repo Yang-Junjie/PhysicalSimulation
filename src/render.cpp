@@ -47,32 +47,37 @@ void ps::RenderSDLImpl::renderLines(SDL_Window *window, SDL_Renderer *renderer, 
 
 void ps::RenderSDLImpl::renderPolygon(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape, const SDL_Color &color)
 {
-     assert(shape.shape != nullptr);
-     assert(shape.shape->type() == ShapeType::Polygon);
-     auto polygon = static_cast<Polygon *>(shape.shape);
-     auto vertices = polygon->vertices();
-     auto indices = polygon->indices();
-     std::vector<SDL_Vertex> points;
-     points.reserve(vertices.size());
-     SDL_FColor fillColor = {color.r / 255.0f, color.g / 255.0f, color.b / 255.0f, RenderConstant::FillAlpha / 255.0f};
-     for (size_t i = 0; i < vertices.size(); ++i)
-     {
-          const Vector2 worldPos = shape.transform.translatePoint(vertices[i] * RenderConstant::ScaleFactor);
-          points.emplace_back(SDL_Vertex{toVector2f(worldPos), fillColor, {0, 0}});
-     }
-     SDL_RenderGeometry(renderer, NULL, points.data(), points.size(), indices.data(), indices.size());
+    assert(shape.shape != nullptr);
+    assert(shape.shape->type() == ShapeType::Polygon);
+    auto polygon = static_cast<Polygon *>(shape.shape);
+    const auto& vertices = polygon->vertices();
+    const auto& indices = polygon->indices();
 
-     std::vector<Vector2> outline;
-     outline.reserve(points.size() + 1);
-     for (const auto &v : points)
-     {
-          outline.emplace_back(Vector2{v.position.x, v.position.y});
-     }
-     if (!outline.empty())
-     {
-          outline.push_back(outline.front());
-     }
-     renderLines(window, renderer, outline, color);
+    if (vertices.size() < 3) return;
+
+    std::vector<SDL_Vertex> sdlVertices;
+    std::vector<Vector2> outlinePoints;
+    sdlVertices.reserve(vertices.size());
+    outlinePoints.reserve(vertices.size() + 1);
+
+    SDL_FColor fillColor = {
+        color.r / 255.0f,
+        color.g / 255.0f,
+        color.b / 255.0f,
+        RenderConstant::FillAlpha / 255.0f
+    };
+
+    for (const auto& v : vertices)
+    {
+        Vector2 worldPos = shape.transform.translatePoint(v * RenderConstant::ScaleFactor);
+        sdlVertices.emplace_back(SDL_Vertex{toVector2f(worldPos), fillColor, {0, 0}});
+        outlinePoints.emplace_back(worldPos);
+    }
+    SDL_RenderGeometry(renderer, NULL, sdlVertices.data(), sdlVertices.size(), indices.data(), indices.size());
+
+    if (!outlinePoints.empty())
+        outlinePoints.push_back(outlinePoints.front());
+    renderLines(window, renderer, outlinePoints, color);
 }
 
 void ps::RenderSDLImpl::renderCircle(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape, const SDL_Color &color)

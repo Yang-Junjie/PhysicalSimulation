@@ -25,6 +25,7 @@ namespace ps
         const SDL_Color Gray = {189, 189, 189, 255};
         const SDL_Color Orange = {255, 138, 101, 255};
         const SDL_Color Teal = {29, 233, 182, 255};
+        const SDL_Color DarkGray = {50, 50, 50, 255};
         static real ScaleFactor = 0.5f;
 
     }

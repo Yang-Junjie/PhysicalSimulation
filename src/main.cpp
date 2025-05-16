@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
         return SDL_APP_FAILURE;
     }
 
-    if (!SDL_CreateWindowAndRenderer("PhysicalSimulation", 640, 480, 0, &window, &renderer))
+    if (!SDL_CreateWindowAndRenderer("PhysicalSimulation", 1080, 680, 0, &window, &renderer))
     {
         SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
         return SDL_APP_FAILURE;
@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     SDL_Color blue = ps::RenderConstant::Blue;
     SDL_Color green = ps::RenderConstant::Green;
     SDL_Color red = ps::RenderConstant::Red;
+    SDL_Color DarkGray = ps::RenderConstant::DarkGray;
     
     ps::Polygon polygon;
     polygon.append({{0, 0}, {0, 100}, {100, 100}, {100, 0}});
@@ -54,12 +55,13 @@ int main(int argc, char *argv[])
         }
         }
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+        SDL_SetRenderDrawColor(renderer, DarkGray.r, DarkGray.g, DarkGray.b, DarkGray.a);
         SDL_RenderClear(renderer);
 
         ps::RenderSDLImpl::renderPolygon(window, renderer, shape, blue);
         ps::RenderSDLImpl::renderCircle(window, renderer, shape2, red);
         ps::RenderSDLImpl::renderEdge(window, renderer, shape3, green);
+        
         SDL_RenderPresent(renderer);
     }
 

@@ -19,7 +19,10 @@ namespace Constant
 {
 	constexpr unsigned int SimplexMax = 8;
 	constexpr unsigned int CCDMaxIterations = 20;
-	constexpr real Epsilon = 0.0000000001f;
+	constexpr real Epsilon = 0.00000000000000001f;
+	constexpr real Max = 3.402823466e+38F;
+	constexpr real PositiveMin = 1.175494351e-38F;
+	constexpr real NegativeMin = -3.402823466e+38F;
 	constexpr real Pi = 3.1415926535f;
 	constexpr real HalfPi = Pi / 2.0f;
 	constexpr real DoublePi = Pi * 2.0f;
@@ -33,6 +36,7 @@ namespace Constant
 	constexpr real MinLinearVelocity = 1e-4f;
 	constexpr real MinAngularVelocity = 1e-4f;
 	constexpr real MinEnergy = 9e-10f;
+	constexpr size_t SleepCountdown = 32;
 	constexpr int GJKRetryTimes = 8;
 }
 #else

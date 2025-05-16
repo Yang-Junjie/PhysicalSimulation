@@ -1,6 +1,13 @@
 #ifndef PS_CIRCLE_HPP
 #define PS_CIRCLE_HPP
 #include "ps_shape.hpp"
+/**
+ * @brief Represents a circle shape in the ps namespace.
+ * 
+ * The Circle class inherits from Shape and provides functionality
+ * for circles, including radius manipulation, scaling, containment checks,
+ * and center retrieval.
+ */
 namespace ps
 {
     class Circle : public Shape
