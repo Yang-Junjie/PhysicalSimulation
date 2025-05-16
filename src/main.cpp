@@ -25,7 +25,8 @@ int main(int argc, char *argv[])
     polygon.append({{0, 0}, {0, 100}, {100, 100}, {100, 0}});
     ps::ShapePrimitive shape;
     shape.shape = &polygon;
-    shape.transform.position = {100, 100};
+    shape.transform.position = {0, 0};
+    
 
     ps::Circle circle;
     circle.setRadius(50);

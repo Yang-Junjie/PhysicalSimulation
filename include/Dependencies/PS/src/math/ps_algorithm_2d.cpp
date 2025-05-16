@@ -358,22 +358,23 @@ namespace ps
     {
         if (vertices.size() >= 3)
         {
-            Vector2 pos;
-            real area = 0;
-            for (auto itLast = vertices.begin(); itLast != vertices.end() - 1; ++itLast)
+            Vector2 centroid;
+            real totalArea = 0;
+            const Vector2 &v0 = vertices[0];
+            for (size_t i = 1; i < vertices.size() - 1; ++i)
             {
-                auto itCurr = itLast + 1;
-                auto itNext = itCurr + 1;
-                if (itNext == vertices.end())
-                    itNext = vertices.begin();
-
-                real a = triangleArea(*itLast, *itCurr, *itNext);
-                Vector2 p = triangleCentroid(*itLast, *itCurr, *itNext);
-                pos += p * a;
-                area += a;
+                const Vector2 &v1 = vertices[i];
+                const Vector2 &v2 = vertices[i + 1];
+                real area = triangleArea(v0, v1, v2);
+                Vector2 triCentroid = triangleCentroid(v0, v1, v2);
+                centroid += triCentroid * area;
+                totalArea += area;
             }
-            pos /= area;
-            return pos;
+            if (totalArea != 0)
+            {
+                centroid /= totalArea;
+            }
+            return centroid;
         }
         return Vector2();
     }

@@ -57,7 +57,7 @@ namespace ps
 
         Vector2 &lastPosition();
         real &lastRotation();
-        uint32_t &sleepCountdown();
+        uint32_t &sleepCountdown(); // 物体休眠前的倒计时
 
         Shape *shape() const;
         void setShape(Shape *shape);
