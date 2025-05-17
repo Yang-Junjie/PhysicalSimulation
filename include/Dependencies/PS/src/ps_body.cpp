@@ -282,7 +282,6 @@ namespace ps {
     }
 
 
-
     void Body::PhysicsAttribute::step(const real& dt)
     {
         position += velocity * dt;

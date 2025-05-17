@@ -34,9 +34,7 @@ void ps::Polygon::append(const Vector2 &vertex)
 
 ps::Vector2 ps::Polygon::center() const
 {
-    auto vertex = GeometryAlgorithm2D::calculateCenter(this->vertices());
-    std::cout << vertex.x_ << ", " << vertex.y_ << std::endl;
-    return vertex;
+    return GeometryAlgorithm2D::calculateCenter(this->vertices());
 }
 
 void ps::Polygon::scale(const real &factor)
