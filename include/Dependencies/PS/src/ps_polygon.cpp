@@ -35,7 +35,7 @@ void ps::Polygon::append(const Vector2 &vertex)
 ps::Vector2 ps::Polygon::center() const
 {
     auto vertex = GeometryAlgorithm2D::calculateCenter(this->vertices());
-    std::cout<<"center: "<<vertex.x_<<", "<<vertex.y_<<std::endl;
+    std::cout << vertex.x_ << ", " << vertex.y_ << std::endl;
     return vertex;
 }
 
@@ -65,7 +65,7 @@ bool ps::Polygon::contains(const Vector2 &point, const real &epsilon)
 void ps::Polygon::updateVertices()
 {
     Vector2 center = this->center();
-    
+
     for (auto &elem : m_vertices)
         elem -= center;
 }
@@ -75,7 +75,7 @@ void ps::Polygon::updateIndex()
     for (size_t i = 0; i < m_vertices.size() - 2; i++)
     {
         m_indices.push_back(0);
-        m_indices.push_back(static_cast<int>(i+1));
-        m_indices.push_back(static_cast<int>(i+2));
+        m_indices.push_back(static_cast<int>(i + 1));
+        m_indices.push_back(static_cast<int>(i + 2));
     }
 }

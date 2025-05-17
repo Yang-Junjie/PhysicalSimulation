@@ -11,10 +11,19 @@
 #include <tuple>
 #include <optional>
 #include <list>
+#include <map>
 
 #ifndef SINGLE_PRECISION
+using Index = uint32_t;
 using real = float;
+namespace Container
+{
+	template <class T>
+	using Vector = std::vector<T>;
 
+	template <typename K, typename V>
+	using Map = std::map<K, V>;
+}
 namespace Constant
 {
 	constexpr unsigned int SimplexMax = 8;

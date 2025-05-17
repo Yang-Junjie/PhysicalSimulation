@@ -7,7 +7,7 @@ namespace ps
 {
     namespace RenderConstant
     {
-        constexpr real PointSize = 2.0f;
+        constexpr real PointSize = 1.0f;
         constexpr int BorderSize = 1;
         constexpr int FillAlpha = 38;
         constexpr int BasicCirclePointCount = 60;
@@ -26,7 +26,7 @@ namespace ps
         const SDL_Color Orange = {255, 138, 101, 255};
         const SDL_Color Teal = {29, 233, 182, 255};
         const SDL_Color DarkGray = {50, 50, 50, 255};
-        static real ScaleFactor = 0.5f;
+        static real ScaleFactor = 1.0f;
 
     }
     class RenderSDLImpl
