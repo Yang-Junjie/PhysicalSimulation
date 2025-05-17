@@ -12,6 +12,10 @@
 #include <optional>
 #include <list>
 #include <map>
+#include <memory>
+#include <algorithm>
+#include <functional>
+
 
 #ifndef SINGLE_PRECISION
 using Index = uint32_t;

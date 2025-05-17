@@ -283,6 +283,8 @@ namespace ps
 				pair = clipPolygonEdge(realShapeA, realShapeB, featureA, featureB, info);
 				break;
 			case ShapeType::Circle:
+				pair = clipPolygonRound(realShapeA, realShapeB, featureA, featureB, info);
+				break;
 			}
 		}
 		else if (typeA == ShapeType::Edge)
@@ -293,6 +295,8 @@ namespace ps
 				assert(false && "Not support edge and edge.");
 				break;
 			case ShapeType::Circle:
+				pair = clipPolygonRound(realShapeA, realShapeB, featureA, featureB, info);
+				break;
 			}
 		}
 		else //round round case
