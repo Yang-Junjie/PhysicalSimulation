@@ -24,4 +24,4 @@ add_executable(phys ${SOURCE_FILE})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBS_DIR})
+target_link_libraries(${PROJECT_NAME} PRIVATE -lmingw32 ${LIBS_DIR})

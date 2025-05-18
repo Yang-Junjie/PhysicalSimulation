@@ -4,6 +4,7 @@
 #include "ps_body.hpp"
 #include "ps_math.hpp"
 #include "ps_integrator.hpp"
+#include "ps_joints.hpp"
 #include "ps_random.hpp"
 #include "ps_contact.hpp"
 
@@ -55,12 +56,20 @@ namespace ps
         Body *createBody();
         void removeBody(Body *body);
 
+        void removeJoint(Joint *joint);
+
         void clearAllBodies();
+        void clearAllJoints();
+
+        PointJoint *createJoint(const PointJointPrimitive &primitive);
+        DistanceJoint *createJoint(const DistanceJointPrimitive &primitive);
 
         real bias() const;
         void setBias(const real &bias);
 
         Container::Vector<std::unique_ptr<Body>> &bodyList();
+
+        Container::Vector<std::unique_ptr<Joint>> &jointList();
 
         bool &enableSleep();
 
@@ -78,6 +87,7 @@ namespace ps
         bool m_enableDamping = true;
         bool m_enableSleep = false;
         Container::Vector<std::unique_ptr<Body>> m_bodyList;
+        Container::Vector<std::unique_ptr<Joint>> m_jointList;
     };
 
     class DiscreteWorld
@@ -85,18 +95,21 @@ namespace ps
     public:
         using ObjectID = uint32_t;
         ObjectID createBody(const ShapePrimitive &primitive);
+        ObjectID createJoint();
 
         void step(real dt);
         void stepPosition(real dt);
         void stepVelocity(real dt);
 
         void removeBody(const ObjectID &id);
+        void removeJoint(const ObjectID &id);
 
         void solveVelocity(real dt);
         void solvePosition(real dt);
 
     private:
         Container::Vector<ObjectID> m_bodyList;
+        Container::Vector<ObjectID> m_jointList;
         Container::Vector<bool> m_sleepList;
 
         Vector2 m_gravity;

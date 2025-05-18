@@ -2,6 +2,7 @@
 #include "ps.hpp"
 static SDL_Window *window = nullptr;
 static SDL_Renderer *renderer = nullptr;
+//TODO : Add preformance test
 int main(int argc, char *argv[])
 {
     if (!SDL_Init(SDL_INIT_VIDEO))
