@@ -51,5 +51,7 @@ namespace ps
                                  const std::vector<Vector2> &points, const SDL_Color &color);
         static void renderEdge(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape,
                                const SDL_Color &color);
+        static void renderShape(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive& shape,
+		                        const SDL_Color &color);
     };
 }

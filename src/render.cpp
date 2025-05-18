@@ -153,3 +153,27 @@ void ps::RenderSDLImpl::renderEdge(SDL_Window *window, SDL_Renderer *renderer, c
      center += shape.transform.position;
      renderLine(window, renderer, center, center + 0.1f * edge->normal(), RenderConstant::Yellow);
 }
+
+void ps::RenderSDLImpl::renderShape(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape, const SDL_Color &color)
+{
+     switch (shape.shape->type())
+		{
+		case ShapeType::Polygon:
+			{
+				renderPolygon(window, renderer, shape, color);
+				break;
+			}
+		case ShapeType::Circle:
+			{
+				renderCircle(window, renderer, shape, color);
+				break;
+			}
+		case ShapeType::Edge:
+			{
+				renderEdge(window, renderer, shape, color);
+				break;
+			}
+		default:
+			break;
+		}
+}
