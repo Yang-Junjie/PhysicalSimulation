@@ -79,7 +79,7 @@ namespace ps
 					primitive.transform.rotation = body->rotation();
 					primitive.transform.position = body->position();
 					if (body->sleep())
-						color = SDL_Color(100, 100, 100);
+						color = {100, 100, 100};
 					else
 						color = RenderConstant::Green;
 					if (body->type() == Body::BodyType::Static)
