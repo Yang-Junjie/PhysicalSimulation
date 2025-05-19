@@ -1,16 +1,14 @@
-#ifndef PS_VECTOR2_HPP
-#define PS_VECTOR2_HPP
+#ifndef MATH_LINEAR_VECTOR2_HPP
+#define MATH_LINEAR_VECTOR2_HPP
 #include "ps_common.hpp"
+
 namespace ps
 {
-    class Vector2
-    {
-
-    public:
-		Vector2();
-        Vector2(const real& _x, const real& _y);
-        Vector2(const Vector2 &vec2);
-        Vector2& operator=(const Vector2& copy);
+	struct Vector2
+	{
+		Vector2(const real& _x = 0.0, const real& _y = 0.0);
+		Vector2(const Vector2& copy);
+		Vector2& operator=(const Vector2& copy);
 		Vector2(Vector2&& other) = default;
 
 		Vector2 operator+(const Vector2& rhs) const;
@@ -31,7 +29,7 @@ namespace ps
 		bool operator==(const Vector2& rhs) const;
 		bool operator!=(const Vector2& rhs) const;
 		bool equal(const Vector2& rhs) const;
-        bool fuzzyEqual(const Vector2& rhs, const real& epsilon = Constant::GeometryEpsilon) const;
+		bool fuzzyEqual(const Vector2& rhs, const real& epsilon = Constant::GeometryEpsilon) const;
 		bool isOrigin(const real& epsilon = Constant::GeometryEpsilon) const;
 		bool isSameQuadrant(const Vector2& rhs) const;
 
@@ -62,8 +60,8 @@ namespace ps
 		static Vector2 crossProduct(const real& lhs, const Vector2& rhs);
 		static Vector2 crossProduct(const Vector2& lhs, const real& rhs);
 		static Vector2 lerp(const Vector2& lhs, const Vector2& rhs, const real& t);
-        real x_;
-        real y_;
-    };
+		real x_;
+		real y_;
+	};
 }
 #endif

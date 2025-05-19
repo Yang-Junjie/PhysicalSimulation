@@ -3,4 +3,3 @@ build/
 bin/
 include/Dependencies/SDL3/
 libs/SDL3/
-res/

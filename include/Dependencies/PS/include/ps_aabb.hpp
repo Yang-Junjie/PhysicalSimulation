@@ -62,10 +62,10 @@ namespace ps
 		inline Vector2 bottomLeft() const;
 		inline Vector2 bottomRight() const;
 
-		inline real minimumX() const;
-		inline real minimumY() const;
-		inline real maximumX() const;
-		inline real maximumY() const;
+		real minimumX() const;
+		real minimumY() const;
+		real maximumX() const;
+		real maximumY() const;
 
 		bool collide(const AABB &other) const;
 		void expand(const real &factor);
@@ -86,7 +86,7 @@ namespace ps
 		/// <returns></returns>
 		static AABB fromShape(const ShapePrimitive &shape, const real &factor = 0);
 		static AABB fromBody(Body *body, const real &factor = 0);
-		static AABB fromBox(const Vector2& topLeft, const Vector2& bottomRight);
+		static AABB fromBox(const Vector2 &topLeft, const Vector2 &bottomRight);
 		/// <summary>
 		/// Check if two aabbs are overlapping
 		/// </summary>

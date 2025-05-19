@@ -2,6 +2,7 @@
 #define PS_SHAPE_HPP
 #include "ps_lineralg.hpp"
 #include "ps_common.hpp"
+#include <iostream>
 
 namespace ps
 {
