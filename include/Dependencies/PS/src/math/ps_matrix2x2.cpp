@@ -72,31 +72,31 @@ namespace ps
 
 	Vector2 Matrix2x2::row1() const
 	{
-		return Vector2(column1.x_, column2.x_);
+		return Vector2(column1.x, column2.x);
 	}
 
 	Vector2 Matrix2x2::row2() const
 	{
-		return Vector2(column1.y_, column2.y_);
+		return Vector2(column1.y, column2.y);
 	}
 
 	real& Matrix2x2::e11()
 	{
-		return column1.x_;
+		return column1.x;
 	}
 
 	real& Matrix2x2::e21()
 	{
-		return column1.y_;
+		return column1.y;
 	}
 	real& Matrix2x2::e12()
 	{
-		return column2.x_;
+		return column2.x;
 	}
 
 	real& Matrix2x2::e22()
 	{
-		return column2.y_;
+		return column2.y;
 	}
 
 	real Matrix2x2::determinant() const
@@ -106,7 +106,7 @@ namespace ps
 
 	Matrix2x2& Matrix2x2::transpose()
 	{
-		realSwap(column1.y_, column2.x_);
+		realSwap(column1.y, column2.x);
 		return *this;
 	}
 
@@ -164,16 +164,9 @@ namespace ps
 		return *this;
 	}
 
-	Matrix2x2 Matrix2x2::fromRadian(const real& radian)
-	{
-		Matrix2x2 mat;
-		mat.set(radian);
-		return mat;
-	}
-
 	Matrix2x2 Matrix2x2::skewSymmetricMatrix(const Vector2& r)
 	{
-		return Matrix2x2(0, -r.y_, r.x_, 0);
+		return Matrix2x2(0, -r.y, r.x, 0);
 	}
 
 	Matrix2x2 Matrix2x2::identityMatrix()
@@ -183,20 +176,20 @@ namespace ps
 
 	Vector2 Matrix2x2::multiply(const Matrix2x2& lhs, const Vector2& rhs)
 	{
-		return Vector2(lhs.column1.x_ * rhs.x_ + lhs.column2.x_ * rhs.y_, lhs.column1.y_ * rhs.x_ + lhs.column2.y_ * rhs.y_);
+		return Vector2(lhs.column1.x * rhs.x + lhs.column2.x * rhs.y, lhs.column1.y * rhs.x + lhs.column2.y * rhs.y);
 	}
 
 	Matrix2x2 Matrix2x2::multiply(const Matrix2x2& lhs, const Matrix2x2& rhs)
 	{
-		return Matrix2x2(lhs.column1.x_ * rhs.column1.x_ + lhs.column2.x_ * rhs.column1.y_,
-		                 lhs.column1.y_ * rhs.column1.x_ + lhs.column2.y_ * rhs.column1.y_,
-		                 lhs.column1.x_ * rhs.column2.x_ + lhs.column2.x_ * rhs.column2.y_,
-		                 lhs.column1.y_ * rhs.column2.x_ + lhs.column2.y_ * rhs.column2.y_);
+		return Matrix2x2(lhs.column1.x * rhs.column1.x + lhs.column2.x * rhs.column1.y,
+		                 lhs.column1.y * rhs.column1.x + lhs.column2.y * rhs.column1.y,
+		                 lhs.column1.x * rhs.column2.x + lhs.column2.x * rhs.column2.y,
+		                 lhs.column1.y * rhs.column2.x + lhs.column2.y * rhs.column2.y);
 	}
 
 	real Matrix2x2::determinant(const Matrix2x2& mat)
 	{
-		return mat.column1.x_ * mat.column2.y_ - mat.column2.x_ * mat.column1.y_;
+		return mat.column1.x * mat.column2.y - mat.column2.x * mat.column1.y;
 	}
 
 	bool Matrix2x2::invert(Matrix2x2& mat)
@@ -206,9 +199,9 @@ namespace ps
 		if (realEqual(det, 0))
 			return false;
 
-		realSwap(mat.column1.x_, mat.column2.y_);
-		mat.column1.y_ *= -1;
-		mat.column2.x_ *= -1;
+		realSwap(mat.column1.x, mat.column2.y);
+		mat.column1.y *= -1;
+		mat.column2.x *= -1;
 		mat /= det;
 		return true;
 	}

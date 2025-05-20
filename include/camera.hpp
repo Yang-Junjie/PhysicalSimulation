@@ -1,5 +1,5 @@
-#ifndef PHYSICS2D_UTILS_CAMERA_H
-#define PHYSICS2D_UTILS_CAMERA_H
+#ifndef ps_UTILS_CAMERA_H
+#define ps_UTILS_CAMERA_H
 
 #include <SDL3/SDL.h>
 

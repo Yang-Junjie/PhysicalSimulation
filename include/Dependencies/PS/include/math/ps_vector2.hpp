@@ -1,10 +1,10 @@
-#ifndef MATH_LINEAR_VECTOR2_HPP
-#define MATH_LINEAR_VECTOR2_HPP
+#ifndef PHYSICAL_SIMULATION_MATH_LINERALG_VECTOR2_HPP
+#define PHYSICAL_SIMULATION_MATH_LINERALG_VECTOR2_HPP
 #include "ps_common.hpp"
 
 namespace ps
 {
-	struct Vector2
+	struct   Vector2
 	{
 		Vector2(const real& _x = 0.0, const real& _y = 0.0);
 		Vector2(const Vector2& copy);
@@ -60,8 +60,8 @@ namespace ps
 		static Vector2 crossProduct(const real& lhs, const Vector2& rhs);
 		static Vector2 crossProduct(const Vector2& lhs, const real& rhs);
 		static Vector2 lerp(const Vector2& lhs, const Vector2& rhs, const real& t);
-		real x_;
-		real y_;
+		real x;
+		real y;
 	};
 }
 #endif

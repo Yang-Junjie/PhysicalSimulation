@@ -33,9 +33,9 @@ namespace ps
 
 			if (m_targetBody != nullptr)
 			{
-				Vector2 real_origin(m_origin.x_ + m_transform.x_, m_origin.y_ - m_transform.y_);
-				Vector2 target(-(m_targetBody->position().x_ + m_targetBody->shape()->center().x_),
-							   m_targetBody->position().y_ + m_targetBody->shape()->center().y_);
+				Vector2 real_origin(m_origin.x + m_transform.x, m_origin.y - m_transform.y);
+				Vector2 target(-(m_targetBody->position().x + m_targetBody->shape()->center().x),
+							   m_targetBody->position().y + m_targetBody->shape()->center().y);
 				target = worldToScreen(target) - real_origin;
 
 				Vector2 c = target - m_transform;
@@ -167,21 +167,21 @@ namespace ps
 	void Camera::setViewport(const Viewport &viewport)
 	{
 		m_viewport = viewport;
-		m_origin.set((m_viewport.topLeft.x_ + m_viewport.bottomRight.x_) * (0.5),
-					 (m_viewport.topLeft.y_ + m_viewport.bottomRight.y_) * (0.5));
+		m_origin.set((m_viewport.topLeft.x + m_viewport.bottomRight.x) * (0.5),
+					 (m_viewport.topLeft.y + m_viewport.bottomRight.y) * (0.5));
 	}
 
 	Vector2 Camera::worldToScreen(const Vector2 &pos) const
 	{
-		Vector2 real_origin(m_origin.x_ + m_transform.x_, m_origin.y_ - m_transform.y_);
-		return Vector2(real_origin.x_ + pos.x_ * m_meterToPixel, real_origin.y_ - pos.y_ * m_meterToPixel);
+		Vector2 real_origin(m_origin.x + m_transform.x, m_origin.y - m_transform.y);
+		return Vector2(real_origin.x + pos.x * m_meterToPixel, real_origin.y - pos.y * m_meterToPixel);
 	}
 
 	Vector2 Camera::screenToWorld(const Vector2 &pos) const
 	{
-		Vector2 real_origin(m_origin.x_ + m_transform.x_, m_origin.y_ - m_transform.y_);
+		Vector2 real_origin(m_origin.x + m_transform.x, m_origin.y - m_transform.y);
 		Vector2 result = pos - real_origin;
-		result.y_ = -result.y_;
+		result.y = -result.y;
 		result *= m_pixelToMeter;
 		return result;
 	}
@@ -335,12 +335,12 @@ namespace ps
 
 	real Camera::Viewport::width()
 	{
-		return bottomRight.x_ - topLeft.x_;
+		return bottomRight.x - topLeft.x;
 	}
 
 	real Camera::Viewport::height()
 	{
-		return bottomRight.y_ - topLeft.y_;
+		return bottomRight.y - topLeft.y;
 	}
 
 	Vector2 Camera::Viewport::center() const
@@ -350,12 +350,12 @@ namespace ps
 
 	void Camera::Viewport::setWidth(const real &width)
 	{
-		bottomRight.x_ = topLeft.x_ + width;
+		bottomRight.x = topLeft.x + width;
 	}
 
 	void Camera::Viewport::setHeight(const real &height)
 	{
-		bottomRight.y_ = topLeft.y_ + height;
+		bottomRight.y = topLeft.y + height;
 	}
 
 	void Camera::Viewport::set(const real &width, const real &height)

@@ -3,112 +3,112 @@
 
 namespace ps
 {
-	Vector3::Vector3(const real& x ,const real& y, const real& z) : x_(x), y_(y), z_(z)
+	Vector3::Vector3(const real& _x, const real& _y, const real& _z) : x(_x), y(_y), z(_z)
 	{
 	}
 
-	Vector3::Vector3(const Vector3& copy) : x_(copy.x_), y_(copy.y_), z_(copy.z_)
+	Vector3::Vector3(const Vector3& copy) : x(copy.x), y(copy.y), z(copy.z)
 	{
 	}
 
 	Vector3 Vector3::operator+(const Vector3& rhs) const
 	{
-		return Vector3(x_ + rhs.x_, y_ + rhs.y_, z_ + rhs.z_);
+		return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
 	}
 
 	Vector3 Vector3::operator-(const Vector3& other) const
 	{
-		return Vector3(x_ - other.x_, y_ - other.y_, z_ - other.z_);
+		return Vector3(x - other.x, y - other.y, z - other.z);
 	}
 
 	Vector3 Vector3::operator-() const
 	{
-		return Vector3(-x_, -y_, -z_);
+		return Vector3(-x, -y, -z);
 	}
 
 	Vector3 Vector3::operator*(const real& factor) const
 	{
-		return Vector3(x_ * factor, y_ * factor, z_ * factor);
+		return Vector3(x * factor, y * factor, z * factor);
 	}
 
 	Vector3 Vector3::operator/(const real& factor) const
 	{
 		assert(!realEqual(factor, 0));
-		return Vector3(x_ / factor, y_ / factor, z_ / factor);
+		return Vector3(x / factor, y / factor, z / factor);
 	}
 
 	Vector3& Vector3::operator+=(const Vector3& rhs)
 	{
-		x_ += rhs.x_;
-		y_ += rhs.y_;
-		z_ += rhs.z_;
+		x += rhs.x;
+		y += rhs.y;
+		z += rhs.z;
 		return *this;
 	}
 
 	Vector3& Vector3::operator-=(const Vector3& rhs)
 	{
-		x_ -= rhs.x_;
-		y_ -= rhs.y_;
-		z_ -= rhs.z_;
+		x -= rhs.x;
+		y -= rhs.y;
+		z -= rhs.z;
 		return *this;
 	}
 
 	Vector3& Vector3::operator*=(const real& factor)
 	{
-		x_ *= factor;
-		y_ *= factor;
-		z_ *= factor;
+		x *= factor;
+		y *= factor;
+		z *= factor;
 		return *this;
 	}
 
 	Vector3& Vector3::operator/=(const real& factor)
 	{
 		assert(!realEqual(factor, 0));
-		x_ /= factor;
-		y_ /= factor;
-		z_ /= factor;
+		x /= factor;
+		y /= factor;
+		z /= factor;
 		return *this;
 	}
 
-	Vector3& Vector3::set(const real& _x_, const real& _y_, const real& _z_)
+	Vector3& Vector3::set(const real& _x, const real& _y, const real& _z)
 	{
-		x_ = _x_;
-		y_ = _y_;
-		z_ = _z_;
+		x = _x;
+		y = _y;
+		z = _z;
 		return *this;
 	}
 
 	Vector3& Vector3::set(const Vector3& other)
 	{
-		x_ = other.x_;
-		y_ = other.y_;
-		z_ = other.z_;
+		x = other.x;
+		y = other.y;
+		z = other.z;
 		return *this;
 	}
 
 	Vector3& Vector3::clear()
 	{
-		x_ = 0.0f;
-		y_ = 0.0f;
-		z_ = 0.0f;
+		x = 0.0f;
+		y = 0.0f;
+		z = 0.0f;
 		return *this;
 	}
 
 	Vector3 Vector3::negative() const
 	{
-		return Vector3(-x_, -y_, -z_);
+		return Vector3(-x, -y, -z);
 	}
 	Vector3& Vector3::negate()
 	{
-		x_ = -x_;
-		y_ = -y_;
-		z_ = -z_;
+		x = -x;
+		y = -y;
+		z = -z;
 		return *this;
 	}
 
 	real Vector3::lengthSquare() const
 	{
-		return x_ * x_ + y_ * y_ + z_ * z_;
+		return x * x + y * y + z * z;
 	}
 
 	real Vector3::length() const
@@ -118,10 +118,10 @@ namespace ps
 
 	Vector3& Vector3::normalize()
 	{
-		const real length_inv = 1/sqrt(lengthSquare());
-		x_ *= length_inv;
-		y_ *= length_inv;
-		z_ *= length_inv;
+		const real length_inv = Math::fastInverseSqrt<real>(lengthSquare());
+		x *= length_inv;
+		y *= length_inv;
+		z *= length_inv;
 		return *this;
 	}
 
@@ -132,7 +132,7 @@ namespace ps
 
 	bool Vector3::equal(const Vector3& rhs) const
 	{
-		return realEqual(x_, rhs.x_) && realEqual(y_, rhs.y_) && realEqual(z_, rhs.z_);
+		return realEqual(x, rhs.x) && realEqual(y, rhs.y) && realEqual(z, rhs.z);
 	}
 
 	bool Vector3::fuzzyEqual(const Vector3& rhs, const real& epsilon) const
@@ -142,73 +142,73 @@ namespace ps
 	bool Vector3::isOrigin(const real& epsilon) const
 	{
 		return fuzzyEqual({0, 0, 0}, epsilon);
-    }
+	}
 	Vector3& Vector3::swap(Vector3& other)
 	{
-		realSwap(x_, other.x_);
-		realSwap(y_, other.y_);
-		realSwap(z_, other.z_);
+		realSwap(x, other.x);
+		realSwap(y, other.y);
+		realSwap(z, other.z);
 		return *this;
 	}
 
 	real Vector3::dot(const Vector3& rhs) const
 	{
-		return x_ * rhs.x_ + y_ * rhs.y_ + z_ * rhs.z_;
+		return x * rhs.x + y * rhs.y + z * rhs.z;
 	}
 
 	Vector3& Vector3::cross(const Vector3& rhs)
 	{
-		x_ = y_ * rhs.z_ - rhs.y_ * z_;
-		y_ = rhs.x_ * z_ - x_ * rhs.z_;
-		z_ = x_ * rhs.y_ - y_ * rhs.x_;
+		x = y * rhs.z - rhs.y * z;
+		y = rhs.x * z - x * rhs.z;
+		z = x * rhs.y - y * rhs.x;
 		return *this;
 	}
 
 	real Vector3::dotProduct(const Vector3& lhs, const Vector3& rhs)
 	{
-		return lhs.x_ * rhs.x_ + lhs.y_ * rhs.y_ + lhs.z_ * rhs.z_;
+		return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
 	}
 
 	Vector3 Vector3::crossProduct(const Vector3& lhs, const Vector3& rhs)
 	{
-		return Vector3(lhs.y_ * rhs.z_ - rhs.y_ * lhs.z_, rhs.x_ * lhs.z_ - lhs.x_ * rhs.z_, lhs.x_ * rhs.y_ - lhs.y_ * rhs.x_);
+		return Vector3(lhs.y * rhs.z - rhs.y * lhs.z, rhs.x * lhs.z - lhs.x * rhs.z, lhs.x * rhs.y - lhs.y * rhs.x);
 	}
 
 	Vector3& Vector3::operator/=(const int& factor)
 	{
 		assert(!realEqual(factor, 0));
-		x_ /= factor;
-		y_ /= factor;
-		z_ /= factor;
+		x /= factor;
+		y /= factor;
+		z /= factor;
 		return *this;
 	}
 
 	Vector3& Vector3::operator*=(const int& factor)
 	{
-		x_ *= factor;
-		y_ *= factor;
-		z_ *= factor;
+		x *= factor;
+		y *= factor;
+		z *= factor;
 		return *this;
 	}
 
 	Vector3 Vector3::operator/(const int& factor) const
 	{
 		assert(!realEqual(factor, 0));
-		return Vector3(x_ / factor, y_ / factor, z_ / factor);
+		return Vector3(x / factor, y / factor, z / factor);
 	}
 
 	Vector3 Vector3::operator*(const int& factor) const
 	{
-		return Vector3(x_ * factor, y_ * factor, z_ * factor);
+		return Vector3(x * factor, y * factor, z * factor);
 	}
 
-	Vector3& Vector3::operator=(const Vector3& copy_)
+	Vector3& Vector3::operator=(const Vector3& copy)
 	{
-		if (&copy_ == this)
+		if (&copy == this)
 			return *this;
-		x_ = copy_.x_;
-		y_ = copy_.y_;
-		z_ = copy_.z_;
+		x = copy.x;
+		y = copy.y;
+		z = copy.z;
 		return *this;
 	}
 }
