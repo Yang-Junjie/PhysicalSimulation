@@ -19,9 +19,7 @@ PhysicalSimulation
 │  └─Dependencies
 │      ├─PS             # PS 核心库
 │      │  ├─include
-│      │  │  └─math
 │      │  └─src
-│      │      └─math
 │      └─SDL3           # SDL 官方头文件
 │           ├─SDL3.h
 │           └─...

@@ -1,5 +1,5 @@
-#ifndef ps_UTILS_CAMERA_H
-#define ps_UTILS_CAMERA_H
+#ifndef CAMERA_HPP
+#define CAMERA_HPP
 
 #include <SDL3/SDL.h>
 

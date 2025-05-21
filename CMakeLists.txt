@@ -22,6 +22,7 @@ include_directories(${INCLUDE_DIR})
 
 file(GLOB_RECURSE SOURCE_FILE 
   "${SRC_DIR}/*.cpp"
+  "${SRC_DIR}/scenes/*.cpp"
   "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/src/math/*.cpp"
   "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/src/collision/*.cpp"
   "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/src/dynamics/*.cpp"

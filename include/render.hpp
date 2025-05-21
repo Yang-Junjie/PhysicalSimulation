@@ -1,3 +1,5 @@
+#ifndef RENDER_HPP
+#define RENDER_HPP
 #include <SDL3/SDL.h>
 #include "ps_math.hpp"
 #include "ps.hpp"
@@ -55,3 +57,4 @@ namespace ps
 		                        const SDL_Color &color);
     };
 }
+#endif
