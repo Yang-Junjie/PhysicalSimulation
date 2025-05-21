@@ -12,8 +12,6 @@ namespace ps
     public:
         SceneHeap() = default;
         ~SceneHeap() override = default;
-        Camera &getCamera() override ;
-        PhysicsSystem &getSystem() override;
         void setBody() override;
     };
 }

@@ -38,7 +38,8 @@ PhysicalSimulation
     cmake -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ..
     mingw32-make
     ```
-
+## 演示
+![heap](/res/heap.png)
 ## 参考与致谢
 
 - [FLAT](https://github.com/yuanming-hu/FLAT)

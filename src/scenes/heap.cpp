@@ -1,15 +1,7 @@
 #include "scenes/heap.hpp"
 namespace ps
 {
-    Camera &SceneHeap::getCamera()
-    {
-        return m_settings.camera;
-    }
-
-    PhysicsSystem &SceneHeap::getSystem()
-    {
-        return m_settings.system;
-    }
+   
 
     void SceneHeap::setBody()
     {
@@ -21,31 +13,37 @@ namespace ps
         m_settings.system.world().setEnableDamping(true);
         m_settings.system.positionIteration() = 4;
         m_settings.system.velocityIteration() = 6;
-        polygon.append({{0, 0}, {50, 0}, {50, 50}, {0, 50}});
+        polygon.append({{0, 0}, {20, 0}, {20, 20}, {0, 20}});
         edge.set(Vector2{10.0f, 580.0f}, Vector2{1070.0f, 580.0f});
         uint32_t mask = 0x01;
         real max = 2.0f;
         mask = 0x01;
-        Vector2 pos[10];
-        pos[0].set({300.0f, 100.0f});
-        pos[1].set({350.0f, 100.0f});
-        pos[2].set({400.0f, 100.0f});
-        pos[3].set({450.0f, 100.0f});
-        pos[4].set({500.0f, 100.0f});
-        pos[5].set({550.0f, 100.0f});
-        pos[6].set({600.0f, 100.0f});
-        pos[7].set({650.0f, 100.0f});
-        pos[8].set({700.0f, 100.0f});
-        pos[9].set({750.0f, 100.0f});
-        for (real j = 0; j < 10; j += 1.0f)
+        Vector2 pos[15];
+        pos[0].set({300.0f, 240.0f});
+        pos[1].set({320.0f, 240.0f});
+        pos[2].set({340.0f, 240.0f});
+        pos[3].set({360.0f, 240.0f});
+        pos[4].set({380.0f, 240.0f});
+        pos[5].set({400.0f, 240.0f});
+        pos[6].set({420.0f, 240.0f});
+        pos[7].set({440.0f, 240.0f});
+        pos[8].set({460.0f, 240.0f});
+        pos[9].set({480.0f, 240.0f});
+        pos[10].set({500.0f,240.0f});
+        pos[11].set({520.0f,240.0f});
+        pos[12].set({540.0f,240.0f});
+        pos[13].set({560.0f,240.0f});
+        pos[14].set({580.0f,240.0f});
+
+        for (real j = 0; j < 15; j += 1.0f)
         {
-            for (real i = 0; i < 10; i += 1.0f)
+            for (real i = 0; i < 15; i += 1.0f)
             {
 
                 Body *polygonBody = m_settings.system.world().createBody();
                 polygonBody->setShape(&polygon);
                 polygonBody->setFriction(1.0f);
-                polygonBody->position().set(pos[int(i)] + Vector2(0, j * 50));
+                polygonBody->position().set(pos[int(i)] + Vector2(0, j * 20));
                 polygonBody->setBitmask(mask);
                 polygonBody->setRestitution(0);
                 polygonBody->setMass(1);

@@ -12,6 +12,7 @@
 using namespace ps;
 static SDL_Window *window = nullptr;
 static SDL_Renderer *renderer = nullptr;
+
 Scene *scene = nullptr;
 SceneHeap heap;
 

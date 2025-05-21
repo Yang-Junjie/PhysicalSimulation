@@ -25,8 +25,8 @@ namespace ps
     public:
         Scene() = default;
         virtual ~Scene() = default;
-        virtual Camera &getCamera() = 0;
-        virtual PhysicsSystem &getSystem() = 0;
+         Camera &getCamera();
+         PhysicsSystem &getSystem();
         virtual void setBody() = 0;
     };
 }
