@@ -1,10 +1,16 @@
-![C++ version](https://img.shields.io/badge/C++-20-blue) ![Build Tool](https://img.shields.io/badge/build-cmake-blue)
+<p align="center">
+  <span style="color:#1976d2; font-weight:bold; font-size:2.5em;">PhysicalSimulation</span><br>
+  <img src="https://img.shields.io/badge/C++-20-blue" alt="C++ version">
+  <img src="https://img.shields.io/badge/build-cmake-blue" alt="Build Tool">
+</p>
 
-> **注意：本项目仍在开发中，功能尚不完善。**
+---
+>  [!NOTE]
+> **注意：本项目是长期项目，仍在开发中，功能尚不完善。**
 
 ## 项目简介
 
-**PhysicalSimulation (PS)** 是一个面向物理模拟的工具集，目前支持 2D 物理模拟，未来将扩展至 3D。涵盖但不限于刚体动力学、流体模拟、分子动力学等功能。
+**PhysicalSimulation (PS)** 是一个面向物理模拟的工具集，目前支持 2D 刚体动力学模拟，未来将扩展至 3D。涵盖但不限于刚体动力学、流体模拟、分子动力学等功能。
 
 ## 快速开始
 
@@ -26,6 +32,7 @@ PhysicalSimulation
 ├─libs
 │  └─SDL3               # SDL 官方静态库
 │       └─libSDL3.dll.a    
+├─res
 └─src
 ```
 
@@ -38,11 +45,49 @@ PhysicalSimulation
     cmake -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ..
     mingw32-make
     ```
+
 ## 演示
+
 ![heap](/res/heap.png)
+
+---
+
+## 功能
+
+- 线性代数类
+- 碰撞检测
+  - Narrowphase
+    - 碰撞检测
+      - SAT 算法
+      - GJK & EPA & MPR & Distance 算法
+    - CCD连续碰撞检测
+      - 轨迹采样
+      - 冲击时间
+  - Broadphase
+    - AABB 轴对齐包围盒
+    - 动态层次包围体树
+    - 均匀网格法
+- 碰撞点
+- 刚体模拟
+- 约束关节
+  - 点约束
+  - 距离约束
+- 测试 Scene
+- 基本 Debug 绘图
+- 基本 2D 计算几何算法
+  - 基本图元映射
+  - 相交测试
+  - 凸体检测
+  - 三角形三心计算
+  - 外/内接圆  
+
+---
+
 ## 参考与致谢
 
 - [FLAT](https://github.com/yuanming-hu/FLAT)
+- [Let's Make a Physics Engine](https://www.youtube.com/watch?v=lzI7QUyl66g&list=PLSlpr6o9vURwq3oxVZSimY8iC-cdd3kIs)
+- [PixelPhysics](https://www.youtube.com/@pixel_physics)
 - [2D凸多边形碰撞检测算法](https://zhuanlan.zhihu.com/p/178841676)
 - [游戏物理引擎笔记](https://www.zhihu.com/column/c_1286651106643099648)
 - [jMonkeyEngine 初学者教程（中文版）](https://www.jmecn.net/tutorial-for-beginners/chapter-16-physics-engine.hpptml)
