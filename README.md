@@ -1,10 +1,9 @@
 <div align="center">
 
-<p>
-<span style="color:#1976D2; font-size:2em; font-weight:bold;">PhysicalSimulation</span>
-</p>
-<img src="https://img.shields.io/badge/C++-20-blue" alt="C++ version">
-<img src="https://img.shields.io/badge/build-cmake-blue" alt="Build Tool">
+# <span style="color:#1976D2">PhysicalSimulation</span>
+
+<img src="https://img.shields.io/badge/C++-20-blue"> 
+<img src="https://img.shields.io/badge/build-cmake-blue">
 
 </div>
 
