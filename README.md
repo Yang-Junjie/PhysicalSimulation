@@ -1,10 +1,15 @@
-<p align="center">
-  <span style="color:#1976d2; font-weight:bold; font-size:2.5em;">PhysicalSimulation</span><br>
-  <img src="https://img.shields.io/badge/C++-20-blue" alt="C++ version">
-  <img src="https://img.shields.io/badge/build-cmake-blue" alt="Build Tool">
+<div align="center">
+
+<p>
+<span style="color:#1976D2; font-size:2em; font-weight:bold;">PhysicalSimulation</span>
 </p>
+<img src="https://img.shields.io/badge/C++-20-blue" alt="C++ version">
+<img src="https://img.shields.io/badge/build-cmake-blue" alt="Build Tool">
+
+</div>
 
 ---
+
 >  [!NOTE]
 > **注意：本项目是长期项目，仍在开发中，功能尚不完善。**
 
