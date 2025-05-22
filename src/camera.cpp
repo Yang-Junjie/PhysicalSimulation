@@ -79,7 +79,7 @@ namespace ps
 					primitive.transform.rotation = body->rotation();
 					primitive.transform.position = body->position();
 					if (body->sleep())
-						color = {100, 100, 100};
+						color = RenderConstant::Gray;
 					else
 						color = RenderConstant::Green;
 					if (body->type() == Body::BodyType::Static)

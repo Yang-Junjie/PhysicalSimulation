@@ -11,13 +11,12 @@ namespace ps
         m_settings.system.world().setAirFrictionCoefficient(0.0f);
         m_settings.system.world().setAngularVelocityDamping(0.0f);
         m_settings.system.world().setEnableDamping(true);
+        m_settings.system.world().enableSleep() = true;
         m_settings.system.positionIteration() = 4;
         m_settings.system.velocityIteration() = 6;
         polygon.append({{0, 0}, {20, 0}, {20, 20}, {0, 20}});
         edge.set(Vector2{10.0f, 580.0f}, Vector2{1070.0f, 580.0f});
         uint32_t mask = 0x01;
-        real max = 2.0f;
-        mask = 0x01;
         Vector2 pos[15];
         pos[0].set({300.0f, 240.0f});
         pos[1].set({320.0f, 240.0f});
@@ -39,7 +38,6 @@ namespace ps
         {
             for (real i = 0; i < 15; i += 1.0f)
             {
-
                 Body *polygonBody = m_settings.system.world().createBody();
                 polygonBody->setShape(&polygon);
                 polygonBody->setFriction(1.0f);

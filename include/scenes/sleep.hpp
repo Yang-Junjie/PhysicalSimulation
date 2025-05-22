@@ -1,17 +1,17 @@
-#ifndef SCENES_HEAP_HPP
-#define SCENES_HEAP_HPP
+#ifndef SCENES_SLEEP_HPP
+#define SCENES_SLEEP_HPP
 #include "scenes/scenes.hpp"
 namespace ps
 {
-    class SceneHeap : public Scene
+    class SceneSleep : public Scene
     {
     private:
         Edge edge;
         Polygon polygon;
 
     public:
-        SceneHeap() = default;
-        ~SceneHeap() = default;
+        SceneSleep() = default;
+        ~SceneSleep() = default;
         void setBody() override;
     };
 }

@@ -55,7 +55,7 @@ namespace ps
 		constexpr real MinAngularVelocity = 1e-4f;
 		constexpr real MinEnergy = 9e-10f;
 		constexpr size_t SleepCountdown = 32;
-		constexpr int GJKRetryTimes = 4;
+		constexpr int GJKRetryTimes = 6;
 	}
 #else
 	using real = double;
