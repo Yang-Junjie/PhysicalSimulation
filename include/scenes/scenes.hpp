@@ -7,15 +7,12 @@ namespace ps
 {
     struct Settings
     {
-        // Physics
-        PhysicsWorld world ;
-        ContactMaintainer maintainer ;
-        Tree tree ;
-        UniformGrid grid ;
-        PhysicsSystem system ;
-
-        // Render
-        Camera camera ;
+        PhysicsWorld world;
+        ContactMaintainer maintainer;
+        Tree tree;
+        UniformGrid grid;
+        PhysicsSystem system;
+        Camera camera;
     };
     class Scene
     {
@@ -25,8 +22,8 @@ namespace ps
     public:
         Scene() = default;
         virtual ~Scene() = default;
-         Camera &getCamera();
-         PhysicsSystem &getSystem();
+        Camera &getCamera();
+        PhysicsSystem &getSystem();
         virtual void setBody() = 0;
     };
 }

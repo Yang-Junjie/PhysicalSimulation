@@ -12,7 +12,7 @@ namespace ps
 {
 	/**
 	 * @class PhysicsSystem
-	 * @brief 管理物理仿真的核心循环和子系统。
+	 * @brief 管理物理模拟的核心循环和子系统。
 	 *
 	 * PhysicsSystem 类封装了推进物理仿真所需的主要组件和逻辑。
 	 * 它提供了对物理世界、接触维护器、广义相位树和均匀网格的接口。
