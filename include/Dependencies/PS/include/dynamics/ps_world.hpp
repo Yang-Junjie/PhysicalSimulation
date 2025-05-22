@@ -13,132 +13,132 @@ namespace ps
 	class   PhysicsWorld
 	/**
 	 * @class PhysicsWorld
-	 * @brief Represents a 2D physics simulation world, managing bodies, joints, and global simulation parameters.
+	 * @brief 表示一个二维物理仿真世界，管理刚体、关节和全局仿真参数。
 	 *
-	 * The PhysicsWorld class encapsulates the state and behavior of a physical simulation environment.
-	 * It manages collections of physical bodies and joints, and provides methods to step the simulation,
-	 * apply global forces such as gravity, and configure simulation parameters like damping and friction.
+	 * PhysicsWorld 类封装了物理仿真环境的状态和行为。
+	 * 它管理物理刚体和关节的集合，并提供推进仿真、施加重力等全局力、
+	 * 配置阻尼、摩擦等仿真参数的方法。
 	 *
-	 * Key Features:
-	 * - Manages a list of physical bodies and joints.
-	 * - Supports creation and removal of bodies and joints.
-	 * - Provides methods to advance the simulation in time, solving velocity and position constraints.
-	 * - Allows configuration of global simulation parameters such as gravity, damping, velocity thresholds, air friction, and bias.
-	 * - Supports enabling/disabling gravity, damping, and sleep optimization.
+	 * 主要特性：
+	 * - 管理物理刚体和关节的列表。
+	 * - 支持刚体和关节的创建与移除。
+	 * - 提供推进仿真、求解速度和位置约束的方法。
+	 * - 支持配置重力、阻尼、速度阈值、空气摩擦、偏置等全局参数。
+	 * - 支持开启/关闭重力、阻尼和休眠优化。
 	 *
-	 * @note Copying of PhysicsWorld instances is disabled.
+	 * @note 禁止拷贝 PhysicsWorld 实例。
 	 *
-	 * @constructor Initializes the physics world with default parameters.
-	 * @destructor Cleans up all bodies and joints.
+	 * @constructor 使用默认参数初始化物理世界。
+	 * @destructor 清理所有刚体和关节。
 	 *
-	 * @method prepareVelocityConstraint Prepares velocity constraints for the simulation step.
-	 * @param dt The time step for the simulation.
+	 * @method prepareVelocityConstraint 为仿真步准备速度约束。
+	 * @param dt 仿真时间步长。
 	 *
-	 * @method stepVelocity Advances the simulation by updating velocities.
-	 * @param dt The time step for the simulation.
+	 * @method stepVelocity 推进仿真，更新速度。
+	 * @param dt 仿真时间步长。
 	 *
-	 * @method solveVelocityConstraint Solves velocity constraints for the simulation step.
-	 * @param dt The time step for the simulation.
+	 * @method solveVelocityConstraint 求解仿真步的速度约束。
+	 * @param dt 仿真时间步长。
 	 *
-	 * @method stepPosition Advances the simulation by updating positions.
-	 * @param dt The time step for the simulation.
+	 * @method stepPosition 推进仿真，更新位置。
+	 * @param dt 仿真时间步长。
 	 *
-	 * @method solvePositionConstraint Solves position constraints for the simulation step.
-	 * @param dt The time step for the simulation.
+	 * @method solvePositionConstraint 求解仿真步的位置约束。
+	 * @param dt 仿真时间步长。
 	 *
-	 * @method gravity Gets the current gravity vector.
-	 * @return The gravity vector.
+	 * @method gravity 获取当前重力向量。
+	 * @return 重力向量。
 	 *
-	 * @method setGravity Sets the gravity vector.
-	 * @param gravity The new gravity vector.
+	 * @method setGravity 设置重力向量。
+	 * @param gravity 新的重力向量。
 	 *
-	 * @method linearVelocityDamping Gets the linear velocity damping factor.
-	 * @return The linear velocity damping factor.
+	 * @method linearVelocityDamping 获取线性速度阻尼系数。
+	 * @return 线性速度阻尼系数。
 	 *
-	 * @method setLinearVelocityDamping Sets the linear velocity damping factor.
-	 * @param linearVelocityDamping The new linear velocity damping factor.
+	 * @method setLinearVelocityDamping 设置线性速度阻尼系数。
+	 * @param linearVelocityDamping 新的线性速度阻尼系数。
 	 *
-	 * @method angularVelocityDamping Gets the angular velocity damping factor.
-	 * @return The angular velocity damping factor.
+	 * @method angularVelocityDamping 获取角速度阻尼系数。
+	 * @return 角速度阻尼系数。
 	 *
-	 * @method setAngularVelocityDamping Sets the angular velocity damping factor.
-	 * @param angularVelocityDamping The new angular velocity damping factor.
+	 * @method setAngularVelocityDamping 设置角速度阻尼系数。
+	 * @param angularVelocityDamping 新的角速度阻尼系数。
 	 *
-	 * @method linearVelocityThreshold Gets the linear velocity threshold for sleeping.
-	 * @return The linear velocity threshold.
+	 * @method linearVelocityThreshold 获取休眠的线性速度阈值。
+	 * @return 线性速度阈值。
 	 *
-	 * @method setLinearVelocityThreshold Sets the linear velocity threshold for sleeping.
-	 * @param linearVelocityThreshold The new linear velocity threshold.
+	 * @method setLinearVelocityThreshold 设置休眠的线性速度阈值。
+	 * @param linearVelocityThreshold 新的线性速度阈值。
 	 *
-	 * @method angularVelocityThreshold Gets the angular velocity threshold for sleeping.
-	 * @return The angular velocity threshold.
+	 * @method angularVelocityThreshold 获取休眠的角速度阈值。
+	 * @return 角速度阈值。
 	 *
-	 * @method setAngularVelocityThreshold Sets the angular velocity threshold for sleeping.
-	 * @param angularVelocityThreshold The new angular velocity threshold.
+	 * @method setAngularVelocityThreshold 设置休眠的角速度阈值。
+	 * @param angularVelocityThreshold 新的角速度阈值。
 	 *
-	 * @method airFrictionCoefficient Gets the air friction coefficient.
-	 * @return The air friction coefficient.
+	 * @method airFrictionCoefficient 获取空气摩擦系数。
+	 * @return 空气摩擦系数。
 	 *
-	 * @method setAirFrictionCoefficient Sets the air friction coefficient.
-	 * @param airFrictionCoefficient The new air friction coefficient.
+	 * @method setAirFrictionCoefficient 设置空气摩擦系数。
+	 * @param airFrictionCoefficient 新的空气摩擦系数。
 	 *
-	 * @method enableGravity Checks if gravity is enabled.
-	 * @return True if gravity is enabled, false otherwise.
+	 * @method enableGravity 检查是否启用重力。
+	 * @return 若启用重力返回 true，否则返回 false。
 	 *
-	 * @method setEnableGravity Enables or disables gravity.
-	 * @param enableGravity True to enable gravity, false to disable.
+	 * @method setEnableGravity 启用或禁用重力。
+	 * @param enableGravity true 启用重力，false 禁用。
 	 *
-	 * @method enableDamping Checks if damping is enabled.
-	 * @return True if damping is enabled, false otherwise.
+	 * @method enableDamping 检查是否启用阻尼。
+	 * @return 若启用阻尼返回 true，否则返回 false。
 	 *
-	 * @method setEnableDamping Enables or disables damping.
-	 * @param enableDamping True to enable damping, false to disable.
+	 * @method setEnableDamping 启用或禁用阻尼。
+	 * @param enableDamping true 启用阻尼，false 禁用。
 	 *
-	 * @method createBody Creates a new body in the world.
-	 * @return Pointer to the created Body.
+	 * @method createBody 创建一个新的刚体。
+	 * @return 指向新建 Body 的指针。
 	 *
-	 * @method removeBody Removes a body from the world.
-	 * @param body Pointer to the Body to remove.
+	 * @method removeBody 从世界中移除一个刚体。
+	 * @param body 要移除的 Body 指针。
 	 *
-	 * @method removeJoint Removes a joint from the world.
-	 * @param joint Pointer to the Joint to remove.
+	 * @method removeJoint 从世界中移除一个关节。
+	 * @param joint 要移除的 Joint 指针。
 	 *
-	 * @method clearAllBodies Removes all bodies from the world.
+	 * @method clearAllBodies 移除世界中的所有刚体。
 	 *
-	 * @method clearAllJoints Removes all joints from the world.
+	 * @method clearAllJoints 移除世界中的所有关节。
 	 *
-	 * @method createJoint Creates a new PointJoint or DistanceJoint in the world.
-	 * @param primitive The joint primitive describing the joint parameters.
-	 * @return Pointer to the created joint.
+	 * @method createJoint 创建新的 PointJoint 或 DistanceJoint。
+	 * @param primitive 关节参数描述体。
+	 * @return 指向新建关节的指针。
 	 *
-	 * @method bias Gets the bias factor used in constraint resolution.
-	 * @return The bias factor.
+	 * @method bias 获取约束求解中的偏置因子。
+	 * @return 偏置因子。
 	 *
-	 * @method setBias Sets the bias factor used in constraint resolution.
-	 * @param bias The new bias factor.
+	 * @method setBias 设置约束求解中的偏置因子。
+	 * @param bias 新的偏置因子。
 	 *
-	 * @method bodyList Gets the list of bodies in the world.
-	 * @return Reference to the container of unique pointers to Body.
+	 * @method bodyList 获取世界中的刚体列表。
+	 * @return 指向 Body 智能指针容器的引用。
 	 *
-	 * @method jointList Gets the list of joints in the world.
-	 * @return Reference to the container of unique pointers to Joint.
+	 * @method jointList 获取世界中的关节列表。
+	 * @return 指向 Joint 智能指针容器的引用。
 	 *
-	 * @method enableSleep Gets or sets whether sleeping is enabled for bodies.
-	 * @return Reference to the boolean flag for sleep enablement.
+	 * @method enableSleep 获取或设置是否启用刚体休眠。
+	 * @return 休眠使能标志的引用。
 	 *
 	 * @private
-	 * @var m_gravity The gravity vector applied to all bodies.
-	 * @var m_linearVelocityDamping The linear velocity damping factor.
-	 * @var m_angularVelocityDamping The angular velocity damping factor.
-	 * @var m_linearVelocityThreshold The linear velocity threshold for sleeping.
-	 * @var m_angularVelocityThreshold The angular velocity threshold for sleeping.
-	 * @var m_airFrictionCoefficient The air friction coefficient.
-	 * @var m_bias The bias factor for constraint resolution.
-	 * @var m_enableGravity Flag indicating if gravity is enabled.
-	 * @var m_enableDamping Flag indicating if damping is enabled.
-	 * @var m_enableSleep Flag indicating if sleeping is enabled.
-	 * @var m_bodyList Container of unique pointers to Body objects.
-	 * @var m_jointList Container of unique pointers to Joint objects.
+	 * @var m_gravity 施加于所有刚体的重力向量。
+	 * @var m_linearVelocityDamping 线性速度阻尼系数。
+	 * @var m_angularVelocityDamping 角速度阻尼系数。
+	 * @var m_linearVelocityThreshold 休眠的线性速度阈值。
+	 * @var m_angularVelocityThreshold 休眠的角速度阈值。
+	 * @var m_airFrictionCoefficient 空气摩擦系数。
+	 * @var m_bias 约束求解的偏置因子。
+	 * @var m_enableGravity 是否启用重力的标志。
+	 * @var m_enableDamping 是否启用阻尼的标志。
+	 * @var m_enableSleep 是否启用休眠的标志。
+	 * @var m_bodyList Body 对象的智能指针容器。
+	 * @var m_jointList Joint 对象的智能指针容器。
 	 */
 	{
 	public:

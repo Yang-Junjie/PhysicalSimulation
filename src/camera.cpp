@@ -89,6 +89,14 @@ namespace ps
 					RenderSDLImpl::renderShape(window, renderer, primitive, color);
 				}
 			}
+			if (m_jointVisible)
+			{
+				for (auto iter = m_world->jointList().begin(); iter != m_world->jointList().end(); ++iter)
+				{
+					if ((*iter)->active())
+						RenderSDLImpl::renderJoint(window, renderer, (*iter).get(), RenderConstant::Green);
+				}
+			}
 		}
 	}
 

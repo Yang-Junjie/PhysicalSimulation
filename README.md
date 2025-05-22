@@ -53,7 +53,7 @@ PhysicalSimulation
 ## 演示
 
 ![heap](/res/heap.png)
-
+![newton-cradle](/res/newton_cradle.png)
 ---
 
 ## 功能
@@ -65,8 +65,6 @@ PhysicalSimulation
       - SAT 算法
       - GJK & EPA 算法
     - CCD连续碰撞检测
-      - 轨迹采样
-      - 冲击时间
   - Broadphase
     - AABB 轴对齐包围盒
     - 动态层次包围体树

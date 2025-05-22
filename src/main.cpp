@@ -9,6 +9,7 @@
 #include "scenes/scenes.hpp"
 #include "scenes/heap.hpp"
 #include "scenes/sleep.hpp"
+#include "scenes/newton_pendulum.hpp"
 #include "camera.hpp"
 using namespace ps;
 static SDL_Window *window = nullptr;
@@ -17,7 +18,7 @@ static SDL_Renderer *renderer = nullptr;
 Scene *scene = nullptr;
 SceneHeap heap;
 SceneSleep sleep;
-
+SceneNewTonPendulum newton_pendulum;
 
 int main(int argc, char *argv[])
 {
@@ -32,12 +33,13 @@ int main(int argc, char *argv[])
         SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
-    //scene = &heap;
-    scene = &sleep;
+    // scene = &heap;
+    // scene = &sleep;
+    scene = &newton_pendulum;
     scene->setBody();
-    //scene->getCamera().setWorld(&heap.getSystem().world());
-    scene->getCamera().setWorld(&sleep.getSystem().world());
-
+    // scene->getCamera().setWorld(&heap.getSystem().world());
+    // scene->getCamera().setWorld(&sleep.getSystem().world());
+    scene->getCamera().setWorld(&newton_pendulum.getSystem().world());
     SDL_Event event;
     bool keep_going = true;
     while (keep_going)

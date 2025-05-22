@@ -76,7 +76,7 @@ namespace ps
                outlinePoints.emplace_back(worldPos);
           }
           auto sate = SDL_RenderGeometry(renderer, NULL, sdlVertices.data(), sdlVertices.size(), indices.data(), indices.size());
-         // std::cerr << "sate:" << sate << std::endl;
+          // std::cerr << "sate:" << sate << std::endl;
           if (!outlinePoints.empty())
                outlinePoints.push_back(outlinePoints.front());
           renderLines(window, renderer, outlinePoints, color);
@@ -178,5 +178,46 @@ namespace ps
           default:
                break;
           }
+     }
+     void RenderSDLImpl::renderJoint(SDL_Window *window, SDL_Renderer *renderer, Joint *joint, const SDL_Color &color)
+     {
+          switch (joint->type())
+          {
+          case JointType::Distance:
+          {
+               renderDistanceJoint(window, renderer, joint, color);
+               break;
+          }
+          default:
+               break;
+          }
+     }
+     void RenderSDLImpl::renderDistanceJoint(SDL_Window *window, SDL_Renderer *renderer, Joint *joint, const SDL_Color &color)
+     {
+          assert(joint != nullptr);
+          auto distanceJoint = static_cast<DistanceJoint *>(joint);
+          Vector2 pa = distanceJoint->primitive().bodyA->toWorldPoint(distanceJoint->primitive().localPointA);
+          Vector2 pb = distanceJoint->primitive().bodyB->toWorldPoint(distanceJoint->primitive().localPointB);
+          Vector2 n = (pa - pb).normal();
+          Vector2 mid = pb + n * (pa - pb).length() * 0.5f;
+
+          Vector2 maxPoint1 = mid + 0.5f * n * distanceJoint->primitive().maxDistance;
+          Vector2 maxPoint2 = mid - 0.5f * n * distanceJoint->primitive().maxDistance;
+          Vector2 minPoint1 = mid + 0.5f * n * distanceJoint->primitive().minDistance;
+          Vector2 minPoint2 = mid - 0.5f * n * distanceJoint->primitive().minDistance;
+
+          SDL_Color minColor = RenderConstant::Blue;
+          SDL_Color maxColor = RenderConstant::Red;
+          minColor.a = 204;
+          maxColor.a = 204;
+          renderPoint(window, renderer, pa, RenderConstant::Gray);
+          renderPoint(window, renderer, pb, RenderConstant::Gray);
+          renderPoint(window, renderer, minPoint1, minColor);
+          renderPoint(window, renderer, maxPoint1, maxColor);
+          renderPoint(window, renderer, minPoint2, minColor);
+          renderPoint(window, renderer, maxPoint2, maxColor);
+          SDL_Color lineColor = RenderConstant::DarkGreen;
+          lineColor.a = 150;
+          renderLine(window, renderer, pa, pb, lineColor);
      }
 }
