@@ -9,7 +9,29 @@
 #include "ps_edge.hpp"
 #include "ps_polygon.hpp"
 #include "ps_rectangle.hpp"
+/**
+ * @file ps_narrowphase.hpp
+ * @brief 包含用于碰撞检测算法（GJK, EPA）和接触点生成的结构体与Narrowphase类。
+ *
+ * 结构体说明：
+ * - SimplexVertexWithOriginDistance：关联SimplexVertex与其到原点的距离。
+ * - Feature：表示用于碰撞检测的几何特征（顶点/边）。
+ * - ClipVertex：用于接触点生成中的边裁剪。
+ * - ContactPair：存储形状之间最多两个接触点对（点及其ID）。
+ * - VertexPair：表示一对点（A和B），并提供比较工具。
+ * - CollisionInfo：存储碰撞结果，包括法线、穿透深度、单纯形和调试信息。
+ *
+ * Narrowphase类：
+ * 静态方法：
+ * - GJK（Gilbert–Johnson–Keerthi）碰撞检测。
+ * - EPA（扩展多面体算法）用于穿透深度和接触法线计算。
+ * - 支持点计算（Minkowski差）。
+ * - 在指定方向上寻找最远点。
+ * - 针对不同形状组合的接触点生成与边/特征裁剪。
+ * - 单纯形和多面体操作工具。
+ *
 
+ */
 namespace ps
 {
 	struct SimplexVertexWithOriginDistance

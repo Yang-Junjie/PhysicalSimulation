@@ -7,10 +7,12 @@
 
 namespace ps
 {
-	//TODO 20220704
-	//1. Incremental Update Bodies, calculating the different between two cellList
-	//2. Position combine to u64 and split into two u32
-	//3. Raycast query bodies
+	/**
+	 * @class UniformGrid
+	 * @brief 均匀网格类，用于物理仿真中的空间划分和碰撞检测。
+	 *
+	 * 提供均匀网格的创建、更新、查询等功能，支持动态物体的插入、删除和更新操作。
+	 */
 	class   UniformGrid
 	{
 	public:
@@ -111,4 +113,4 @@ namespace ps
 	};
 }
 
-#endif // !PHYSICS_BROADPHASE_GRID_H
+#endif 

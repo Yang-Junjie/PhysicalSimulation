@@ -7,10 +7,10 @@
 
 </div>
 
----
-
 >  [!NOTE]
 > **注意：本项目是长期项目，仍在开发中，功能尚不完善。**
+
+---
 
 ## 项目简介
 
@@ -63,7 +63,7 @@ PhysicalSimulation
   - Narrowphase
     - 碰撞检测
       - SAT 算法
-      - GJK & EPA & MPR & Distance 算法
+      - GJK & EPA 算法
     - CCD连续碰撞检测
       - 轨迹采样
       - 冲击时间
@@ -77,7 +77,6 @@ PhysicalSimulation
   - 点约束
   - 距离约束
 - 测试 Scene
-- 基本 Debug 绘图
 - 基本 2D 计算几何算法
   - 基本图元映射
   - 相交测试

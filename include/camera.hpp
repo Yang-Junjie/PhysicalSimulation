@@ -17,6 +17,29 @@ namespace ps
 			Uniform
 		};
 
+		/**
+		 * @struct Viewport
+		 * @brief Represents a rectangular area in 2D space, typically used for camera or rendering viewports.
+		 *
+		 * The Viewport structure defines a rectangle using its top-left and bottom-right coordinates.
+		 * It provides utility functions to get and set its dimensions and center.
+		 *
+		 * Members:
+		 * - topLeft: The top-left corner of the viewport (default: {0, 0}).
+		 * - bottomRight: The bottom-right corner of the viewport (default: {800, 600}).
+		 *
+		 * Constructors:
+		 * - Viewport(): Default constructor.
+		 * - Viewport(const Vector2& top_left, const Vector2& bottom_right): Constructs a viewport with specified corners.
+		 *
+		 * Member Functions:
+		 * - real width(): Returns the width of the viewport.
+		 * - real height(): Returns the height of the viewport.
+		 * - Vector2 center() const: Returns the center point of the viewport.
+		 * - void setWidth(const real& width): Sets the width of the viewport, adjusting the bottomRight.x accordingly.
+		 * - void setHeight(const real& height): Sets the height of the viewport, adjusting the bottomRight.y accordingly.
+		 * - void set(const real& width, const real& height): Sets both width and height of the viewport.
+		 */
 		struct Viewport
 		{
 			Viewport() = default;
