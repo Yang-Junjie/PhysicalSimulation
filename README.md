@@ -26,6 +26,7 @@ PhysicalSimulation
 ├─bin                   # 可执行文件目录
 │   └─SDL3.dll
 ├─include
+│  ├─scenes             # 构建物理模拟场景
 │  └─Dependencies
 │      ├─PS             # PS 核心库
 │      │  ├─include
@@ -38,6 +39,7 @@ PhysicalSimulation
 │       └─libSDL3.dll.a    
 ├─res
 └─src
+    └─scenes
 ```
 
 **构建步骤：**
