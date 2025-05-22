@@ -53,7 +53,7 @@ PhysicalSimulation
 ## 演示
 
 ![heap](/res/heap.png)
-![newton-cradle](/res/newton_cradle.png)
+![newton-cradle](/res/newton_pendulum.png)
 ---
 
 ## 功能

@@ -10,7 +10,7 @@
 
 #include "ps_edge.hpp"
 #include "ps_polygon.hpp"
-#include "ps_rectangle.hpp"
+
 
 
 namespace ps

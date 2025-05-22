@@ -8,7 +8,6 @@
 
 #include "ps_edge.hpp"
 #include "ps_polygon.hpp"
-#include "ps_rectangle.hpp"
 /**
  * @file ps_narrowphase.hpp
  * @brief 包含用于碰撞检测算法（GJK, EPA）和接触点生成的结构体与Narrowphase类。

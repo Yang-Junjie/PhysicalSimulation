@@ -17,57 +17,10 @@ namespace ps
 			assert(m_world != nullptr);
 
 			real inv_dt = 1.0f / m_deltaTime;
-
-			real scale = m_targetMeterToPixel - m_meterToPixel;
-			bool isZooming = !realEqual(m_meterToPixel, m_targetMeterToPixel);
-
-			if (m_smoothZoom && !(std::fabs(scale) < 0.1f || m_meterToPixel < 1.0f))
-				m_meterToPixel -= (1.0f - std::exp(m_restitution * inv_dt)) * scale;
-			else
-				m_meterToPixel = m_targetMeterToPixel;
-
-			m_pixelToMeter = 1.0f / m_meterToPixel;
-
-			if (isZooming && !m_preScreenMousePos.isOrigin())
-				m_transform += (screenToWorld(m_preScreenMousePos) - m_preWorldMousePos) * m_meterToPixel;
-
-			if (m_targetBody != nullptr)
-			{
-				Vector2 real_origin(m_origin.x + m_transform.x, m_origin.y - m_transform.y);
-				Vector2 target(-(m_targetBody->position().x + m_targetBody->shape()->center().x),
-							   m_targetBody->position().y + m_targetBody->shape()->center().y);
-				target = worldToScreen(target) - real_origin;
-
-				Vector2 c = target - m_transform;
-
-				switch (m_easingType)
-				{
-				case EasingType::Exponential:
-				{
-					if (c.lengthSquare() < 0.1f)
-						m_transform = target;
-					else
-						m_transform -= (1.0f - std::exp(m_restitution * inv_dt)) * c;
-					break;
-				}
-				case EasingType::Lerp:
-				{
-					if (c.lengthSquare() < 0.1f)
-						m_transform = target;
-					else
-						m_transform += 0.02f * c;
-					break;
-				}
-				case EasingType::Uniform:
-				{
-					break;
-				}
-				}
-			}
- 			SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-			SDL_SetRenderDrawColor(renderer,50,50,50,255);
+			SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+			SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
 			SDL_RenderClear(renderer);
-			
+
 			if (m_bodyVisible)
 			{
 				auto color = RenderConstant::Green;
@@ -103,16 +56,6 @@ namespace ps
 	bool &Camera::bodyVisible()
 	{
 		return m_bodyVisible;
-	}
-
-	int Camera::axisPointCount() const
-	{
-		return m_axisPointCount;
-	}
-
-	void Camera::setAxisPointCount(int count)
-	{
-		m_axisPointCount = count;
 	}
 
 	real Camera::meterToPixel() const
@@ -157,16 +100,6 @@ namespace ps
 		return m_world;
 	}
 
-	Body *Camera::targetBody() const
-	{
-		return m_targetBody;
-	}
-
-	void Camera::setTargetBody(Body *targetBody)
-	{
-		m_targetBody = targetBody;
-	}
-
 	Camera::Viewport Camera::viewport() const
 	{
 		return m_viewport;
@@ -209,11 +142,6 @@ namespace ps
 		return m_visible;
 	}
 
-	bool &Camera::treeVisible()
-	{
-		return m_treeVisible;
-	}
-
 	real Camera::deltaTime() const
 	{
 		return m_deltaTime;
@@ -222,77 +150,6 @@ namespace ps
 	void Camera::setDeltaTime(const real &deltaTime)
 	{
 		m_deltaTime = deltaTime;
-	}
-
-	bool &Camera::centerVisible()
-	{
-		return m_centerVisible;
-	}
-
-	bool &Camera::contactVisible()
-	{
-		return m_contactVisible;
-	}
-
-	bool &Camera::uniformGridVisible()
-	{
-		return m_uniformGridVisible;
-	}
-
-	bool &Camera::contactImpulseVisible()
-	{
-		return m_contactImpulseVisible;
-	}
-
-	bool &Camera::contactImpulseMagnitude()
-	{
-		return m_contactImpulseMagnitude;
-	}
-
-	bool &Camera::contactFrictionVisible()
-	{
-		return m_contactFrictionVisible;
-	}
-
-	bool &Camera::contactFrictionMagnitude()
-	{
-		return m_contactFrictionMagnitude;
-	}
-
-	
-	bool &Camera::bodyVelocity()
-	{
-		return m_bodyVelocity;
-	}
-
-	bool &Camera::bodyVelocityNormal()
-	{
-		return m_bodyVelocityNormal;
-	}
-
-	bool &Camera::bodyVelocityMagnitude()
-	{
-		return m_bodyVelocityMagnitude;
-	}
-
-	bool &Camera::coordinateScale()
-	{
-		return m_drawCoordinateScale;
-	}
-
-	bool &Camera::smoothZoom()
-	{
-		return m_smoothZoom;
-	}
-
-	bool &Camera::bodyIDVisible()
-	{
-		return m_bodyIDVisible;
-	}
-
-	bool &Camera::jointImpulseVisible()
-	{
-		return m_jointImpulseVisible;
 	}
 
 	ContactMaintainer *Camera::maintainer() const
@@ -333,12 +190,6 @@ namespace ps
 	void Camera::setDefaultMeterToPixel(const real &number)
 	{
 		m_defaultMeterToPixel = number;
-	}
-
-	void Camera::setPreScreenMousePos(const Vector2 &pos)
-	{
-		m_preScreenMousePos = pos;
-		m_preWorldMousePos = screenToWorld(pos);
 	}
 
 	real Camera::Viewport::width()

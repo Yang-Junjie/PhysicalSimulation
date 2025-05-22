@@ -6,14 +6,7 @@ namespace ps
 	enum class   JointType
 	{
 		Distance,
-		Point,
-		Rotation,
-		Orientation,
-		Pulley,
-		Prismatic,
-		Weld,
-		Wheel,
-		Revolute
+		Point
 	};
 	class   Joint
 	{

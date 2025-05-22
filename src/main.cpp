@@ -1,10 +1,5 @@
 #include "render.hpp"
 #include "ps.hpp"
-#include <iostream>
-#include <mutex>
-#include <thread>
-#include <condition_variable>
-#include <chrono>
 #include <SDL3/SDL.h>
 #include "scenes/scenes.hpp"
 #include "scenes/heap.hpp"
@@ -16,8 +11,8 @@ static SDL_Window *window = nullptr;
 static SDL_Renderer *renderer = nullptr;
 
 Scene *scene = nullptr;
-SceneHeap heap;
-SceneSleep sleep;
+//SceneHeap heap;
+//SceneSleep sleep;
 SceneNewTonPendulum newton_pendulum;
 
 int main(int argc, char *argv[])
