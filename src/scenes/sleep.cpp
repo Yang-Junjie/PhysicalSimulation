@@ -2,7 +2,7 @@
 namespace ps
 {
 
-    void SceneSleep::setBody()
+    void SceneSleep::setScene()
     {
         m_settings.system.world().setEnableGravity(true);
         m_settings.system.world().setGravity({0.0f, 10.0f});

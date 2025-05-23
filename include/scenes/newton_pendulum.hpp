@@ -6,15 +6,12 @@ namespace ps
     class SceneNewTonPendulum : public Scene
     {
     private:
-        Edge edge;
         Circle circle;
-       // DistanceJointPrimitive distance_joint;
-        Polygon polygon;
-
+        Edge edge;
     public:
         SceneNewTonPendulum() = default;
         ~SceneNewTonPendulum() = default;
-        void setBody() override;
+        void setScene() override;
     };
 }
 #endif

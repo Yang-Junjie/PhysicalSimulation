@@ -158,9 +158,11 @@ namespace ps
 
      void RenderSDLImpl::renderShape(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape, const SDL_Color &color)
      {
+          if (!shape.shape)
+               return;
           switch (shape.shape->type())
           {
-          case Shape::Shape::Type::Polygon:
+          case Shape::Type::Polygon:
           {
                renderPolygon(window, renderer, shape, color);
                break;

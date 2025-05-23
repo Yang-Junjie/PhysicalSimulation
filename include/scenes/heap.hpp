@@ -12,7 +12,7 @@ namespace ps
     public:
         SceneHeap() = default;
         ~SceneHeap() = default;
-        void setBody() override;
+        void setScene() override;
     };
 }
 #endif

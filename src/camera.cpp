@@ -28,9 +28,9 @@ namespace ps
 				for (auto &body : m_world->bodyList())
 				{
 					ShapePrimitive primitive;
-					primitive.shape = body->shape();
 					primitive.transform.rotation = body->rotation();
 					primitive.transform.position = body->position();
+					primitive.shape = body->shape();
 					if (body->sleep())
 						color = RenderConstant::Gray;
 					else
@@ -108,8 +108,8 @@ namespace ps
 	void Camera::setViewport(const Viewport &viewport)
 	{
 		m_viewport = viewport;
-		m_origin.set((m_viewport.topLeft.x + m_viewport.bottomRight.x) * (0.5),
-					 (m_viewport.topLeft.y + m_viewport.bottomRight.y) * (0.5));
+		m_origin.set((m_viewport.topLeft.x + m_viewport.bottomRight.x) * (0.5f),
+					 (m_viewport.topLeft.y + m_viewport.bottomRight.y) * (0.5f));
 	}
 
 	Vector2 Camera::worldToScreen(const Vector2 &pos) const

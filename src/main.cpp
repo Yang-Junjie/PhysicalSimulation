@@ -1,4 +1,4 @@
-#include "render.hpp"
+﻿#include "render.hpp"
 #include "ps.hpp"
 #include <SDL3/SDL.h>
 #include "scenes/scenes.hpp"
@@ -11,8 +11,8 @@ static SDL_Window *window = nullptr;
 static SDL_Renderer *renderer = nullptr;
 
 Scene *scene = nullptr;
-//SceneHeap heap;
-//SceneSleep sleep;
+// SceneHeap heap;
+//  SceneSleep sleep;
 SceneNewTonPendulum newton_pendulum;
 
 int main(int argc, char *argv[])
@@ -29,11 +29,11 @@ int main(int argc, char *argv[])
         return SDL_APP_FAILURE;
     }
     // scene = &heap;
-    // scene = &sleep;
+    //  scene = &sleep;
     scene = &newton_pendulum;
-    scene->setBody();
+    scene->setScene();
     // scene->getCamera().setWorld(&heap.getSystem().world());
-    // scene->getCamera().setWorld(&sleep.getSystem().world());
+    //  scene->getCamera().setWorld(&sleep.getSystem().world());
     scene->getCamera().setWorld(&newton_pendulum.getSystem().world());
     SDL_Event event;
     bool keep_going = true;

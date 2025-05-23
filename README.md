@@ -1,34 +1,42 @@
 <div align="center">
-<img src="./res/logo.png">
-<br>
-<img src="https://img.shields.io/badge/C++-20-blue"> 
-<img src="https://img.shields.io/badge/build-cmake-blue">
-<br>
-<a href="http://beisent.com/docs/#/ps/?id=ps" target="_blank">项目在线文档</a>
+  <img src="./res/logo.png" alt="PhysicalSimulation Logo">
+  <br>
+  <img src="https://img.shields.io/badge/C++-20-blue">
+  <img src="https://img.shields.io/badge/build-cmake-blue">
+  <br>
+  <a href="http://beisent.com/docs/#/ps/?id=ps" target="_blank">项目在线文档</a>
 </div>
 
->  [!NOTE]
-> **注意：本项目是长期项目，仍在开发中，功能尚不完善。**
+> [!NOTE]
+> **注意：本项目为长期开发项目，功能持续完善中。**
 
 ---
 
 ## 项目简介
 
+**PhysicalSimulation（简称 PS）** 是一套专注于物理模拟与仿真的工具集，支持刚体动力学、流体力学、分子动力学、有限元分析等多种物理场景的模拟与分析。
 
-**PhysicalSimulation（简称 PS** 是一个专注于物理模拟与仿真的工具集，支持包括但不限于刚体动力学、流体力学、分子动力学、有限元分析等多种物理场景的模拟与分析。
+- 轻松创建各类物理场景，模拟真实世界物理规律
+- 支持自定义模型仿真测试
+- 提供直观、可交互的可视化界面
+- 内置丰富数据分析工具，便于高效处理仿真数据
+- 支持使用 Python 脚本语言创建或操控对象
 
-在 PS 中，你可以轻松创建各类物理场景，模拟真实世界的物理规律，或搭建自定义模型进行仿真测试。PS 提供直观、可交互的可视化界面，帮助你更好地理解和探索物理现象。同时，PS 还配备丰富的数据分析工具，方便你高效获取和处理模拟与仿真过程中的各类数据。将使用python作为脚本语言以创建或操控对象。
+---
 
 ## 快速开始
-本项目采用 [SDL3](https://github.com/libsdl-org/SDL/releases/tag/release-3.2.14) 静态链接，作者主要在 [CMake](https://cmake.org/download/) + [MinGW](https://sourceforge.net/projects/mingw/) 环境下测试。其他构建工具请自行适配。
 
-**项目目录结构：**
+本项目采用 [SDL3](https://github.com/libsdl-org/SDL/releases/tag/release-3.2.14) 静态链接。  
+**请确保已下载 SDL3 库并放置于对应目录，且已安装 CMake。**
+
+### 目录结构
+
 ```
 PhysicalSimulation
 ├─bin                   # 可执行文件目录
 │   └─SDL3.dll
 ├─include
-│  ├─scenes             # 构建物理模拟场景
+│  ├─scenes             # 物理模拟场景
 │  └─Dependencies
 │      ├─PS             # PS 核心库
 │      │  ├─include
@@ -38,15 +46,21 @@ PhysicalSimulation
 │           └─...
 ├─libs
 │  └─SDL3               # SDL 官方静态库
-│       └─libSDL3.dll.a    
-├─res
+│       └─libSDL3.dll.a
+├─res                   # 资源文件
 └─src
     └─scenes
 ```
 
-**构建步骤：**
+---
+
+## Windows 环境下构建
+
+### MinGW
+
 1. 下载依赖并放入对应目录。
-2. 在项目根目录执行以下命令：
+2. 在项目根目录执行：
+
     ```shell
     mkdir build
     cd build
@@ -54,37 +68,57 @@ PhysicalSimulation
     mingw32-make
     ```
 
+### MSVC
+
+1. 下载依赖并放入对应目录。
+2. 在项目根目录执行：
+
+    ```shell
+    cmake -B build -G "Visual Studio 17 2022" -A x64
+    cmake --build build --config Release
+    ```
+
+    - `-B build`：指定构建输出目录为 build
+    - `-G`：指定生成器为 MSVC 2022
+    - `-A x64`：选择 64 位架构（可选 Win32 或 ARM）
+    - `--config Release`：指定编译模式（可选 Debug 或 Release）
+
+> **注意：**  
+> 若选择 `Debug` 模式，生成的可执行文件在 `bin/Debug` 目录下，首次运行时如提示找不到 `SDL3.dll`，请将 `bin` 目录下的 `SDL3.dll` 复制到 `Debug` 目录下（`Release` 同理）。
+
+---
+
 ## 演示
 
 ![heap](/res/heap.png)
 ![newton-cradle](/res/newton_pendulum.png)
+
 ---
 
-## 功能
+## 功能特性
 
 - 线性代数类
 - 碰撞检测
   - Narrowphase
-    - 碰撞检测
-      - SAT 算法
-      - GJK & EPA 算法
-    - CCD连续碰撞检测
+    - SAT 算法
+    - GJK & EPA 算法
+    - CCD 连续碰撞检测
   - Broadphase
     - AABB 轴对齐包围盒
     - 动态层次包围体树
     - 均匀网格法
-- 碰撞点
+- 碰撞点管理
 - 刚体模拟
 - 约束关节
   - 点约束
   - 距离约束
-- 测试 Scene
+- 测试场景
 - 基本 2D 计算几何算法
-  - 基本图元映射
+  - 图元映射
   - 相交测试
   - 凸体检测
   - 三角形三心计算
-  - 外/内接圆  
+  - 外/内接圆
 
 ---
 

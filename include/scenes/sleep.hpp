@@ -12,7 +12,7 @@ namespace ps
     public:
         SceneSleep() = default;
         ~SceneSleep() = default;
-        void setBody() override;
+        void setScene() override;
     };
 }
 #endif

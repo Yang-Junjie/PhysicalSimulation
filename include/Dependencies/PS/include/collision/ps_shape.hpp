@@ -13,7 +13,7 @@ namespace ps
 		{
 			Polygon,
 			Edge,
-			Circle
+			Circle,
 		};
 
 		Type type() const
