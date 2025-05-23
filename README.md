@@ -1,7 +1,6 @@
 <div align="center">
-
-# <span style="color:#1976D2">PhysicalSimulation</span>
-
+<img src="./res/logo.png">
+<br>
 <img src="https://img.shields.io/badge/C++-20-blue"> 
 <img src="https://img.shields.io/badge/build-cmake-blue">
 <br>
