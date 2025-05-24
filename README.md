@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/C++-20-blue">
   <img src="https://img.shields.io/badge/build-cmake-blue">
   <br>
-  <a href="http://beisent.com/docs/#/ps/?id=ps" target="_blank">项目在线文档</a>
+  <a href="http://beisent.com/docs/#/" target="_blank">项目在线文档</a>
 </div>
 
 > [!NOTE]
