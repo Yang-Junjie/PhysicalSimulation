@@ -86,7 +86,7 @@ namespace ps
 
 	class   ContactMaintainer
 	/**
-	 * @brief 管理物理仿真中的接触约束。
+	 * @brief 管理物理模拟中的接触约束。
 	 *
 	 * 该类提供处理物体间接触点、求解速度和位置约束、以及管理接触约束表的方法。
 	 * 支持速度和位置的热启动（warm starting）与块求解器（block solver）。

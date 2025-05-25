@@ -4,6 +4,9 @@
   <img src="https://img.shields.io/badge/C++-20-blue">
   <img src="https://img.shields.io/badge/build-cmake-blue">
   <br>
+   <img src="https://img.shields.io/badge/%E7%8A%B6%E6%80%81-%E7%A7%AF%E6%9E%81%E5%BC%80%E5%8F%91%E4%B8%AD-green">
+ 
+  <br>
   <a href="http://beisent.com/docs/#/" target="_blank">项目在线文档</a>
 </div>
 

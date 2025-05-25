@@ -7,10 +7,6 @@ namespace ps
 {
     struct Settings
     {
-        PhysicsWorld world;
-        ContactMaintainer maintainer;
-        Tree tree;
-        UniformGrid grid;
         PhysicsSystem system;
         Camera camera;
     };
@@ -25,6 +21,7 @@ namespace ps
         Camera &getCamera();
         PhysicsSystem &getSystem();
         virtual void setScene() = 0;
+        
     };
 }
 #endif

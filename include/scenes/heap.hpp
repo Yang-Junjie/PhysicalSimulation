@@ -10,8 +10,8 @@ namespace ps
         Polygon polygon;
 
     public:
-        SceneHeap() = default;
-        ~SceneHeap() = default;
+        // SceneHeap() = default;
+        // ~SceneHeap() = default;
         void setScene() override;
     };
 }
