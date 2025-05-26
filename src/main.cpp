@@ -17,9 +17,9 @@ int main(int argc, char *argv[])
     Scene *scene = nullptr;
     // SceneHeap heap;
     // SceneSleep sleep;
-    SceneNewTonPendulum newton_pendulum;
+    // SceneNewTonPendulum newton_pendulum;
     // SceneSimple simple;
-    //ScenePointJoint point_joint;
+    ScenePointJoint point_joint;
 
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -34,16 +34,16 @@ int main(int argc, char *argv[])
     }
     // scene = &heap;
     // scene = &sleep;
-    scene = &newton_pendulum;
+    // scene = &newton_pendulum;
     // scene = &simple;
-    // scene = &point_joint;
+    scene = &point_joint;
     scene->setScene();
 
     // scene->getCamera().setWorld(&heap.getSystem().world());
     // scene->getCamera().setWorld(&sleep.getSystem().world());
-    scene->getCamera().setWorld(&newton_pendulum.getSystem().world());
+    // scene->getCamera().setWorld(&newton_pendulum.getSystem().world());
     // scene->getCamera().setWorld(&simple.getSystem().world());
-    //scene->getCamera().setWorld(&point_joint.getSystem().world());
+    scene->getCamera().setWorld(&point_joint.getSystem().world());
     SDL_Event event;
     bool keep_going = true;
     while (keep_going)
