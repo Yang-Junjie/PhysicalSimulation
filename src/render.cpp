@@ -190,6 +190,11 @@ namespace ps
                renderDistanceJoint(window, renderer, joint, color);
                break;
           }
+          case JointType::Point:
+          {
+               renderPointJoint(window, renderer, joint, color);
+               break;
+          }
           default:
                break;
           }
@@ -221,5 +226,21 @@ namespace ps
           SDL_Color lineColor = RenderConstant::DarkGreen;
           lineColor.a = 150;
           renderLine(window, renderer, pa, pb, lineColor);
+     }
+     void RenderSDLImpl::renderPointJoint(SDL_Window *window, SDL_Renderer *renderer, Joint *joint, const SDL_Color &color)
+     {
+          assert(joint != nullptr);
+          auto pointJoint = static_cast<PointJoint *>(joint);
+          Vector2 pa = pointJoint->primitive().bodyA->toWorldPoint(pointJoint->primitive().localPointA);
+          Vector2 pb = pointJoint->primitive().targetPoint;
+
+          SDL_Color point = RenderConstant::Orange;
+          SDL_Color green = RenderConstant::Green;
+          point.a = 204;
+          green.a = 78;
+
+          renderPoint(window, renderer, pa, point, 2);
+          renderPoint(window, renderer, pb, point, 2);
+          renderLine(window, renderer, pa, pb, green);
      }
 }

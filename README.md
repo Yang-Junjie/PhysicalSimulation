@@ -96,6 +96,7 @@ PhysicalSimulation
 ## 演示
 
 ![heap](/res/heap.png)
+![point_joint](/res/point_joint.png)
 ![newton-cradle](/res/newton_pendulum.png)
 
 ---

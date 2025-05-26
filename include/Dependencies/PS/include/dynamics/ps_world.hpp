@@ -245,8 +245,8 @@ namespace ps
 		Container::Vector<bool> m_sleepList;
 
 		Vector2 m_gravity;
-		real m_linearVelocityDamping = 0.9f;
-		real m_angularVelocityDamping = 0.9f;
+		real m_linearVelocityDamping = 0.3f;
+		real m_angularVelocityDamping = 0.3f;
 		real m_linearVelocityThreshold = 0.02f;
 		real m_angularVelocityThreshold = 0.02f;
 		real m_airFrictionCoefficient = 0.7f;

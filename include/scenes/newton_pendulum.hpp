@@ -1,5 +1,5 @@
-#ifndef SCENES_JOINT_HPP
-#define SCENES_JOINT_HPP
+#ifndef SCENES_NEWTON_PENDULUM_HPP
+#define SCENES_NEWTON_PENDULUM_HPP
 #include "scenes/scenes.hpp"
 namespace ps
 {
@@ -8,6 +8,7 @@ namespace ps
     private:
         Circle circle;
         Edge edge;
+        DistanceJointPrimitive djp;
     public:
         void setScene() override;
     };

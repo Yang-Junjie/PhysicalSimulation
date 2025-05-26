@@ -57,6 +57,8 @@ namespace ps
 		                        const SDL_Color &color);
         static void renderJoint(SDL_Window *window, SDL_Renderer *renderer, Joint* joint, const SDL_Color &color);
         static void renderDistanceJoint(SDL_Window *window, SDL_Renderer *renderer, Joint* joint, const SDL_Color &color);
+        static void renderPointJoint(SDL_Window *window, SDL_Renderer *renderer, Joint* joint, const SDL_Color &color);
+
     };
 }
 #endif
