@@ -18,7 +18,7 @@ namespace ps
         block->setBitmask(0x01);
         m_settings.system.tree().insert(block);
 
-        pjp.targetPoint.set(100, 100);
+        pjp.targetPoint.set(100, 400);
         pjp.bodyA = block;
         pjp.localPointA.set(0, 0);
         m_settings.system.world().createJoint(pjp);
@@ -28,11 +28,6 @@ namespace ps
         pjp.localPointA.set(0, 0);
         m_settings.system.world().createJoint(pjp);
         
-        pjp.targetPoint.set(100, 600);
-        pjp.bodyA = block;
-        pjp.localPointA.set(0, 0);
-        m_settings.system.world().createJoint(pjp);
-
         pjp.targetPoint.set(1000, 600);
         pjp.bodyA = block;
         pjp.localPointA.set(0, 0);
