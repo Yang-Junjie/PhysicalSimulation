@@ -10,8 +10,6 @@ namespace ps
         Polygon polygon;
 
     public:
-        // SceneSleep() = default;
-        // ~SceneSleep() = default;
         void setScene() override;
     };
 }

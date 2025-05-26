@@ -9,8 +9,6 @@ namespace ps
         Circle circle;
         Edge edge;
     public:
-        // SceneNewTonPendulum() = default;
-        // ~SceneNewTonPendulum() = default;
         void setScene() override;
     };
 }
