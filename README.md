@@ -145,6 +145,8 @@ PhysicalSimulation
 ## 参考与致谢
 
 - [FLAT](https://github.com/yuanming-hu/FLAT)
+- [Unity3dCCD](https://docs.unity3d.com/Manual/ContinuousCollisionDetection.html)
+- [Box2DCCD](https://box2d.org/files/ErinCatto_ContinuousCollision_GDC2013.pdf)
 - [Let's Make a Physics Engine](https://www.youtube.com/watch?v=lzI7QUyl66g&list=PLSlpr6o9vURwq3oxVZSimY8iC-cdd3kIs)
 - [PixelPhysics](https://www.youtube.com/@pixel_physics)
 - [2D凸多边形碰撞检测算法](https://zhuanlan.zhihu.com/p/178841676)
@@ -155,7 +157,7 @@ PhysicalSimulation
 - [Unity3D Scripting API](https://docs.unity3d.com/ScriptReference/)
 - [Cppreference](https://zh.cppreference.com/)
 - [BOX2D](https://github.com/erincatto/box2d)
-- [ps](https://github.com/acrlw/ps)
+- [Physics2D](https://github.com/acrlw/Physics2D)
 - [dyn4j](https://github.com/dyn4j/dyn4j)
 - [matterjs](https://github.com/liabru/matter-js)
 - [nphysics](https://github.com/dimforge/nphysics)
