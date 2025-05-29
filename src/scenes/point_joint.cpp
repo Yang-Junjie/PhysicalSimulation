@@ -13,22 +13,22 @@ namespace ps
         block->setShape(&box);
         block->setType(Body::BodyType::Dynamic);
         block->setMass(8.0f);
-        block->position().set(540.0f, 0.0f);
+        block->position().set(100.0f, 400.0f);
         block->rotation() = Math::degreeToRadian(60);
         block->setBitmask(0x01);
         m_settings.system.tree().insert(block);
 
-        pjp.targetPoint.set(100, 400);
+        pjp.targetPoint.set(100.0f, 400.0f);
         pjp.bodyA = block;
         pjp.localPointA.set(0, 0);
         m_settings.system.world().createJoint(pjp);
 
-        pjp.targetPoint.set(1000, 100);
+        pjp.targetPoint.set(1000.0f, 100.0f);
         pjp.bodyA = block;
         pjp.localPointA.set(0, 0);
         m_settings.system.world().createJoint(pjp);
         
-        pjp.targetPoint.set(1000, 600);
+        pjp.targetPoint.set(1000.0f, 600.0f);
         pjp.bodyA = block;
         pjp.localPointA.set(0, 0);
         m_settings.system.world().createJoint(pjp);

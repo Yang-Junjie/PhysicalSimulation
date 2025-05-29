@@ -21,7 +21,6 @@ namespace ps
         Camera &getCamera();
         PhysicsSystem &getSystem();
         virtual void setScene() = 0;
-        
     };
 }
 #endif
