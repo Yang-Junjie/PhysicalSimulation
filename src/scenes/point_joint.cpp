@@ -8,7 +8,6 @@ namespace ps
 
         box.append({{0, 0}, {50, 0}, {50, 50}, {0, 50}});
 
-
         Body *block = m_settings.system.world().createBody();
         block->setShape(&box);
         block->setType(Body::BodyType::Dynamic);
@@ -27,7 +26,7 @@ namespace ps
         pjp.bodyA = block;
         pjp.localPointA.set(0, 0);
         m_settings.system.world().createJoint(pjp);
-        
+
         pjp.targetPoint.set(1000.0f, 600.0f);
         pjp.bodyA = block;
         pjp.localPointA.set(0, 0);
