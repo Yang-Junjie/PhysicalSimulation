@@ -6,9 +6,9 @@
 
 namespace ps
 {
-	class Body;  // 前向声明Body类
+	class Body;  
 
-	// 轴对齐包围盒(Axis-Aligned Bounding Box)结构体
+	// 轴对齐包围盒(Axis-Aligned Bounding Box)
 	struct   AABB
 	{
 		AABB() = default;  // 默认构造函数
@@ -17,7 +17,7 @@ namespace ps
 		
 		real width = 0;    // 包围盒宽度
 		real height = 0;   // 包围盒高度
-		Vector2 position;  // 包围盒位置(通常为中心点)
+		Vector2 position;  // 包围盒位置
 		
 		inline Vector2 topLeft()const;     // 获取左上角坐标
 		inline Vector2 topRight()const;    // 获取右上角坐标

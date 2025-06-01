@@ -8,10 +8,10 @@
 
 namespace ps
 {
-	class   CCD
+	class CCD
 	{
 	public:
-		struct   AABBShot
+		struct AABBShot
 		{
 			AABBShot(const AABB& box, const Body::PhysicsAttribute& attr, const real& t) : aabb(box), attribute(attr),
 				time(t)
