@@ -29,7 +29,7 @@ namespace ps
 		}
 	};
 
-	class   PointJoint : public Joint
+	class PointJoint : public Joint
 	{
 	public:
 		PointJoint()

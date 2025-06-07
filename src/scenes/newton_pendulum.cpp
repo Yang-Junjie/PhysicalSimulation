@@ -12,16 +12,6 @@ namespace ps
         edge.set(Vector2{0.0f, 0.0f}, Vector2{1060.0f, 0.0f});
         circle.setRadius(30.0f);
 
-        real startX = 350.0f;
-
-        Body *ball = m_settings.system.world().createBody();
-        ball->setShape(&circle);
-        ball->setMass(1.0f);
-        ball->setType(Body::BodyType::Dynamic);
-        ball->position().set(startX, 400.0f);
-        ball->setRestitution(1.0f);
-        m_settings.system.tree().insert(ball);
-
         Body *ground = m_settings.system.world().createBody();
         ground->setShape(&edge);
         ground->setType(Body::BodyType::Static);
@@ -29,17 +19,27 @@ namespace ps
         ground->setMass(Constant::Max);
         m_settings.system.tree().insert(ground);
 
+        real startX = 350.0f;
+
         djp.minDistance = 300.0f;
         djp.maxDistance = 300.0f;
         djp.bodyB = ground;
-        djp.localPointB.set(startX, 0.0f);
+
+        Body *ball = m_settings.system.world().createBody();
+        ball->setShape(&circle);
+        ball->setMass(1.0f);
+        ball->setType(Body::BodyType::Dynamic);
+        ball->setRestitution(1.0f);
+        ball->position().set(startX, 400.0f);
+        m_settings.system.tree().insert(ball);
+        djp.localPointB.set(startX-10.0f, 0.0f);
         djp.bodyA = ball;
         djp.localPointA.set(0, 0);
         m_settings.system.world().createJoint(djp);
 
         for (real i = 0; i < 5.0f; i++)
         {
-            startX += 60.1f;
+            startX += 60.0f;
             ball = m_settings.system.world().createBody();
             ball->setShape(&circle);
             ball->setMass(1.0f);
@@ -47,22 +47,22 @@ namespace ps
             ball->setFriction(0.1f);
             ball->setRestitution(1.0f);
             ball->position().set(startX, 400.0f);
-            djp.localPointB.set(startX, 0.0f);
+            m_settings.system.tree().insert(ball);
+            djp.localPointB.set(startX-10.0f, 0.0f);
             djp.bodyA = ball;
             djp.localPointA.set(0, 0);
             m_settings.system.world().createJoint(djp);
-            m_settings.system.tree().insert(ball);
         }
 
-        startX += 60.1f;
+        startX += 60.0f;
         ball = m_settings.system.world().createBody();
         ball->setShape(&circle);
         ball->setMass(1.0f);
         ball->setType(Body::BodyType::Dynamic);
-        ball->position().set(startX + 50.0f, 105.0f);
+        ball->position().set(startX + 30.0f, 105.0f);
         ball->setRestitution(1.0f);
         m_settings.system.tree().insert(ball);
-        djp.localPointB.set(startX, 0.0f);
+        djp.localPointB.set(startX-10.0f, 0.0f);
         djp.bodyA = ball;
         djp.localPointA.set(0, 0);
         m_settings.system.world().createJoint(djp);

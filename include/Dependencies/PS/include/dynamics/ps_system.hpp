@@ -51,7 +51,7 @@ namespace ps
 	 * - m_tree: 广义相位树实例。
 	 * - m_grid: 均匀网格实例。
 	 */
-	class   PhysicsSystem
+	class PhysicsSystem
 	{
 	public:
 		void step(const real& dt);
