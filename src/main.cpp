@@ -8,6 +8,7 @@
 #include "scenes/simple.hpp"
 #include "scenes/point_joint.hpp"
 #include "scenes/bitmask.hpp"
+#include "scenes/catapult.hpp"
 #include "camera.hpp"
 using namespace ps;
 static SDL_Window *window = nullptr;
@@ -21,7 +22,8 @@ int main(int argc, char *argv[])
     // SceneNewTonPendulum newton_pendulum;
     // SceneSimple simple;
     // ScenePointJoint point_joint;
-    SceneBitmask bitmask;
+    // SceneBitmask bitmask;
+    SceneCatapult catapult;
 
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -39,7 +41,8 @@ int main(int argc, char *argv[])
     // scene = &newton_pendulum;
     // scene = &simple;
     // scene = &point_joint;
-    scene = &bitmask;
+    // scene = &bitmask;
+    scene = &catapult;
     scene->setScene();
 
     // scene->getCamera().setWorld(&heap.getSystem().world());
@@ -47,7 +50,8 @@ int main(int argc, char *argv[])
     // scene->getCamera().setWorld(&newton_pendulum.getSystem().world());
     // scene->getCamera().setWorld(&simple.getSystem().world());
     // scene->getCamera().setWorld(&point_joint.getSystem().world());
-    scene->getCamera().setWorld(&bitmask.getSystem().world());
+    // scene->getCamera().setWorld(&bitmask.getSystem().world());
+    scene->getCamera().setWorld(&catapult.getSystem().world());
     SDL_Event event;
     bool keep_going = true;
     while (keep_going)
