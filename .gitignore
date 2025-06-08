@@ -4,3 +4,4 @@ bin/
 include/Dependencies/imgui/
 include/Dependencies/SDL3/
 libs/SDL3/
+imgui.ini

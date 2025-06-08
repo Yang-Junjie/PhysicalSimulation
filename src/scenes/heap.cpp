@@ -3,7 +3,7 @@ namespace ps
 {
     void SceneHeap::setScene()
     {
-        m_settings.system->world().setGravity({0.0f, 10.0f});
+        m_settings.system->world().setGravity({0.0f, 0.0f});
         m_settings.system->world().setEnableGravity(true);
         m_settings.system->world().setLinearVelocityDamping(0.0f);
         m_settings.system->world().setAirFrictionCoefficient(0.0f);
@@ -22,7 +22,7 @@ namespace ps
                 Body *polygonBody = m_settings.system->world().createBody();
                 polygonBody->setShape(&polygon);
                 polygonBody->setType(Body::BodyType::Dynamic);
-                polygonBody->position().set(Vector2(300.0f + i * 20.0f, 200.5f) + Vector2(0, j * 20));
+                polygonBody->position().set(Vector2(300.0f + i * 20.1f, 200.5f) + Vector2(0, j * 20.1f));
                 polygonBody->setMass(1);
                 polygonBody->setBitmask(mask);
                 m_settings.system->tree().insert(polygonBody);

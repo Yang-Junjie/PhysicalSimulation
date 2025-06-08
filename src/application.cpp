@@ -31,6 +31,16 @@ namespace ps
             SDL_Quit();
             return false;
         }
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGuiIO &io = ImGui::GetIO();
+        (void)io;
+        ImGui::StyleColorsDark();
+        ImGuiStyle &style = ImGui::GetStyle();
+        style.Colors[ImGuiCol_WindowBg].w = 0.3f;
+        io.Fonts->AddFontFromFileTTF("./res/msyh.ttc", 14.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
+        ImGui_ImplSDL3_InitForSDLRenderer(window, renderer);
+        ImGui_ImplSDLRenderer3_Init(renderer);
         return true;
     }
 
@@ -41,14 +51,14 @@ namespace ps
         // static SceneSleep sleep(m_settings);
         // static SceneNewTonPendulum newton_pendulum(m_settings);
         // static SceneSimple simple(m_settings);
-        static ScenePointJoint point_joint(m_settings);
-        // static SceneBitmask bitmask(m_settings);
+        // static ScenePointJoint point_joint(m_settings);
+         static SceneBitmask bitmask(m_settings);
         // static SceneCatapult catapult(m_settings);
-        scene = &point_joint;
+        scene = &bitmask;
         scene->setScene();
-        scene->getCamera()->setWorld(&point_joint.getSystem()->world());
+        scene->getCamera()->setWorld(&bitmask.getSystem()->world());
     }
-    
+
     void Application::mouseMove(const SDL_Event &event)
     {
         Vector2 pos(event.motion.x, event.motion.y);
@@ -65,12 +75,14 @@ namespace ps
         m_MousePos = pos;
         if (event.button.button == SDL_BUTTON_LEFT && m_mouseJoint != nullptr)
         {
+            // 查询鼠标与哪个物体相交
             AABB mouseBox;
             mouseBox.position = m_MousePos;
             mouseBox.width = 0.01f;
             mouseBox.height = 0.01f;
             auto bodies = m_system.tree().query(mouseBox);
             // auto bodies = m_system.grid().query(mouseBox);
+
             for (auto &body : bodies)
             {
                 Vector2 point = m_MousePos - body->position();
@@ -78,6 +90,7 @@ namespace ps
                 if (body->shape()->contains(point) && m_selectedBody == nullptr && body->type() != Body::BodyType::Static)
                 {
                     m_selectedBody = body;
+                   
                     PointJointPrimitive prim;
                     prim.localPointA = body->toLocalPoint(m_MousePos);
                     prim.bodyA = body;
@@ -111,6 +124,31 @@ namespace ps
             scene->setCurrentBody(nullptr);
         }
     }
+    void Application::renderGUI()
+    {
+        ImGui::Begin("物理仿真信息");
+        ImGui::Text("鼠标位置: (%.1f, %.1f)", m_MousePos.x, m_MousePos.y);
+
+        ImGui::Separator();
+        ImGui::Text("选中物体的属性");
+        ImGui::BeginChild("BodyProperties", ImVec2(0, 130), true);
+        if (m_selectedBody)
+        {
+            ImGui::Text("ID: %.d", m_selectedBody->id());
+            ImGui::Text("质量: %.1f", m_selectedBody->mass());
+            ImGui::Text("位置: (%.1f, %.1f)", m_selectedBody->position().x, m_selectedBody->position().y);
+            ImGui::Text("速度: (%.1f, %.1f)", m_selectedBody->velocity().x, m_selectedBody->velocity().y);
+            ImGui::Text("动能: %.1f", m_selectedBody->kineticEnergy());
+            ImGui::Text("转动惯量: %.1f", m_selectedBody->inertia());
+        }
+        else
+        {
+            ImGui::Text("未选中任何刚体");
+        }
+        ImGui::EndChild();
+
+        ImGui::End();
+    }
     void Application::run()
     {
         SDL_Event event;
@@ -119,6 +157,7 @@ namespace ps
         {
             while (SDL_PollEvent(&event))
             {
+                ImGui_ImplSDL3_ProcessEvent(&event);
                 if (event.type == SDL_EVENT_QUIT)
                 {
                     keep_going = false;
@@ -136,9 +175,18 @@ namespace ps
                     mouseRelease(event);
                 }
             }
+            ImGui_ImplSDL3_NewFrame();
+            ImGui_ImplSDLRenderer3_NewFrame();
+            ImGui::NewFrame();
+
+            renderGUI();
             const real dt = 1.0f / 60.0f;
             scene->getSystem()->step(dt);
             scene->getCamera()->render(window, renderer);
+
+            ImGui::Render();
+            ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
+
             SDL_RenderPresent(renderer);
             SDL_Delay(0.5f);
         }

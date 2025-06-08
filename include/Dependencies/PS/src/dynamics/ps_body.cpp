@@ -258,6 +258,7 @@ namespace ps {
         //By Convention: bodyA.id < bodyB.id
         auto bodyAId = bodyA->id();
         auto bodyBId = bodyB->id();
+        // std::cout<<bodyAId<<" "<<bodyBId<<std::endl;
         if(bodyAId > bodyBId)
             std::swap(bodyAId, bodyBId);
         
