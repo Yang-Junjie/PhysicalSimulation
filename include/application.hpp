@@ -23,7 +23,8 @@ namespace ps
     private:
         SDL_Window *window;
         SDL_Renderer *renderer;
-        Scene *scene;
+        int m_current_scene_id = 0;
+        Scene *m_scene;
 
         PhysicsSystem m_system;
         Camera m_camera;
@@ -35,6 +36,8 @@ namespace ps
         PointJointPrimitive m_pointJointPrimitive;
         Vector2 m_MousePos;
 
+        std::array<std::function<Scene*(const Settings& settings)>, 7> m_scenesList;
+
     public:
         Application();
         ~Application();
@@ -43,6 +46,7 @@ namespace ps
         void renderGUI();
         void run();
         void cleanup();
+        void clearALL();
         void mouseMove(const SDL_Event &event);
         void mousePressed(const SDL_Event &event);
         void mouseRelease(const SDL_Event &event);

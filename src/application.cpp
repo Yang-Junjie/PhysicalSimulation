@@ -3,13 +3,29 @@ namespace ps
 {
 
     Application::Application()
-        : window(nullptr), renderer(nullptr), scene(nullptr)
+        : window(nullptr), renderer(nullptr), m_scene(nullptr)
     {
+        m_scenesList = {
+            [&](const Settings &settings)
+            { return new SceneHeap(settings); },
+            [&](const Settings &settings)
+            { return new SceneSleep(settings); },
+            [&](const Settings &settings)
+            { return new SceneNewTonPendulum(settings); },
+            [&](const Settings &settings)
+            { return new SceneSimple(settings); },
+            [&](const Settings &settings)
+            { return new ScenePointJoint(settings); },
+            [&](const Settings &settings)
+            { return new SceneBitmask(settings); },
+            [&](const Settings &settings)
+            { return new SceneCatapult(settings); }};
         m_settings.system = &m_system;
         m_settings.camera = &m_camera;
         m_pointJointPrimitive.bodyA = nullptr;
         m_mouseJoint = m_system.world().createJoint(m_pointJointPrimitive);
         m_mouseJoint->setActive(false);
+        setupScene();
     }
 
     Application::~Application()
@@ -38,7 +54,12 @@ namespace ps
         ImGui::StyleColorsDark();
         ImGuiStyle &style = ImGui::GetStyle();
         style.Colors[ImGuiCol_WindowBg].w = 0.3f;
-        io.Fonts->AddFontFromFileTTF("./res/msyh.ttc", 14.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
+        const char *ttf_path = "./res/msyh.ttc";
+        if (!io.Fonts->AddFontFromFileTTF(ttf_path, 14.0f, NULL, io.Fonts->GetGlyphRangesChineseFull()))
+        {
+            SDL_Log("Failed to load font:");
+            SDL_Log(ttf_path);
+        }
         ImGui_ImplSDL3_InitForSDLRenderer(window, renderer);
         ImGui_ImplSDLRenderer3_Init(renderer);
         return true;
@@ -46,17 +67,22 @@ namespace ps
 
     void Application::setupScene()
     {
-        // heap, sleep, newton_pendulum, simple, point_joint, bitmask, catapult
-        // static SceneHeap heap(m_settings);
-        // static SceneSleep sleep(m_settings);
-        // static SceneNewTonPendulum newton_pendulum(m_settings);
-        // static SceneSimple simple(m_settings);
-        // static ScenePointJoint point_joint(m_settings);
-         static SceneBitmask bitmask(m_settings);
-        // static SceneCatapult catapult(m_settings);
-        scene = &bitmask;
-        scene->setScene();
-        scene->getCamera()->setWorld(&bitmask.getSystem()->world());
+        // static SceneBitmask bitmask(m_settings);
+        // // static SceneCatapult catapult(m_settings);
+        // m_scene = &bitmask;
+        // m_scene->setScene();
+        // m_scene->getCamera()->setWorld(&m_system.world());
+        clearALL();
+        Settings settings;
+        settings.camera = &m_camera;
+        settings.system = &m_system;
+
+        m_scene = m_scenesList[m_current_scene_id](settings);
+        if (m_scene != nullptr)
+        {
+            m_scene->setScene();
+            m_scene->getCamera()->setWorld(&m_system.world());
+        }
     }
 
     void Application::mouseMove(const SDL_Event &event)
@@ -90,7 +116,7 @@ namespace ps
                 if (body->shape()->contains(point) && m_selectedBody == nullptr && body->type() != Body::BodyType::Static)
                 {
                     m_selectedBody = body;
-                   
+
                     PointJointPrimitive prim;
                     prim.localPointA = body->toLocalPoint(m_MousePos);
                     prim.bodyA = body;
@@ -101,7 +127,7 @@ namespace ps
 
                     m_mouseJoint->setActive(true);
                     m_selectedBody->setSleep(false);
-                    scene->setCurrentBody(m_selectedBody);
+                    m_scene->setCurrentBody(m_selectedBody);
                     break;
                 }
             }
@@ -121,7 +147,7 @@ namespace ps
             m_mouseJoint->setActive(false);
 
             m_selectedBody = nullptr;
-            scene->setCurrentBody(nullptr);
+            m_scene->setCurrentBody(nullptr);
         }
     }
     void Application::renderGUI()
@@ -146,6 +172,19 @@ namespace ps
             ImGui::Text("未选中任何刚体");
         }
         ImGui::EndChild();
+
+        ImGui::Separator();
+
+        std::vector<std::string> select_m_scene = {
+            "heap", "sleep", "newton_pendulum", "simple", "point_joint", "Bitmask", "Catapult"};
+        std::vector<const char *> cstrs;
+        for (const auto &s : select_m_scene)
+            cstrs.push_back(s.c_str());
+
+        if (ImGui::Combo("选择场景", &m_current_scene_id, cstrs.data(), cstrs.size()))
+        {
+            setupScene();
+        }
 
         ImGui::End();
     }
@@ -181,8 +220,8 @@ namespace ps
 
             renderGUI();
             const real dt = 1.0f / 60.0f;
-            scene->getSystem()->step(dt);
-            scene->getCamera()->render(window, renderer);
+            m_scene->getSystem()->step(dt);
+            m_scene->getCamera()->render(window, renderer);
 
             ImGui::Render();
             ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
@@ -194,11 +233,7 @@ namespace ps
 
     void Application::cleanup()
     {
-        if (scene)
-        {
-            scene->getSystem()->world().clearAllBodies();
-            scene->getSystem()->world().clearAllJoints();
-        }
+
         if (renderer)
             SDL_DestroyRenderer(renderer);
         if (window)
@@ -206,4 +241,20 @@ namespace ps
         SDL_Quit();
     }
 
+    void Application::clearALL()
+    {
+        m_system.world().clearAllBodies();
+        m_system.world().clearAllJoints();
+        m_system.maintainer().clearAll();
+        m_system.tree().clearAll();
+        m_system.grid().clearAll();
+        m_pointJointPrimitive.bodyA = nullptr;
+        m_mouseJoint = m_system.world().createJoint(m_pointJointPrimitive);
+        m_mouseJoint->setActive(false);
+        if (m_scene != nullptr)
+        {
+            delete m_scene;
+            m_scene = nullptr;
+        }
+    }
 }
