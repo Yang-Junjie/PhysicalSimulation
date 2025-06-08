@@ -3,6 +3,7 @@
   <br>
   <img src="https://img.shields.io/badge/C++-20-blue">
   <img src="https://img.shields.io/badge/build-cmake-blue">
+  <img src="https://img.shields.io/badge/GUI-imgui-blue">
   <br>
    <img src="https://img.shields.io/badge/%E7%8A%B6%E6%80%81-%E7%A7%AF%E6%9E%81%E5%BC%80%E5%8F%91%E4%B8%AD-green">
  
@@ -31,8 +32,9 @@
 **前置要求**  
 - CMake ≥ 3.10
 - SDL3 [下载地址](https://github.com/libsdl-org/SDL/releases/tag/release-3.2.14)
+- imgui [下载地址](https://github.com/ocornut/imgui)
 
-**请确保已下载 SDL3 并放置于对应目录，且已安装 CMake。**
+**请确保已下载 SDL3 & ImGUI 并放置于对应目录，且已安装 CMake。**
 
 ### 目录结构
 
@@ -46,9 +48,19 @@ PhysicalSimulation
 │      ├─PS             # PS 核心库
 │      │  ├─include
 │      │  └─src
-│      └─SDL3           # SDL 官方头文件
-│           ├─SDL3.h
+│      ├─SDL3           # SDL 官方头文件
+│      │    ├─SDL3.h
+│      │    └─...
+│      └─imgui
+│           ├─backends  # imgui渲染器
+│           │     ├─imgui_impl_sdl3.h
+│           │     ├─imgui_impl_sdl3.h
+│           │     ├─imgui_impl_sdlrenderer3.cpp
+│           │     └─imgui_impl_sdlrenderer3.hpp
+│           │ 
+│           ├─imgui.cpp # imgui 核心文件
 │           └─...
+│
 ├─libs
 │  └─SDL3               # SDL 官方静态库
 │       └─libSDL3.dll.a
