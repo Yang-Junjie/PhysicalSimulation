@@ -10,6 +10,8 @@ namespace ps
         Polygon polygon;
 
     public:
+        SceneSleep() = default;
+        SceneSleep(const Settings &settings) : Scene(settings) {}
         void setScene() override;
     };
 }

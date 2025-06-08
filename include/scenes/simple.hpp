@@ -10,6 +10,8 @@ namespace ps
         Edge edge;
 
     public:
+        SceneSimple() = default;
+        SceneSimple(const Settings &settings) : Scene(settings) {}
         void setScene() override;
     };
 }

@@ -48,17 +48,16 @@ namespace ps
         static void renderCircle(SDL_Window *window, SDL_Renderer *renderer,
                                  const ShapePrimitive &shape, const SDL_Color &color);
         static void renderPoint(SDL_Window *window, SDL_Renderer *renderer,
-                               const Vector2 &point, const SDL_Color &color,real pointSize = RenderConstant::PointSize);
+                                const Vector2 &point, const SDL_Color &color, real pointSize = RenderConstant::PointSize);
         static void renderPoints(SDL_Window *window, SDL_Renderer *renderer,
                                  const std::vector<Vector2> &points, const SDL_Color &color);
         static void renderEdge(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape,
                                const SDL_Color &color);
-        static void renderShape(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive& shape,
-		                        const SDL_Color &color);
-        static void renderJoint(SDL_Window *window, SDL_Renderer *renderer, Joint* joint, const SDL_Color &color);
-        static void renderDistanceJoint(SDL_Window *window, SDL_Renderer *renderer, Joint* joint, const SDL_Color &color);
-        static void renderPointJoint(SDL_Window *window, SDL_Renderer *renderer, Joint* joint, const SDL_Color &color);
-
+        static void renderShape(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape,
+                                const SDL_Color &color);
+        static void renderJoint(SDL_Window *window, SDL_Renderer *renderer, Joint *joint, const SDL_Color &color);
+        static void renderDistanceJoint(SDL_Window *window, SDL_Renderer *renderer, Joint *joint, const SDL_Color &color);
+        static void renderPointJoint(SDL_Window *window, SDL_Renderer *renderer, Joint *joint, const SDL_Color &color);
     };
 }
 #endif

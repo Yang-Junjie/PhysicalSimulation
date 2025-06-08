@@ -1,0 +1,47 @@
+﻿#ifndef APPLICATION_HPP
+#define APPLICATION_HPP
+#include "render.hpp"
+#include "ps.hpp"
+#include <SDL3/SDL.h>
+#include "scenes/scenes.hpp"
+#include "scenes/heap.hpp"
+#include "scenes/sleep.hpp"
+#include "scenes/newton_pendulum.hpp"
+#include "scenes/simple.hpp"
+#include "scenes/point_joint.hpp"
+#include "scenes/bitmask.hpp"
+#include "scenes/catapult.hpp"
+#include "camera.hpp"
+namespace ps
+{
+
+    class Application
+    {
+    private:
+        SDL_Window *window;
+        SDL_Renderer *renderer;
+        Scene *scene;
+
+        PhysicsSystem m_system;
+        Camera m_camera;
+        Settings m_settings;
+
+        bool mouse_down = false;
+        Body *m_selectedBody = nullptr;
+        PointJoint *m_mouseJoint = nullptr;
+        PointJointPrimitive m_pointJointPrimitive;
+        Vector2 m_MousePos;
+
+    public:
+        Application();
+        ~Application();
+        bool init();
+        void setupScene();
+        void run();
+        void cleanup();
+        void mouseMove(const SDL_Event &event);
+        void mousePressed(const SDL_Event &event);
+        void mouseRelease(const SDL_Event &event);
+    };
+}
+#endif // APPLICATION_HPP

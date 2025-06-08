@@ -3,18 +3,18 @@
 #include "ps_body.hpp"
 namespace ps
 {
-	enum class   JointType
+	enum class JointType
 	{
 		Distance,
 		Point
 	};
-	class   Joint
+	class Joint
 	{
 	public:
-		Joint(){}
-		virtual void prepare(const real& dt) = 0;
-		virtual void solveVelocity(const real& dt) = 0;
-		virtual void solvePosition(const real& dt) = 0;
+		Joint() {}
+		virtual void prepare(const real &dt) = 0;
+		virtual void solveVelocity(const real &dt) = 0;
+		virtual void solvePosition(const real &dt) = 0;
 		bool active()
 		{
 			return m_active;
@@ -23,15 +23,15 @@ namespace ps
 		{
 			m_active = active;
 		}
-		JointType type()const
+		JointType type() const
 		{
 			return m_type;
 		}
-		uint32_t id()const
+		uint32_t id() const
 		{
 			return m_id;
 		}
-		void setId(const uint32_t& id)
+		void setId(const uint32_t &id)
 		{
 			m_id = id;
 		}
@@ -57,11 +57,12 @@ namespace ps
 			real erp = dt * stiffness + damping;
 			return realEqual(erp, 0.0f) ? 0.0f : stiffness / erp;
 		}
+
 	protected:
 		bool m_active = true;
 		JointType m_type;
 		uint32_t m_id;
 	};
-	
+
 }
 #endif

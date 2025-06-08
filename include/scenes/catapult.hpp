@@ -12,6 +12,8 @@ namespace ps
         Circle circle;
         PointJointPrimitive pjp;
     public:
+        SceneCatapult() = default;
+        SceneCatapult(const Settings &settings) : Scene(settings) {}
         void setScene() override;
     };
 }

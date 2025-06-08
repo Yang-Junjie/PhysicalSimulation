@@ -10,6 +10,8 @@ namespace ps
         Polygon box;
         PointJointPrimitive pjp;
     public:
+        ScenePointJoint() = default;
+        ScenePointJoint(const Settings &settings) : Scene(settings) {}
         void setScene() override;
     };
 }

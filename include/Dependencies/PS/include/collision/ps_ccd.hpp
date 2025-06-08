@@ -13,8 +13,8 @@ namespace ps
 	public:
 		struct AABBShot
 		{
-			AABBShot(const AABB& box, const Body::PhysicsAttribute& attr, const real& t) : aabb(box), attribute(attr),
-				time(t)
+			AABBShot(const AABB &box, const Body::PhysicsAttribute &attr, const real &t) : aabb(box), attribute(attr),
+																						   time(t)
 			{
 			}
 
@@ -23,41 +23,46 @@ namespace ps
 			real time = 0;
 		};
 
-		struct   IndexSection
+		struct IndexSection
 		{
 			int forward = -1;
 			int backward = -1;
 		};
 
-		struct   CCDPair
+		struct CCDPair
 		{
 			CCDPair() = default;
 
-			CCDPair(const real& time, Body* target) : toi(time), body(target)
+			CCDPair(const real &time, Body *target) : toi(time), body(target)
 			{
 			}
 
 			real toi = 0.0;
-			Body* body = nullptr;
+			Body *body = nullptr;
 		};
 
 		using BroadphaseTrajectory = Container::Vector<AABBShot>;
-		static std::tuple<BroadphaseTrajectory, AABB> buildTrajectoryAABB(Body* body, const real& dt);
-		static std::tuple<Container::Vector<AABBShot>, AABB> buildTrajectoryAABB(
-			Body* body, const Vector2& target, const real& dt);
-		static std::optional<IndexSection> findBroadphaseRoot(Body* staticBody,
-		                                                      const BroadphaseTrajectory& staticTrajectory,
-		                                                      Body* dynamicBody,
-		                                                      const BroadphaseTrajectory& dynamicTrajectory,
-		                                                      const real& dt);
-		static std::optional<real> findNarrowphaseRoot(Body* staticBody, const BroadphaseTrajectory& staticTrajectory,
-		                                               Body* dynamicBody, const BroadphaseTrajectory& dynamicTrajectory,
-		                                               const IndexSection& index, const real& dt);
+		static std::tuple<BroadphaseTrajectory, AABB> buildTrajectoryAABB(Body *body, const real &dt);
+		
+		static std::tuple<Container::Vector<AABBShot>, AABB> buildTrajectoryAABB(Body *body, const Vector2 &target, const real &dt);
 
-		static std::optional<Container::Vector<CCDPair>> query(Tree& tree, Body* body, const real& dt);
-		static std::optional<Container::Vector<CCDPair>> query(UniformGrid& grid, Body* body, const real& dt);
-		static std::optional<real> earliestTOI(const Container::Vector<CCDPair>& pairs,
-		                                       const real& epsilon = Constant::GeometryEpsilon);
+		static std::optional<IndexSection> findBroadphaseRoot(Body *staticBody,
+															  const BroadphaseTrajectory &staticTrajectory,
+															  Body *dynamicBody,
+															  const BroadphaseTrajectory &dynamicTrajectory,
+															  const real &dt);
+
+		static std::optional<real> findNarrowphaseRoot(Body *staticBody,
+													   const BroadphaseTrajectory &staticTrajectory,
+													   Body *dynamicBody,
+													   const BroadphaseTrajectory &dynamicTrajectory,
+													   const IndexSection &index,
+													   const real &dt);
+
+		static std::optional<Container::Vector<CCDPair>> query(Tree &tree, Body *body, const real &dt);
+		static std::optional<Container::Vector<CCDPair>> query(UniformGrid &grid, Body *body, const real &dt);
+		static std::optional<real> earliestTOI(const Container::Vector<CCDPair> &pairs,
+											   const real &epsilon = Constant::GeometryEpsilon);
 	};
 }
 #endif

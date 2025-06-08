@@ -2,14 +2,17 @@
 
 namespace ps
 {
-    Camera &Scene::getCamera()
+    Camera* Scene::getCamera()
     {
         return m_settings.camera;
     }
 
-    PhysicsSystem &Scene::getSystem()
+    PhysicsSystem* Scene::getSystem()
     {
         return m_settings.system;
     }
-
+    Scene::Scene(const Settings &settings) : m_settings(settings)
+    {
+        
+    }
 }

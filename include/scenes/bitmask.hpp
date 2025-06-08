@@ -11,6 +11,8 @@ namespace ps
         Polygon polygon;
 
     public:
+        SceneBitmask() = default;
+        SceneBitmask(const Settings &settings) : Scene(settings) {}
         void setScene() override;
     };
 }
