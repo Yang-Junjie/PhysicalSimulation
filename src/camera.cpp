@@ -40,6 +40,17 @@ namespace ps
 					if (body->type() == Body::BodyType::Bullet)
 						color = RenderConstant::Pink;
 					RenderSDLImpl::renderShape(window, renderer, primitive, color);
+
+					if (m_velocityVisible)
+					{
+						auto body_velocity_len = body->velocity().length();
+						if (body_velocity_len > 0.01f)
+						{
+							RenderSDLImpl::renderArrow(window, renderer, primitive.transform.position,
+													   primitive.transform.position + body->velocity(),
+													   RenderConstant::Orange, body_velocity_len * 0.1f);
+						}
+					}
 				}
 			}
 			if (m_jointVisible)
@@ -50,6 +61,14 @@ namespace ps
 						RenderSDLImpl::renderJoint(window, renderer, (*iter).get(), RenderConstant::Green);
 				}
 			}
+			if (m_aabbVisible)
+			{
+				for (auto iter = m_world->bodyList().begin(); iter != m_world->bodyList().end(); ++iter)
+				{
+					if ((*iter).get() != nullptr)
+						RenderSDLImpl::renderAABB(window, renderer, (*iter)->aabb(), RenderConstant::Cyan);
+				}
+			}
 		}
 	}
 
@@ -58,6 +77,18 @@ namespace ps
 		return m_bodyVisible;
 	}
 
+	bool &Camera::jointVisible()
+	{
+		return m_jointVisible;
+	}
+	bool &Camera::aabbVisible()
+	{
+		return m_aabbVisible;
+	}
+	bool &Camera::velocityVisible()
+	{
+		return m_velocityVisible;
+	}
 	real Camera::meterToPixel() const
 	{
 		return m_meterToPixel;

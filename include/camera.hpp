@@ -50,7 +50,7 @@ namespace ps
 			}
 
 			Vector2 topLeft = {0, 0};
-			Vector2 bottomRight = {800, 600};
+			Vector2 bottomRight = {1080, 680};
 			real width();
 			real height();
 			Vector2 center() const;
@@ -62,6 +62,9 @@ namespace ps
 		Camera();
 		void render(SDL_Window *window, SDL_Renderer *renderer);
 		bool &bodyVisible();
+		bool &jointVisible();
+		bool &aabbVisible();
+		bool &velocityVisible();
 		bool &visible();
 
 
@@ -74,9 +77,6 @@ namespace ps
 
 		void setWorld(PhysicsWorld *world);
 		PhysicsWorld *world() const;
-
-		Body *targetBody() const;
-		void setTargetBody(Body *targetBody);
 
 		Viewport viewport() const;
 		void setViewport(const Viewport &viewport);
@@ -107,6 +107,7 @@ namespace ps
 		bool m_aabbVisible = false;
 		bool m_jointVisible = true;
 		bool m_bodyVisible = true;
+		bool m_velocityVisible = false;
 
 		real m_defaultMeterToPixel = 50.0f;
 		real m_meterToPixel = 50.0f;

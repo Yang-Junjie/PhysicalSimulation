@@ -10,7 +10,7 @@
 
 namespace ps
 {
-	class   PhysicsWorld
+	class PhysicsWorld
 	/**
 	 * @class PhysicsWorld
 	 * @brief 表示一个二维物理仿真世界，管理刚体、关节和全局仿真参数。
@@ -143,67 +143,64 @@ namespace ps
 	{
 	public:
 		PhysicsWorld() : m_gravity(0, -9.8f), m_linearVelocityDamping(0.9f), m_angularVelocityDamping(0.9f),
-		                 m_linearVelocityThreshold(0.02f), m_angularVelocityThreshold(0.02f),
-		                 m_airFrictionCoefficient(0.7f), m_bias(0.8f)
+						 m_linearVelocityThreshold(0.02f), m_angularVelocityThreshold(0.02f),
+						 m_airFrictionCoefficient(0.7f), m_bias(0.8f)
 		{
 		}
 
 		~PhysicsWorld();
-		//disable copy
-		PhysicsWorld(const PhysicsWorld&) = delete;
-		PhysicsWorld& operator=(const PhysicsWorld&) = delete;
-		void prepareVelocityConstraint(const real& dt);
-		void stepVelocity(const real& dt);
+		// disable copy
+		PhysicsWorld(const PhysicsWorld &) = delete;
+		PhysicsWorld &operator=(const PhysicsWorld &) = delete;
+		void prepareVelocityConstraint(const real &dt);
+		void stepVelocity(const real &dt);
 		void solveVelocityConstraint(real dt);
-		void stepPosition(const real& dt);
+		void stepPosition(const real &dt);
 		void solvePositionConstraint(real dt);
 
-
 		Vector2 gravity() const;
-		void setGravity(const Vector2& gravity);
+		void setGravity(const Vector2 &gravity);
 
 		real linearVelocityDamping() const;
-		void setLinearVelocityDamping(const real& linearVelocityDamping);
+		void setLinearVelocityDamping(const real &linearVelocityDamping);
 
 		real angularVelocityDamping() const;
-		void setAngularVelocityDamping(const real& angularVelocityDamping);
+		void setAngularVelocityDamping(const real &angularVelocityDamping);
 
 		real linearVelocityThreshold() const;
-		void setLinearVelocityThreshold(const real& linearVelocityThreshold);
+		void setLinearVelocityThreshold(const real &linearVelocityThreshold);
 
 		real angularVelocityThreshold() const;
-		void setAngularVelocityThreshold(const real& angularVelocityThreshold);
+		void setAngularVelocityThreshold(const real &angularVelocityThreshold);
 
 		real airFrictionCoefficient() const;
-		void setAirFrictionCoefficient(const real& airFrictionCoefficient);
+		void setAirFrictionCoefficient(const real &airFrictionCoefficient);
 
-		bool enableGravity() const;
+		bool& enableGravity();
 		void setEnableGravity(bool enableGravity);
 
-		bool enableDamping() const;
+		bool& enableDamping();
 		void setEnableDamping(bool enableDamping);
 
-		Body* createBody();
-		void removeBody(Body* body);
+		Body *createBody();
+		void removeBody(Body *body);
 
-		void removeJoint(Joint* joint);
+		void removeJoint(Joint *joint);
 
 		void clearAllBodies();
 		void clearAllJoints();
 
-	
-		PointJoint* createJoint(const PointJointPrimitive& primitive);
-		DistanceJoint* createJoint(const DistanceJointPrimitive& primitive);
-		
+		PointJoint *createJoint(const PointJointPrimitive &primitive);
+		DistanceJoint *createJoint(const DistanceJointPrimitive &primitive);
 
 		real bias() const;
-		void setBias(const real& bias);
+		void setBias(const real &bias);
 
-		Container::Vector<std::unique_ptr<Body>>& bodyList();
+		Container::Vector<std::unique_ptr<Body>> &bodyList();
 
-		Container::Vector<std::unique_ptr<Joint>>& jointList();
+		Container::Vector<std::unique_ptr<Joint>> &jointList();
 
-		bool& enableSleep();
+		bool &enableSleep();
 
 	private:
 		Vector2 m_gravity;
@@ -222,34 +219,5 @@ namespace ps
 		Container::Vector<std::unique_ptr<Joint>> m_jointList;
 	};
 
-	class   DiscreteWorld
-	{
-	public:
-		using ObjectID = uint32_t;
-		ObjectID createBody(const ShapePrimitive& primitive);
-		ObjectID createJoint();
-
-		void step(real dt);
-		void stepPosition(real dt);
-		void stepVelocity(real dt);
-
-		void removeBody(const ObjectID& id);
-		void removeJoint(const ObjectID& id);
-
-		void solveVelocity(real dt);
-		void solvePosition(real dt);
-
-	private:
-		Container::Vector<ObjectID> m_bodyList;
-		Container::Vector<ObjectID> m_jointList;
-		Container::Vector<bool> m_sleepList;
-
-		Vector2 m_gravity;
-		real m_linearVelocityDamping = 0.3f;
-		real m_angularVelocityDamping = 0.3f;
-		real m_linearVelocityThreshold = 0.02f;
-		real m_angularVelocityThreshold = 0.02f;
-		real m_airFrictionCoefficient = 0.7f;
-	};
 }
 #endif

@@ -152,41 +152,109 @@ namespace ps
     }
     void Application::renderGUI()
     {
-        ImGui::Begin("物理仿真信息");
-        ImGui::Text("鼠标位置: (%.1f, %.1f)", m_MousePos.x, m_MousePos.y);
-
-        ImGui::Separator();
-        ImGui::Text("选中物体的属性");
-        ImGui::BeginChild("BodyProperties", ImVec2(0, 130), true);
-        if (m_selectedBody)
+        real window_size = 160.0f;
         {
-            ImGui::Text("ID: %.d", m_selectedBody->id());
-            ImGui::Text("质量: %.1f", m_selectedBody->mass());
-            ImGui::Text("位置: (%.1f, %.1f)", m_selectedBody->position().x, m_selectedBody->position().y);
-            ImGui::Text("速度: (%.1f, %.1f)", m_selectedBody->velocity().x, m_selectedBody->velocity().y);
-            ImGui::Text("动能: %.1f", m_selectedBody->kineticEnergy());
-            ImGui::Text("转动惯量: %.1f", m_selectedBody->inertia());
+            ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Once);
+            ImGui::SetNextWindowSize(ImVec2(window_size, 0), ImGuiCond_Once);
+            ImGui::Begin("物理仿真信息");
+
+            static float fps_history[100] = {0};
+            static float fps_1percent_history[100] = {0};
+            static int fps_offset = 0;
+            float current_fps = ImGui::GetIO().Framerate;
+            fps_history[fps_offset] = current_fps;
+
+            // 计算1% low帧
+            std::vector<float> fps_sorted(fps_history, fps_history + IM_ARRAYSIZE(fps_history));
+            std::sort(fps_sorted.begin(), fps_sorted.end());
+            int count_1percent = std::max(1, int(fps_sorted.size() * 0.01f));
+            float sum_1percent = 0.0f;
+            for (int i = 0; i < count_1percent; ++i)
+                sum_1percent += fps_sorted[i];
+            float fps_1percent_low = sum_1percent / count_1percent;
+
+            // 保存1% low帧率历史
+            fps_1percent_history[fps_offset] = fps_1percent_low;
+
+            fps_offset = (fps_offset + 1) % IM_ARRAYSIZE(fps_history);
+
+            ImGui::Text("当前帧率: %.1f FPS", current_fps);
+            ImGui::Text("1%% Low: %.1f FPS", fps_1percent_low);
+
+            ImGui::PlotLines("帧率", fps_history, IM_ARRAYSIZE(fps_history), fps_offset, nullptr, current_fps - current_fps + 100.0f, current_fps + 100.0f, ImVec2(0, 30));
+            ImGui::PlotLines("1% Low", fps_1percent_history, IM_ARRAYSIZE(fps_1percent_history), fps_offset, nullptr, fps_1percent_low - 100.0f, fps_1percent_low + 100.0f, ImVec2(0, 30));
+
+            ImGui::Text("鼠标位置: (%.1f, %.1f)", m_MousePos.x, m_MousePos.y);
+
+            ImGui::Separator();
+
+            ImGui::Text("选中物体的属性");
+            ImGui::BeginChild("BodyProperties", ImVec2(0, 130), true);
+            if (m_selectedBody)
+            {
+                ImGui::Text("ID: %.d", m_selectedBody->id());
+                ImGui::Text("质量: %.1f", m_selectedBody->mass());
+                ImGui::Text("位置: (%.1f, %.1f)", m_selectedBody->position().x, m_selectedBody->position().y);
+                ImGui::Text("速度: (%.1f, %.1f)", m_selectedBody->velocity().x, m_selectedBody->velocity().y);
+                ImGui::Text("动能: %.1f", m_selectedBody->kineticEnergy());
+                ImGui::Text("转动惯量: %.1f", m_selectedBody->inertia());
+            }
+            else
+            {
+                ImGui::Text("未选中任何刚体");
+            }
+            ImGui::EndChild();
+            ImGui::End();
         }
-        else
+
         {
-            ImGui::Text("未选中任何刚体");
+            ImGui::SetNextWindowPos(ImVec2(window_size * 1, 0), ImGuiCond_Once);
+            ImGui::SetNextWindowSize(ImVec2(window_size, 0), ImGuiCond_Once);
+            ImGui::Begin("选择场景");
+            std::vector<std::string> select_m_scene = {
+                "heap", "sleep", "newton_pendulum", "simple", "point_joint", "Bitmask", "Catapult"};
+            std::vector<const char *> cstrs;
+            for (const auto &s : select_m_scene)
+                cstrs.push_back(s.c_str());
+            ;
+            if (ImGui::Combo(" ", &m_current_scene_id, cstrs.data(), cstrs.size()))
+            {
+                setupScene();
+            }
+
+            ImGui::End();
         }
-        ImGui::EndChild();
-
-        ImGui::Separator();
-
-        std::vector<std::string> select_m_scene = {
-            "heap", "sleep", "newton_pendulum", "simple", "point_joint", "Bitmask", "Catapult"};
-        std::vector<const char *> cstrs;
-        for (const auto &s : select_m_scene)
-            cstrs.push_back(s.c_str());
-
-        if (ImGui::Combo("选择场景", &m_current_scene_id, cstrs.data(), cstrs.size()))
         {
-            setupScene();
-        }
+            ImGui::SetNextWindowPos(ImVec2(ImGui::GetMainViewport()->Size.x - window_size, 0), ImGuiCond_Once);
+            ImGui::SetNextWindowSize(ImVec2(window_size, 600), ImGuiCond_Once);
+            ImGui::SetNextWindowCollapsed(true, ImGuiCond_Once);
+            ImGui::Begin("设置", nullptr, ImGuiWindowFlags_NoMove);
 
-        ImGui::End();
+            ImGui::SetNextItemOpen(false, ImGuiCond_Once);
+            if (ImGui::CollapsingHeader("可视化选项"))
+            {
+                ImGui::BeginChild("可视化选项", ImVec2(0, 130), true);
+                ImGui::Checkbox("显示刚体", &m_scene->getCamera()->bodyVisible());
+                ImGui::Checkbox("显示关节", &m_scene->getCamera()->jointVisible());
+                ImGui::Checkbox("显示AABB", &m_scene->getCamera()->aabbVisible());
+                ImGui::Checkbox("显示速度", &m_scene->getCamera()->velocityVisible());
+                ImGui::EndChild();
+            }
+            if (ImGui::CollapsingHeader("世界设置"))
+            {
+                ImGui::BeginChild("世界设置", ImVec2(0, 130), true);
+                ImGui::Checkbox("开启重力", &m_system.world().enableGravity());
+                Vector2 gravity = m_system.world().gravity();
+                ImGui::SetNextItemWidth(50);
+                ImGui::InputFloat("重力的x轴分量", &gravity.x);
+                ImGui::SetNextItemWidth(50);
+                ImGui::InputFloat("重力的y轴分量", &gravity.y);
+                m_system.world().setGravity(gravity);
+                ImGui::Checkbox("开启睡眠", &m_system.world().enableSleep());
+                ImGui::EndChild();
+            }
+            ImGui::End();
+        }
     }
     void Application::run()
     {

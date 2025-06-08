@@ -3,7 +3,7 @@ namespace ps
 {
     void SceneHeap::setScene()
     {
-        m_settings.system->world().setGravity({0.0f, 0.0f});
+        m_settings.system->world().setGravity({0.0f, 10.0f});
         m_settings.system->world().setEnableGravity(true);
         m_settings.system->world().setLinearVelocityDamping(0.0f);
         m_settings.system->world().setAirFrictionCoefficient(0.0f);

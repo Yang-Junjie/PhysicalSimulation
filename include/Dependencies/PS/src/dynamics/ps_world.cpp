@@ -247,7 +247,7 @@ namespace ps
 		m_airFrictionCoefficient = airFrictionCoefficient;
 	}
 
-	bool PhysicsWorld::enableGravity() const
+	bool& PhysicsWorld::enableGravity()
 	{
 		return m_enableGravity;
 	}
@@ -257,7 +257,7 @@ namespace ps
 		m_enableGravity = enableGravity;
 	}
 
-	bool PhysicsWorld::enableDamping() const
+	bool& PhysicsWorld::enableDamping() 
 	{
 		return m_enableDamping;
 	}

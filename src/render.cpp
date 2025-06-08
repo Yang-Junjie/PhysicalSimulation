@@ -243,4 +243,32 @@ namespace ps
           renderPoint(window, renderer, pb, point, 2);
           renderLine(window, renderer, pa, pb, green);
      }
+     void RenderSDLImpl::renderRect(SDL_Window *window, SDL_Renderer *renderer, float x, float y, float w, float h, const SDL_Color &color)
+     {
+          SDL_FRect rect = {x, y, w, h};
+          SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+          SDL_RenderRect(renderer, &rect);
+     }
+     void RenderSDLImpl::renderAABB(SDL_Window *window, SDL_Renderer *renderer, const AABB &aabb, const SDL_Color &color)
+     {
+          SDL_FRect rect = {aabb.bottomLeft().x, aabb.bottomLeft().y, aabb.width, aabb.height};
+          SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+          SDL_RenderRect(renderer, &rect);
+     }
+     void RenderSDLImpl::renderArrow(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &start, const Vector2 &end, const SDL_Color &color, float arrowHeadLength, float arrowHeadAngle)
+     { 
+          renderLine(window, renderer, start, end, color);
+          float angle = atan2f(end.y - start.y, end.x - start.x);
+          float rad = arrowHeadAngle * 3.14159265f / 180.0f;
+
+          Vector2 dir1{
+              end.x - arrowHeadLength * cosf(angle - rad),
+              end.y - arrowHeadLength * sinf(angle - rad)};
+          Vector2 dir2{
+              end.x - arrowHeadLength * cosf(angle + rad),
+              end.y - arrowHeadLength * sinf(angle + rad)};
+
+          renderLine(window, renderer, end, dir1, color);
+          renderLine(window, renderer, end, dir2, color);
+     }
 }
