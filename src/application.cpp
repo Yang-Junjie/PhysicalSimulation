@@ -88,22 +88,41 @@ namespace ps
     void Application::mouseMove(const SDL_Event &event)
     {
         Vector2 pos(event.motion.x, event.motion.y);
-        m_MousePos = pos;
+
+        m_mousePos = pos;
+
+        if (m_cameraViewportMove)
+        {
+            Vector2 delta = pos - m_lastMousePos;
+
+            Vector2 worldDelta = m_camera.screenToWorld(pos) - m_camera.screenToWorld(m_lastMousePos);
+            m_camera.setTransform(m_cameraStartOffset - worldDelta);
+        }
+        m_mousePos = m_camera.screenToWorld(pos);
 
         auto prim = m_mouseJoint->primitive();
-        prim.targetPoint = m_MousePos;
+        prim.targetPoint = m_mousePos;
 
         m_mouseJoint->set(prim);
     }
     void Application::mousePressed(const SDL_Event &event)
     {
         Vector2 pos(event.motion.x, event.motion.y);
-        m_MousePos = pos;
+        m_screenMousePos = pos;
+        m_mousePos = m_camera.screenToWorld(pos);
+
+        if (event.button.button == SDL_BUTTON_RIGHT)
+        {
+            m_cameraViewportMove = true;
+            m_lastMousePos = pos;
+            m_cameraStartOffset = m_camera.transform();
+        }
+
         if (event.button.button == SDL_BUTTON_LEFT && m_mouseJoint != nullptr)
         {
             // 查询鼠标与哪个物体相交
             AABB mouseBox;
-            mouseBox.position = m_MousePos;
+            mouseBox.position = m_mousePos;
             mouseBox.width = 0.01f;
             mouseBox.height = 0.01f;
             auto bodies = m_system.tree().query(mouseBox);
@@ -111,16 +130,16 @@ namespace ps
 
             for (auto &body : bodies)
             {
-                Vector2 point = m_MousePos - body->position();
+                Vector2 point = m_mousePos - body->position();
                 point = Matrix2x2(-body->rotation()).multiply(point);
                 if (body->shape()->contains(point) && m_selectedBody == nullptr && body->type() != Body::BodyType::Static)
                 {
                     m_selectedBody = body;
 
                     PointJointPrimitive prim;
-                    prim.localPointA = body->toLocalPoint(m_MousePos);
+                    prim.localPointA = body->toLocalPoint(m_mousePos);
                     prim.bodyA = body;
-                    prim.targetPoint = m_MousePos;
+                    prim.targetPoint = m_mousePos;
                     prim.maxForce = 1000 * body->mass();
                     m_mouseJoint->set(prim);
                     m_mouseJoint->prepare(static_cast<real>(1 / 60.0f));
@@ -135,20 +154,20 @@ namespace ps
     }
     void Application::mouseRelease(const SDL_Event &event)
     {
-        if (event.button.button == SDL_BUTTON_LEFT)
-        {
-            Vector2 pos(event.motion.x, event.motion.y);
-            m_MousePos = m_camera.screenToWorld(pos);
-            m_MousePos = pos;
 
-            if (m_mouseJoint == nullptr)
-                return;
-            m_mouseJoint->primitive().clear();
-            m_mouseJoint->setActive(false);
+        Vector2 pos(event.motion.x, event.motion.y);
+        m_mousePos = m_camera.screenToWorld(pos);
+        m_screenMousePos = pos;
 
-            m_selectedBody = nullptr;
-            m_scene->setCurrentBody(nullptr);
-        }
+        if (m_mouseJoint == nullptr)
+            return;
+        m_mouseJoint->primitive().clear();
+        m_mouseJoint->setActive(false);
+
+        m_cameraViewportMove = false;
+
+        m_selectedBody = nullptr;
+        m_scene->setCurrentBody(nullptr);
     }
     void Application::renderGUI()
     {
@@ -184,7 +203,9 @@ namespace ps
             ImGui::PlotLines("帧率", fps_history, IM_ARRAYSIZE(fps_history), fps_offset, nullptr, current_fps - current_fps + 100.0f, current_fps + 100.0f, ImVec2(0, 30));
             ImGui::PlotLines("1% Low", fps_1percent_history, IM_ARRAYSIZE(fps_1percent_history), fps_offset, nullptr, fps_1percent_low - 100.0f, fps_1percent_low + 100.0f, ImVec2(0, 30));
 
-            ImGui::Text("鼠标位置: (%.1f, %.1f)", m_MousePos.x, m_MousePos.y);
+            ImGui::Text("鼠标位置: (%.1f, %.1f)", m_mousePos.x, m_mousePos.y);
+            ImGui::Text("鼠标屏幕位置: (%.1f, %.1f)", m_screenMousePos.x, m_screenMousePos.y);
+            ImGui::Text("摄像机位置: (%.1f, %.1f)", -m_camera.transform().x, -m_camera.transform().y);
 
             ImGui::Separator();
 

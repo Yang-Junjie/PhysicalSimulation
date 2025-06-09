@@ -30,13 +30,19 @@ namespace ps
         Camera m_camera;
         Settings m_settings;
 
-        bool mouse_down = false;
+        bool m_mouse_down = false;
+        bool m_cameraViewportMove = false;
+
+        Vector2 m_screenMousePos;
+        Vector2 m_lastMousePos;
+        Vector2 m_cameraStartOffset;
+
         Body *m_selectedBody = nullptr;
         PointJoint *m_mouseJoint = nullptr;
         PointJointPrimitive m_pointJointPrimitive;
-        Vector2 m_MousePos;
+        Vector2 m_mousePos;
 
-        std::array<std::function<Scene*(const Settings& settings)>, 7> m_scenesList;
+        std::array<std::function<Scene *(const Settings &settings)>, 7> m_scenesList;
 
     public:
         Application();

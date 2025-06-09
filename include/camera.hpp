@@ -67,7 +67,6 @@ namespace ps
 		bool &velocityVisible();
 		bool &visible();
 
-
 		real meterToPixel() const;
 		void setTargetMeterToPixel(const real &meterToPixel);
 		real pixelToMeter() const;
@@ -110,7 +109,7 @@ namespace ps
 		bool m_velocityVisible = false;
 
 		real m_defaultMeterToPixel = 50.0f;
-		real m_meterToPixel = 50.0f;
+		real m_meterToPixel = 1.0f;
 		real m_pixelToMeter = 0.02f;
 
 		real m_targetMeterToPixel = 80.0f;

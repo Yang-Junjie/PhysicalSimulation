@@ -5,6 +5,8 @@
 #include "ps.hpp"
 #include <vector>
 #include <utility>
+
+#include "camera.hpp"
 namespace ps
 {
     namespace RenderConstant
@@ -34,34 +36,34 @@ namespace ps
     class RenderSDLImpl
     {
     public:
-        static SDL_FPoint toVector2f(const Vector2 &vector);
-        static void renderPixle(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &point,
+        static SDL_FPoint toSDLFPoint(const Vector2 &vector);
+        static void renderPixle(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const Vector2 &point,
                                 const SDL_Color &color);
-        static void renderLine(SDL_Window *window, SDL_Renderer *renderer, const Vector2 &p1,
+        static void renderLine(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const Vector2 &p1,
                                const Vector2 &p2, const SDL_Color &color);
-        static void renderPixles(SDL_Window *window, SDL_Renderer *renderer,
+        static void renderPixles(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
                                  const std::vector<Vector2> &points, const SDL_Color &color);
-        static void renderLines(SDL_Window *window, SDL_Renderer *renderer,
+        static void renderLines(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
                                 const std::vector<Vector2> &lines, const SDL_Color &color);
-        static void renderPolygon(SDL_Window *window, SDL_Renderer *renderer,
+        static void renderPolygon(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
                                   const ShapePrimitive &shape, const SDL_Color &color);
-        static void renderCircle(SDL_Window *window, SDL_Renderer *renderer,
+        static void renderCircle(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
                                  const ShapePrimitive &shape, const SDL_Color &color);
-        static void renderPoint(SDL_Window *window, SDL_Renderer *renderer,
+        static void renderPoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
                                 const Vector2 &point, const SDL_Color &color, real pointSize = RenderConstant::PointSize);
-        static void renderPoints(SDL_Window *window, SDL_Renderer *renderer,
+        static void renderPoints(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
                                  const std::vector<Vector2> &points, const SDL_Color &color);
-        static void renderEdge(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape,
+        static void renderEdge(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const ShapePrimitive &shape,
                                const SDL_Color &color);
-        static void renderShape(SDL_Window *window, SDL_Renderer *renderer, const ShapePrimitive &shape,
+        static void renderShape(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const ShapePrimitive &shape,
                                 const SDL_Color &color);
-        static void renderJoint(SDL_Window *window, SDL_Renderer *renderer, Joint *joint, const SDL_Color &color);
-        static void renderDistanceJoint(SDL_Window *window, SDL_Renderer *renderer, Joint *joint, const SDL_Color &color);
-        static void renderPointJoint(SDL_Window *window, SDL_Renderer *renderer, Joint *joint, const SDL_Color &color);
-        static void renderRect(SDL_Window *window, SDL_Renderer *renderer, float x, float y, float w, float h, const SDL_Color &color);
-        static void renderAABB(SDL_Window *window, SDL_Renderer *renderer, const AABB &aabb, const SDL_Color &color);
-        static void renderArrow(SDL_Window *window, SDL_Renderer *renderer,
-                               const Vector2 &start, const Vector2 &end, const SDL_Color &color, float arrowHeadLength = 10.0f, float arrowHeadAngle = 25.0f);
+        static void renderJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint, const SDL_Color &color);
+        static void renderDistanceJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint, const SDL_Color &color);
+        static void renderPointJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint, const SDL_Color &color);
+        static void renderRect(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, float x, float y, float w, float h, const SDL_Color &color);
+        static void renderAABB(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const AABB &aabb, const SDL_Color &color);
+        static void renderArrow(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
+                                const Vector2 &start, const Vector2 &end, const SDL_Color &color, float arrowHeadLength = 10.0f, float arrowHeadAngle = 25.0f);
     };
 }
 #endif

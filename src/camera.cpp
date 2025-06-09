@@ -39,14 +39,14 @@ namespace ps
 						color = RenderConstant::Teal;
 					if (body->type() == Body::BodyType::Bullet)
 						color = RenderConstant::Pink;
-					RenderSDLImpl::renderShape(window, renderer, primitive, color);
+					RenderSDLImpl::renderShape(window, renderer, (*this), primitive, color);
 
 					if (m_velocityVisible)
 					{
 						auto body_velocity_len = body->velocity().length();
 						if (body_velocity_len > 0.01f)
 						{
-							RenderSDLImpl::renderArrow(window, renderer, primitive.transform.position,
+							RenderSDLImpl::renderArrow(window, renderer, (*this), primitive.transform.position,
 													   primitive.transform.position + body->velocity(),
 													   RenderConstant::Orange, body_velocity_len * 0.1f);
 						}
@@ -58,7 +58,7 @@ namespace ps
 				for (auto iter = m_world->jointList().begin(); iter != m_world->jointList().end(); ++iter)
 				{
 					if ((*iter)->active())
-						RenderSDLImpl::renderJoint(window, renderer, (*iter).get(), RenderConstant::Green);
+						RenderSDLImpl::renderJoint(window, renderer, (*this), (*iter).get(), RenderConstant::Green);
 				}
 			}
 			if (m_aabbVisible)
@@ -66,7 +66,7 @@ namespace ps
 				for (auto iter = m_world->bodyList().begin(); iter != m_world->bodyList().end(); ++iter)
 				{
 					if ((*iter).get() != nullptr)
-						RenderSDLImpl::renderAABB(window, renderer, (*iter)->aabb(), RenderConstant::Cyan);
+						RenderSDLImpl::renderAABB(window, renderer, (*this), (*iter)->aabb(), RenderConstant::Cyan);
 				}
 			}
 		}
@@ -139,23 +139,18 @@ namespace ps
 	void Camera::setViewport(const Viewport &viewport)
 	{
 		m_viewport = viewport;
-		m_origin.set((m_viewport.topLeft.x + m_viewport.bottomRight.x) * (0.5f),
-					 (m_viewport.topLeft.y + m_viewport.bottomRight.y) * (0.5f));
+		m_origin.set((m_viewport.topLeft.x + m_viewport.bottomRight.x) * (0.0f),
+					 (m_viewport.topLeft.y + m_viewport.bottomRight.y) * (0.0f));
 	}
 
 	Vector2 Camera::worldToScreen(const Vector2 &pos) const
 	{
-		Vector2 real_origin(m_origin.x + m_transform.x, m_origin.y - m_transform.y);
-		return Vector2(real_origin.x + pos.x * m_meterToPixel, real_origin.y - pos.y * m_meterToPixel);
+		return Vector2(pos.x - m_transform.x, pos.y - m_transform.y);
 	}
 
 	Vector2 Camera::screenToWorld(const Vector2 &pos) const
 	{
-		Vector2 real_origin(m_origin.x + m_transform.x, m_origin.y - m_transform.y);
-		Vector2 result = pos - real_origin;
-		result.y = -result.y;
-		result *= m_pixelToMeter;
-		return result;
+		return Vector2(pos.x + m_transform.x, pos.y + m_transform.y);
 	}
 
 	Tree *Camera::tree() const
