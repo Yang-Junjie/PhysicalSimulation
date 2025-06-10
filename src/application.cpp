@@ -188,6 +188,11 @@ namespace ps
             ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Once);
             ImGui::SetNextWindowSize(ImVec2(window_size, 0), ImGuiCond_Once);
             ImGui::Begin("物理仿真信息");
+            const char *pauseText = m_running ? "开启" : "暂停";
+            if (ImGui::Button(pauseText, ImVec2(-FLT_MIN, 0.0f)))
+                pause();
+            if (ImGui::Button("重启", ImVec2(-FLT_MIN, 0.0f)))
+                restart();
 
             static float fps_history[100] = {0};
             static float fps_1percent_history[100] = {0};
@@ -303,6 +308,7 @@ namespace ps
                 ImGui::SetNextItemWidth(100);
                 ImGui::SliderInt("速度迭代次数", &m_system.velocityIteration(), 1, 50);
                 ImGui::EndChild();
+                ImGui::Separator();
             }
             ImGui::End();
         }
@@ -311,7 +317,7 @@ namespace ps
     {
         SDL_Event event;
         bool keep_going = true;
-        const real dt = 1.0f / 60.0f;
+        m_frequency = 60.0f;
         while (keep_going)
         {
             while (SDL_PollEvent(&event))
@@ -343,7 +349,8 @@ namespace ps
             ImGui::NewFrame();
 
             renderGUI();
-            m_scene->getSystem()->step(dt);
+            // m_scene->getSystem()->step(1 / m_frequency);
+            simulate();
             m_scene->getCamera()->render(window, renderer);
 
             ImGui::Render();
@@ -352,6 +359,27 @@ namespace ps
             SDL_RenderPresent(renderer);
             // SDL_Delay(0.5f);
         }
+    }
+    void Application::pause()
+    {
+        m_running = !m_running;
+    }
+
+    void Application::restart()
+    {
+        setupScene();
+    }
+    void Application::step()
+    {
+        const real dt = 1.0f / static_cast<real>(m_frequency);
+        const bool valid = m_scene != nullptr;
+
+        m_system.step(dt);
+    }
+    void Application::simulate()
+    {
+        if (m_running)
+            step();
     }
 
     void Application::cleanup()

@@ -24,11 +24,13 @@ namespace ps
         SDL_Window *window;
         SDL_Renderer *renderer;
         int m_current_scene_id = 0;
+        bool m_running = true;
         Scene *m_scene;
 
         PhysicsSystem m_system;
         Camera m_camera;
         Settings m_settings;
+        real m_frequency = 60.0f;
 
         bool m_mouse_down = false;
         bool m_cameraViewportMove = false;
@@ -51,9 +53,16 @@ namespace ps
         bool init();
         void setupScene();
         void renderGUI();
+
         void run();
+        void pause();
+        void restart();
+        void simulate();
+        void step();
+
         void cleanup();
         void clearALL();
+
         void mouseMove(const SDL_Event &event);
         void mousePressed(const SDL_Event &event);
         void mouseRelease(const SDL_Event &event);
