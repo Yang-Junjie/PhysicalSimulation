@@ -246,8 +246,8 @@ namespace ps
           point.a = 204;
           green.a = 78;
 
-          renderPoint(window, renderer, camera, pa, point, 2);
-          renderPoint(window, renderer, camera, pb, point, 2);
+          renderPoint(window, renderer, camera, pa, point, 2 * camera.pixelToMeter());
+          renderPoint(window, renderer, camera, pb, point, 2 * camera.pixelToMeter());
           renderLine(window, renderer, camera, pa, pb, green);
      }
      void RenderSDLImpl::renderRect(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, float x, float y, float w, float h, const SDL_Color &color)
