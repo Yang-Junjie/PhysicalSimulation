@@ -266,11 +266,17 @@ namespace ps
                 ImGui::BeginChild("世界设置", ImVec2(0, 130), true);
                 ImGui::Checkbox("开启重力", &m_system.world().enableGravity());
                 Vector2 gravity = m_system.world().gravity();
-                ImGui::SetNextItemWidth(50);
-                ImGui::InputFloat("重力的x轴分量", &gravity.x);
-                ImGui::SetNextItemWidth(50);
-                ImGui::InputFloat("重力的y轴分量", &gravity.y);
-                m_system.world().setGravity(gravity);
+                ImGui::SetNextItemWidth(100);
+                if (ImGui::DragFloat("重力X", &gravity.x, 0.1f, -10.0f, 10.0f, "%.2f"))
+                {
+                    m_system.world().setGravity(gravity);
+                }
+                ImGui::SetNextItemWidth(100);
+                if (ImGui::DragFloat("重力Y", &gravity.y, 0.1f, -10.0f, 10.0f, "%.2f"))
+                {
+                    m_system.world().setGravity(gravity);
+                }
+
                 ImGui::Checkbox("开启睡眠", &m_system.world().enableSleep());
                 ImGui::EndChild();
             }
@@ -281,6 +287,7 @@ namespace ps
     {
         SDL_Event event;
         bool keep_going = true;
+        const real dt = 1.0f / 60.0f;
         while (keep_going)
         {
             while (SDL_PollEvent(&event))
@@ -308,7 +315,6 @@ namespace ps
             ImGui::NewFrame();
 
             renderGUI();
-            const real dt = 1.0f / 60.0f;
             m_scene->getSystem()->step(dt);
             m_scene->getCamera()->render(window, renderer);
 
@@ -316,7 +322,7 @@ namespace ps
             ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
 
             SDL_RenderPresent(renderer);
-            SDL_Delay(0.5f);
+            // SDL_Delay(0.5f);
         }
     }
 
