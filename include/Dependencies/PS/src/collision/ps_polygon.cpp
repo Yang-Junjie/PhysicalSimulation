@@ -13,12 +13,12 @@ namespace ps
 		return m_vertices;
 	}
 
-    const std::vector<int> &Polygon::indices() const
-    {
-         return m_indices;
-    }
+	const std::vector<int> &Polygon::indices() const
+	{
+		return m_indices;
+	}
 
-    void Polygon::append(const std::initializer_list<Vector2> &vertices)
+	void Polygon::append(const std::initializer_list<Vector2> &vertices)
 	{
 		for (const Vector2 &vertex : vertices)
 			m_vertices.emplace_back(vertex);
@@ -47,6 +47,7 @@ namespace ps
 
 	bool Polygon::contains(const Vector2 &point, const real &epsilon)
 	{
+		// 仅适用于凸多边形
 		for (auto iter = m_vertices.begin(); iter != m_vertices.end(); ++iter)
 		{
 			auto next = iter + 1;
@@ -70,6 +71,7 @@ namespace ps
 
 	void Polygon::updateIndex()
 	{
+		m_indices.clear();
 		for (size_t i = 0; i < m_vertices.size() - 2; i++)
 		{
 			m_indices.push_back(0);

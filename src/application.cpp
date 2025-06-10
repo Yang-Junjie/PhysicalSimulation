@@ -299,7 +299,7 @@ namespace ps
             }
             if (ImGui::CollapsingHeader("系统设置"))
             {
-                ImGui::BeginChild("系统设置", ImVec2(0, 130), true);
+                ImGui::BeginChild("系统设置", ImVec2(0, 300), true);
                 ImGui::Checkbox("开启CCD", &m_system.enableCCD());
                 ImGui::Separator();
                 ImGui::Text("迭代次数");
@@ -307,6 +307,15 @@ namespace ps
                 ImGui::SliderInt("位置迭代次数", &m_system.positionIteration(), 1, 50);
                 ImGui::SetNextItemWidth(100);
                 ImGui::SliderInt("速度迭代次数", &m_system.velocityIteration(), 1, 50);
+                ImGui::Separator();
+                ImGui::Text("求解选项");
+                ImGui::Checkbox("切片DeltaTime", &m_system.sliceDeltaTime());
+                ImGui::Checkbox("求解关节速度", &m_system.solveJointVelocity());
+                ImGui::Checkbox("求解关节位置", &m_system.solveJointPosition());
+                ImGui::Checkbox("求解接触速度", &m_system.solveContactVelocity());
+                ImGui::Checkbox("求解接触位置", &m_system.solveContactPosition());
+                ImGui::Separator();
+                
                 ImGui::EndChild();
                 ImGui::Separator();
             }
@@ -372,8 +381,6 @@ namespace ps
     void Application::step()
     {
         const real dt = 1.0f / static_cast<real>(m_frequency);
-        const bool valid = m_scene != nullptr;
-
         m_system.step(dt);
     }
     void Application::simulate()

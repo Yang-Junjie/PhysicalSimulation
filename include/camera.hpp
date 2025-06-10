@@ -51,8 +51,8 @@ namespace ps
 
 			Vector2 topLeft = {0, 0};
 			Vector2 bottomRight = {1080, 680};
-			real width();
-			real height();
+			real width() const;
+			real height() const;
 			Vector2 center() const;
 			void setWidth(const real &width);
 			void setHeight(const real &height);
@@ -82,9 +82,6 @@ namespace ps
 		void setPreScreenMousePos(const Vector2 &pos);
 		Vector2 worldToScreen(const Vector2 &pos) const;
 		Vector2 screenToWorld(const Vector2 &pos) const;
-
-	
-
 
 		Tree *tree() const;
 		void setTree(Tree *tree);

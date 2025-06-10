@@ -4,7 +4,7 @@
 
 namespace ps
 {
-	Container::Vector<std::pair<Body*, Body*>> SweepAndPrune::generate(const Container::Vector<Body*>& bodyList)
+	Container::Vector<std::pair<Body *, Body *>> SweepAndPrune::generate(const Container::Vector<Body *> &bodyList)
 	{
 		Container::Vector<std::pair<Body*, Body*>> result;
 		//sort by x axis
@@ -13,7 +13,7 @@ namespace ps
 
 		for(auto&& elem: bodyList)
 			bodyBoxPairList.emplace_back(std::make_pair(elem, elem->aabb()));
-		
+
 		Container::Vector<std::pair<Body*, AABB>> sortXAxis = bodyBoxPairList;
 		Container::Vector<std::pair<Body*, AABB>> sortYAxis = bodyBoxPairList;
 		std::sort(sortXAxis.begin(), sortXAxis.end(), [](const std::pair<Body*, AABB>& left, const std::pair<Body*, AABB>& right)
@@ -25,7 +25,6 @@ namespace ps
 				return left.second.minimumY() < right.second.minimumY();
 			});
 
-		
 		Container::Vector<Body::BodyPair> xPairs;
 		Container::Vector<Body::BodyPair> yPairs;
 
@@ -87,26 +86,56 @@ namespace ps
 				xPair = std::next(xPair);
 		}
 
-
 		return result;
+		// Container::Vector<std::pair<Body *, Body *>> result;
+		// if (bodyList.empty())
+		// 	return result;
+
+		// // 按X轴排序
+		// Container::Vector<std::pair<Body *, AABB>> bodyBoxPairList;
+		// bodyBoxPairList.reserve(bodyList.size());
+		// for (auto &&elem : bodyList)
+		// 	bodyBoxPairList.emplace_back(elem, elem->aabb());
+
+		// std::sort(bodyBoxPairList.begin(), bodyBoxPairList.end(),
+		// 		  [](const std::pair<Body *, AABB> &left, const std::pair<Body *, AABB> &right)
+		// 		  {
+		// 			  return left.second.minimumX() < right.second.minimumX();
+		// 		  });
+
+		// // 滑动窗口查找重叠
+		// for (size_t i = 0; i < bodyBoxPairList.size(); ++i)
+		// {
+		// 	const auto &[bodyA, aabbA] = bodyBoxPairList[i];
+		// 	for (size_t j = i + 1; j < bodyBoxPairList.size(); ++j)
+		// 	{
+		// 		const auto &[bodyB, aabbB] = bodyBoxPairList[j];
+		// 		if (aabbA.maximumX() < aabbB.minimumX())
+		// 			break; // 后面都不会重叠
+
+		// 		if (bodyA == bodyB)
+		// 			continue; // 排除自碰撞
+		// 		if (aabbA.collide(aabbB) && (bodyA->bitmask() & bodyB->bitmask()))
+		// 			result.emplace_back(bodyA, bodyB);
+		// 	}
+		// }
+		// return result;
 	}
 
-	Container::Vector<Body*> SweepAndPrune::query(const Container::Vector<Body*>& bodyList, const AABB& region)
+	Container::Vector<Body *> SweepAndPrune::query(const Container::Vector<Body *> &bodyList, const AABB &region)
 	{
-		Container::Vector<Body*> result;
+		Container::Vector<Body *> result;
 
-		Container::Vector<std::pair<Body*, AABB>> bodyBoxPairList;
+		Container::Vector<std::pair<Body *, AABB>> bodyBoxPairList;
 		bodyBoxPairList.reserve(bodyList.size());
 
-		for (auto&& elem : bodyList)
+		for (auto &&elem : bodyList)
 			bodyBoxPairList.emplace_back(std::make_pair(elem, elem->aabb()));
 
-		//brute search
-		for (auto&& elem : bodyBoxPairList)
+		// brute search
+		for (auto &&elem : bodyBoxPairList)
 			if (region.collide(elem.second))
 				result.emplace_back(elem.first);
-
-
 
 		return result;
 	}

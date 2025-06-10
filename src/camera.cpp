@@ -147,8 +147,7 @@ namespace ps
 	void Camera::setViewport(const Viewport &viewport)
 	{
 		m_viewport = viewport;
-		m_origin.set((m_viewport.topLeft.x + m_viewport.bottomRight.x) * (0.0f),
-					 (m_viewport.topLeft.y + m_viewport.bottomRight.y) * (0.0f));
+		m_origin = m_viewport.topLeft + (m_viewport.bottomRight - m_viewport.topLeft) * 0.5f;
 	}
 
 	Vector2 Camera::worldToScreen(const Vector2 &pos) const
@@ -230,19 +229,19 @@ namespace ps
 		m_defaultMeterToPixel = number;
 	}
 
-	real Camera::Viewport::width()
+	real Camera::Viewport::width() const
 	{
 		return bottomRight.x - topLeft.x;
 	}
 
-	real Camera::Viewport::height()
+	real Camera::Viewport::height() const
 	{
 		return bottomRight.y - topLeft.y;
 	}
 
 	Vector2 Camera::Viewport::center() const
 	{
-		return bottomRight * 0.5f;
+		return topLeft + (bottomRight - topLeft) * 0.5f;
 	}
 
 	void Camera::Viewport::setWidth(const real &width)
