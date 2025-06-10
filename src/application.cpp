@@ -88,9 +88,8 @@ namespace ps
     void Application::mouseMove(const SDL_Event &event)
     {
         Vector2 pos(event.motion.x, event.motion.y);
-
         m_mousePos = pos;
-
+        m_screenMousePos = pos;
         if (m_cameraViewportMove)
         {
             Vector2 delta = pos - m_lastMousePos;
@@ -169,6 +168,19 @@ namespace ps
         m_selectedBody = nullptr;
         m_scene->setCurrentBody(nullptr);
     }
+
+    void Application::mouseWheel(const SDL_Event &event)
+    {
+
+        Vector2 mouseScreenPos = m_screenMousePos;
+        Vector2 beforeWorldPos = m_camera.screenToWorld(mouseScreenPos);
+        float scale = (event.wheel.y > 0) ? 1.1f : 1.0f / 1.1f;
+        m_camera.setTargetMeterToPixel(m_camera.meterToPixel() * scale);
+        Vector2 afterWorldPos = m_camera.screenToWorld(mouseScreenPos);
+        Vector2 offset = beforeWorldPos - afterWorldPos;
+        m_camera.setTransform(m_camera.transform() + offset);
+    }
+
     void Application::renderGUI()
     {
         real window_size = 160.0f;
@@ -205,7 +217,7 @@ namespace ps
 
             ImGui::Text("鼠标位置: (%.1f, %.1f)", m_mousePos.x, m_mousePos.y);
             ImGui::Text("鼠标屏幕位置: (%.1f, %.1f)", m_screenMousePos.x, m_screenMousePos.y);
-            ImGui::Text("摄像机位置: (%.1f, %.1f)", -m_camera.transform().x, -m_camera.transform().y);
+            ImGui::Text("摄像机位置: (%.1f, %.1f)", m_camera.transform().x, m_camera.transform().y);
 
             ImGui::Separator();
 
@@ -308,6 +320,10 @@ namespace ps
                 else if (event.type == SDL_EVENT_MOUSE_BUTTON_UP)
                 {
                     mouseRelease(event);
+                }
+                else if (event.type == SDL_EVENT_MOUSE_WHEEL)
+                {
+                    mouseWheel(event);
                 }
             }
             ImGui_ImplSDL3_NewFrame();

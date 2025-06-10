@@ -41,6 +41,7 @@ namespace ps
         PointJoint *m_mouseJoint = nullptr;
         PointJointPrimitive m_pointJointPrimitive;
         Vector2 m_mousePos;
+        real m_zoomFactor = 0.5f;
 
         std::array<std::function<Scene *(const Settings &settings)>, 7> m_scenesList;
 
@@ -56,6 +57,7 @@ namespace ps
         void mouseMove(const SDL_Event &event);
         void mousePressed(const SDL_Event &event);
         void mouseRelease(const SDL_Event &event);
+        void mouseWheel(const SDL_Event &event);
     };
 }
 #endif // APPLICATION_HPP

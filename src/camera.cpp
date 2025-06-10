@@ -12,6 +12,7 @@ namespace ps
 
 	void Camera::render(SDL_Window *window, SDL_Renderer *renderer)
 	{
+
 		if (m_visible)
 		{
 			assert(m_world != nullptr);
@@ -93,17 +94,24 @@ namespace ps
 	{
 		return m_meterToPixel;
 	}
-
+	void Camera::setPreScreenMousePos(const Vector2 &pos)
+	{
+		m_preScreenMousePos = pos;
+		m_preWorldMousePos = screenToWorld(pos);
+	}
 	void Camera::setTargetMeterToPixel(const real &meterToPixel)
 	{
-		if (meterToPixel < 1.0f)
+		real minScale = 0.5f;
+		if (meterToPixel < minScale)
 		{
-			m_targetMeterToPixel = 1.0f;
-			m_targetPixelToMeter = 1.0f;
+			m_targetMeterToPixel = minScale;
+			m_targetPixelToMeter = 1.0f / minScale;
 			return;
 		}
 		m_targetMeterToPixel = meterToPixel;
 		m_targetPixelToMeter = 1.0f / meterToPixel;
+		m_meterToPixel = m_targetMeterToPixel;
+		m_pixelToMeter = m_targetPixelToMeter;
 	}
 
 	real Camera::pixelToMeter() const
@@ -145,16 +153,20 @@ namespace ps
 
 	Vector2 Camera::worldToScreen(const Vector2 &pos) const
 	{
-		return Vector2(pos.x - m_transform.x, pos.y - m_transform.y);
+		return Vector2(
+			(pos.x - m_transform.x) * m_meterToPixel,
+			(pos.y - m_transform.y) * m_meterToPixel);
 	}
 
 	Vector2 Camera::screenToWorld(const Vector2 &pos) const
 	{
-		return Vector2(pos.x + m_transform.x, pos.y + m_transform.y);
+		return Vector2(
+			pos.x / m_meterToPixel + m_transform.x,
+			pos.y / m_meterToPixel + m_transform.y);
 	}
 
-	Tree *Camera::tree() const
-	{
+    Tree *Camera::tree() const
+    {
 		return m_tree;
 	}
 

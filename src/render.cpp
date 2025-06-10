@@ -253,14 +253,14 @@ namespace ps
      void RenderSDLImpl::renderRect(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, float x, float y, float w, float h, const SDL_Color &color)
      {
           Vector2 screenCenter = camera.worldToScreen({x, y});
-          SDL_FRect rect = {screenCenter.x, screenCenter.y, w, h};
+          SDL_FRect rect = {screenCenter.x, screenCenter.y, w * camera.meterToPixel(), h * camera.meterToPixel()};
           SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
           SDL_RenderRect(renderer, &rect);
      }
      void RenderSDLImpl::renderAABB(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const AABB &aabb, const SDL_Color &color)
      {
           Vector2 screenCenter = camera.worldToScreen({aabb.bottomLeft().x, aabb.bottomLeft().y});
-          SDL_FRect rect = {screenCenter.x, screenCenter.y, aabb.width, aabb.height};
+          SDL_FRect rect = {screenCenter.x, screenCenter.y, aabb.width * camera.meterToPixel(), aabb.height * camera.meterToPixel()};
           SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
           SDL_RenderRect(renderer, &rect);
      }

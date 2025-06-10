@@ -79,9 +79,12 @@ namespace ps
 
 		Viewport viewport() const;
 		void setViewport(const Viewport &viewport);
-
+		void setPreScreenMousePos(const Vector2 &pos);
 		Vector2 worldToScreen(const Vector2 &pos) const;
 		Vector2 screenToWorld(const Vector2 &pos) const;
+
+	
+
 
 		Tree *tree() const;
 		void setTree(Tree *tree);
@@ -111,9 +114,13 @@ namespace ps
 		real m_defaultMeterToPixel = 50.0f;
 		real m_meterToPixel = 1.0f;
 		real m_pixelToMeter = 0.02f;
+		bool m_smoothZoom = true;
 
 		real m_targetMeterToPixel = 80.0f;
 		real m_targetPixelToMeter = 0.02f;
+
+		Vector2 m_preScreenMousePos;
+		Vector2 m_preWorldMousePos;
 
 		Vector2 m_transform;
 		Vector2 m_origin;
