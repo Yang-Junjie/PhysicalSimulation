@@ -183,7 +183,7 @@ namespace ps
 
     void Application::renderGUI()
     {
-        real window_size = 160.0f;
+        real window_size = 200.0f;
         {
             ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Once);
             ImGui::SetNextWindowSize(ImVec2(window_size, 0), ImGuiCond_Once);
@@ -290,6 +290,18 @@ namespace ps
                 }
 
                 ImGui::Checkbox("开启睡眠", &m_system.world().enableSleep());
+                ImGui::EndChild();
+            }
+            if (ImGui::CollapsingHeader("系统设置"))
+            {
+                ImGui::BeginChild("系统设置", ImVec2(0, 130), true);
+                ImGui::Checkbox("开启CCD", &m_system.enableCCD());
+                ImGui::Separator();
+                ImGui::Text("迭代次数");
+                ImGui::SetNextItemWidth(100);
+                ImGui::SliderInt("位置迭代次数", &m_system.positionIteration(), 1, 50);
+                ImGui::SetNextItemWidth(100);
+                ImGui::SliderInt("速度迭代次数", &m_system.velocityIteration(), 1, 50);
                 ImGui::EndChild();
             }
             ImGui::End();

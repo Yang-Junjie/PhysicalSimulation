@@ -165,8 +165,8 @@ namespace ps
 			pos.y / m_meterToPixel + m_transform.y);
 	}
 
-    Tree *Camera::tree() const
-    {
+	Tree *Camera::tree() const
+	{
 		return m_tree;
 	}
 

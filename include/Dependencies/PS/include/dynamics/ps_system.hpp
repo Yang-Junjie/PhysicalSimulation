@@ -66,6 +66,8 @@ namespace ps
 		bool& solveJointPosition();
 		bool& solveContactVelocity();
 		bool& solveContactPosition();
+		bool& enableCCD();
+		
 
 	private:
 		void updateTree();
@@ -74,6 +76,7 @@ namespace ps
 		bool solveCCD(const real& dt);
 		int m_positionIteration = 3;
 		int m_velocityIteration = 8;
+		bool m_enableCCD = true;
 		bool m_sliceDeltaTime = false;
 		bool m_solveJointVelocity = true;
 		bool m_solveJointPosition = true;
