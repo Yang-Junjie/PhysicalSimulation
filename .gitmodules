@@ -1,0 +1,6 @@
+[submodule "PhysicalSimulation/vendor/imgui"]
+	path = PhysicalSimulation/vendor/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "PhysicalSimulation/vendor/SDL3"]
+	path = PhysicalSimulation/vendor/SDL3
+	url = https://github.com/libsdl-org/SDL.git
