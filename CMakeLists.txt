@@ -1,50 +1,34 @@
 cmake_minimum_required(VERSION 3.16)
-project(phys LANGUAGES CXX)
+project(PhysicalSimulation LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-message("Binary dir: ${PROJECT_BINARY_DIR}")
+# 输出目录
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin")
+# 添加第三方库
+add_subdirectory(PhysicalSimulation/vendor/SDL3-cmake)
+add_subdirectory(PhysicalSimulation/vendor/imgui-cmake)
 
-set(SRC_DIR "${PROJECT_SOURCE_DIR}/src")
+# 添加各功能模块
+add_subdirectory(PhysicalSimulation/src/PhysicalSimulation/Core)
+add_subdirectory(PhysicalSimulation/src/PhysicalSimulation/Math)
+add_subdirectory(PhysicalSimulation/src/PhysicalSimulation/Physics2D)
+add_subdirectory(PhysicalSimulation/src/PhysicalSimulation/Renderer)
+add_subdirectory(Sandbox/scenes)
 
-set(IMGUI_DIR "${PROJECT_SOURCE_DIR}/include/Dependencies/imgui")
 
-set(INCLUDE_DIRS
-    "${PROJECT_SOURCE_DIR}/include"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/include"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/include/math"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/include/collision"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/include/dynamics"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/include/other"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/SDL3"
-    "${IMGUI_DIR}"
-    "${IMGUI_DIR}/backends"
-)
-set(SDL3_LIB "${PROJECT_SOURCE_DIR}/libs/SDL3/libSDL3.dll.a")
+# 主程序（假设入口在 Core/entryPoint.cpp）
+add_executable(PhysicalSimApp PhysicalSimulation/src/PhysicalSimulation/Core/src/entryPoint.cpp)
 
-file(GLOB_RECURSE SOURCE_FILES
-    "${SRC_DIR}/*.cpp"
-    "${SRC_DIR}/scenes/*.cpp"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/src/math/*.cpp"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/src/collision/*.cpp"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/src/dynamics/*.cpp"
-    "${PROJECT_SOURCE_DIR}/include/Dependencies/PS/src/*.cpp"
-    "${IMGUI_DIR}/*.cpp"
-    "${IMGUI_DIR}/backends/*.cpp"
-)
+# 链接主程序依赖
+target_link_libraries(PhysicalSimApp PRIVATE Core Math Physics2D Renderer imgui Scenes  "${CMAKE_SOURCE_DIR}/PhysicalSimulation/vendor/SDL3/libSDL3.dll.a")
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
-
-target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL3_LIB})
-
+# 资源文件拷贝
 add_custom_command(
-    TARGET ${PROJECT_NAME} POST_BUILD
+    TARGET PhysicalSimApp POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${PROJECT_SOURCE_DIR}/res
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>/res
+    ${CMAKE_SOURCE_DIR}/Resources
+    $<TARGET_FILE_DIR:PhysicalSimApp>/Resources
 )

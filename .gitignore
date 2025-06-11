@@ -1,7 +1,5 @@
 .vscode/
 build/
 bin/
-include/Dependencies/imgui/
-include/Dependencies/SDL3/
-libs/SDL3/
+PhysicalSimulation/vendor/SDL3/
 imgui.ini
