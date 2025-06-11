@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./res/logo.png" alt="PhysicalSimulation Logo">
+  <img src="./Resources/logo.png" alt="PhysicalSimulation Logo">
   <br>
   <img src="https://img.shields.io/badge/C++-20-blue">
   <img src="https://img.shields.io/badge/build-cmake-blue">
@@ -20,11 +20,11 @@
 
 **PhysicalSimulation（简称 PS）** 的目标(尚未完成)是打造一套专注于物理模拟与仿真的工具集，支持刚体动力学、流体力学、分子动力学、有限元分析等多种物理场景的模拟与分析。
 
-- 🚀轻松创建各类物理场景，模拟真实世界物理规律
-- ✔支持自定义模型仿真测试
-- 🎮提供直观、可交互的可视化界面
-- 📊内置丰富数据分析工具，便于高效处理仿真数据
-- ✨支持使用 Lua 脚本语言创建或操控对象
+- 轻松创建各类物理场景，模拟真实世界物理规律
+- 支持自定义模型仿真测试
+- 提供直观、可交互的可视化界面
+- 内置丰富数据分析工具，便于高效处理仿真数据
+- 支持使用 Lua 脚本语言创建或操控对象
 
 ---
 
@@ -32,45 +32,8 @@
 **前置要求**  
 - CMake ≥ 3.10
 - SDL3 [下载地址](https://github.com/libsdl-org/SDL/releases/tag/release-3.2.14)
-- imgui [下载地址](https://github.com/ocornut/imgui)
 
-**请确保已下载 SDL3 & ImGUI 并放置于对应目录，且已安装 CMake。**
-
-### 目录结构
-
-```
-PhysicalSimulation
-├─bin                   # 可执行文件目录
-│   └─SDL3.dll
-├─include
-│  ├─scenes             # 物理模拟场景
-│  └─Dependencies
-│      ├─PS             # PS 核心库
-│      │  ├─include
-│      │  └─src
-│      ├─SDL3           # SDL 官方头文件
-│      │    ├─SDL3.h
-│      │    └─...
-│      └─imgui
-│           ├─backends  # imgui渲染器
-│           │     ├─imgui_impl_sdl3.h
-│           │     ├─imgui_impl_sdl3.h
-│           │     ├─imgui_impl_sdlrenderer3.cpp
-│           │     └─imgui_impl_sdlrenderer3.hpp
-│           │ 
-│           ├─imgui.cpp # imgui 核心文件
-│           └─...
-│
-├─libs
-│  └─SDL3               # SDL 官方静态库
-│       └─libSDL3.dll.a
-├─res                   # 资源文件
-└─src
-    └─scenes
-```
-
----
-
+**请确保已下载 SDL3 并放置于对应目录，且已安装 CMake。**
 
 ## Windows 环境下构建
 
@@ -112,63 +75,12 @@ PhysicalSimulation
 
 ## 演示截图
 Pile of boxes
-![heap](/res/heap.png)
+![heap](/Resources/heap.png)
 Point Joint
-![point_joint](/res/point_joint.png)
+![point_joint](/Resources/point_joint.png)
 Newton pendulum
-![Newton_pendulum](/res/newton_pendulum.png)
+![Newton_pendulum](/Resources/newton_pendulum.png)
 
----
-
-## 功能特性
-- 2D刚体动力学模拟
-  - 线性代数类
-  - 碰撞检测
-    - Narrowphase
-      - SAT 算法
-      - GJK & EPA 算法
-      - CCD 连续碰撞检测
-    - Broadphase
-      - AABB 轴对齐包围盒
-      - 动态层次包围体树
-      - 均匀网格法
-  - 碰撞点管理
-  - 刚体模拟
-  - 约束关节
-    - 点约束
-    - 距离约束
-    - 鼠标关节
-  - 测试场景
-  - 基本 2D 计算几何算法
-    - 图元映射
-    - 相交测试
-    - 凸体检测
-    - 三角形三心计算
-    - 外/内接圆
-
-## 将要实现的功能
-### 2D刚体动力学
-- 关节
-  - 旋转关节
-  - 滑轮关节
-  - 转动关节
-- 刚体
-  - 椭圆
-  - 胶囊体
-- UI
-  - 点击式切换工具
-  
-### 2D流体模拟
-- ​​光滑粒子流体动力学SPH
-- 基于位置的动力学模拟PBD/PBF 
-  - 布料
-  - ​​绳索、头发
-  - 气体
-- 网格法
-
-### 3D刚体动力学模拟
-
-  
 ---
 
 ## 参考与致谢
