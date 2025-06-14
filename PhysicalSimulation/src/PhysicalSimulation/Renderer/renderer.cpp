@@ -265,6 +265,7 @@ namespace ps
           assert(joint != nullptr);
           auto revoluteJoint = static_cast<RevoluteJoint *>(joint);
           Vector2 s = revoluteJoint->primitive().bodyA->toWorldPoint(revoluteJoint->primitive().localPointA);
+          renderPoint(window, renderer, camera, s, RenderConstant::Yellow, 3 * camera.pixelToMeter());
           if (revoluteJoint->primitive().angularLimit)
           {
                real lower = revoluteJoint->primitive().lowerAngle + revoluteJoint->primitive().bodyB->rotation();
@@ -276,10 +277,6 @@ namespace ps
 
                renderLine(window, renderer, camera, s, s + low, RenderConstant::Red);
                renderLine(window, renderer, camera, s, s + up, RenderConstant::Blue);
-          }
-          else
-          {
-               renderPoint(window, renderer, camera, s, RenderConstant::Yellow, 3 * camera.pixelToMeter());
           }
      }
      void RenderSDLImpl::renderAABB(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const AABB &aabb, const SDL_Color &color)
