@@ -229,7 +229,7 @@ namespace ps
           renderPoint(window, renderer, camera, maxPoint1, maxColor);
           renderPoint(window, renderer, camera, minPoint2, minColor);
           renderPoint(window, renderer, camera, maxPoint2, maxColor);
-          SDL_Color lineColor = RenderConstant::DarkGreen;
+          SDL_Color lineColor = RenderConstant::White;
           lineColor.a = 150;
           renderLine(window, renderer, camera, pa, pb, lineColor);
      }
