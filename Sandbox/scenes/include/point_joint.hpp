@@ -9,9 +9,11 @@ namespace ps
         Edge edge;
         Polygon box;
         PointJointPrimitive pjp;
+
     public:
         ScenePointJoint() = default;
         ScenePointJoint(const Settings &settings) : Scene(settings) {}
+     
         void setScene() override;
     };
 }

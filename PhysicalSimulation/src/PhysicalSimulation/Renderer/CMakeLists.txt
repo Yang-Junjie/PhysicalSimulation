@@ -1,5 +1,5 @@
 ﻿add_library(Renderer STATIC
-    src/render.cpp
+    src/renderer.cpp
     src/camera.cpp
 )
 

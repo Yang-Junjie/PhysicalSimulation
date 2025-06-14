@@ -1,4 +1,4 @@
-#include "render.hpp"
+#include "renderer.hpp"
 #include <iostream>
 namespace ps
 {
@@ -80,7 +80,6 @@ namespace ps
                outlinePoints.emplace_back(worldPos);
           }
           auto sate = SDL_RenderGeometry(renderer, NULL, sdlVertices.data(), sdlVertices.size(), indices.data(), indices.size());
-          // std::cerr << "sate:" << sate << std::endl;
           if (!outlinePoints.empty())
                outlinePoints.push_back(outlinePoints.front());
           renderLines(window, renderer, camera, outlinePoints, color);
@@ -241,14 +240,13 @@ namespace ps
           Vector2 pa = pointJoint->primitive().bodyA->toWorldPoint(pointJoint->primitive().localPointA);
           Vector2 pb = pointJoint->primitive().targetPoint;
 
-          SDL_Color point = RenderConstant::Orange;
-          SDL_Color green = RenderConstant::Green;
+          SDL_Color point = RenderConstant::Yellow;
+          SDL_Color white = RenderConstant::White;
           point.a = 204;
-          green.a = 78;
 
-          renderPoint(window, renderer, camera, pa, point, 2 * camera.pixelToMeter());
-          renderPoint(window, renderer, camera, pb, point, 2 * camera.pixelToMeter());
-          renderLine(window, renderer, camera, pa, pb, green);
+          renderPoint(window, renderer, camera, pa, point, 3 * camera.pixelToMeter());
+          renderPoint(window, renderer, camera, pb, point, 3 * camera.pixelToMeter());
+          renderLine(window, renderer, camera, pa, pb, white);
      }
      void RenderSDLImpl::renderRect(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, float x, float y, float w, float h, const SDL_Color &color)
      {

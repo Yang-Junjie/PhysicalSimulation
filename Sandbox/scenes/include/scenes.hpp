@@ -1,6 +1,6 @@
 #ifndef SCENES_HPP
 #define SCENES_HPP
-#include "render.hpp"
+#include "renderer.hpp"
 #include "ps.hpp"
 #include "camera.hpp"
 namespace ps

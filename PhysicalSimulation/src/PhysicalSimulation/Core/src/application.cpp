@@ -19,7 +19,9 @@ namespace ps
             [&](const Settings &settings)
             { return new SceneBitmask(settings); },
             [&](const Settings &settings)
-            { return new SceneCatapult(settings); }};
+            { return new SceneCatapult(settings); },
+            [&](const Settings &settings)
+            { return new SceneJoints(settings); }};
         m_settings.system = &m_system;
         m_settings.camera = &m_camera;
         m_pointJointPrimitive.bodyA = nullptr;
@@ -250,7 +252,7 @@ namespace ps
             ImGui::SetNextWindowSize(ImVec2(window_size, 0), ImGuiCond_Once);
             ImGui::Begin("选择场景");
             std::vector<std::string> select_m_scene = {
-                "heap", "sleep", "newton_pendulum", "simple", "point_joint", "Bitmask", "Catapult"};
+                "heap", "sleep", "newton_pendulum", "simple", "point_joint", "Bitmask", "Catapult"," Joints"};
             std::vector<const char *> cstrs;
             for (const auto &s : select_m_scene)
                 cstrs.push_back(s.c_str());

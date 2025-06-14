@@ -1,6 +1,6 @@
 ﻿#ifndef APPLICATION_HPP
 #define APPLICATION_HPP
-#include "render.hpp"
+#include "renderer.hpp"
 #include "ps.hpp"
 #include <SDL3/SDL.h>
 #include "scenes.hpp"
@@ -9,6 +9,7 @@
 #include "newton_pendulum.hpp"
 #include "simple.hpp"
 #include "point_joint.hpp"
+#include "scenes_joints.hpp"
 #include "bitmask.hpp"
 #include "catapult.hpp"
 #include "camera.hpp"
@@ -45,7 +46,7 @@ namespace ps
         Vector2 m_mousePos;
         real m_zoomFactor = 0.5f;
 
-        std::array<std::function<Scene *(const Settings &settings)>, 7> m_scenesList;
+        std::array<std::function<Scene *(const Settings &settings)>, 8> m_scenesList;
 
     public:
         Application();

@@ -7,6 +7,7 @@
     src/point_joint.cpp
     src/scenes.cpp
     src/simple.cpp
+    src/scenes_joints.cpp
     src/sleep.cpp
 )
 target_include_directories(Scenes PUBLIC

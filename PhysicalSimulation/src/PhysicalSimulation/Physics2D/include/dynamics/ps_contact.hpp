@@ -119,7 +119,7 @@ namespace ps
 		void clearInactivePoints();
 		void deactivateAllPoints();
 		real m_maxPenetration = 0.005f;
-		real m_biasFactor = 0.2f;
+		real m_biasFactor = 0.5f;
 		bool m_warmStart = true;
 		bool m_velocityBlockSolver = false;
 		bool m_positionBlockSolver = false;

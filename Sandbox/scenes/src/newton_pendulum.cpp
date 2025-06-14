@@ -24,6 +24,7 @@ namespace ps
         djp.minDistance = 300.0f;
         djp.maxDistance = 300.0f;
         djp.bodyB = ground;
+        djp.localPointB.set(startX - 10.0f, 0.0f);
 
         Body *ball = m_settings.system->world().createBody();
         ball->setShape(&circle);
@@ -32,7 +33,6 @@ namespace ps
         ball->setRestitution(1.0f);
         ball->position().set(startX, 400.0f);
         m_settings.system->tree().insert(ball);
-        djp.localPointB.set(startX-10.0f, 0.0f);
         djp.bodyA = ball;
         djp.localPointA.set(0, 0);
         m_settings.system->world().createJoint(djp);
@@ -48,7 +48,7 @@ namespace ps
             ball->setRestitution(1.0f);
             ball->position().set(startX, 400.0f);
             m_settings.system->tree().insert(ball);
-            djp.localPointB.set(startX-10.0f, 0.0f);
+            djp.localPointB.set(startX - 10.0f, 0.0f);
             djp.bodyA = ball;
             djp.localPointA.set(0, 0);
             m_settings.system->world().createJoint(djp);
@@ -62,7 +62,7 @@ namespace ps
         ball->position().set(startX + 30.0f, 105.0f);
         ball->setRestitution(1.0f);
         m_settings.system->tree().insert(ball);
-        djp.localPointB.set(startX-10.0f, 0.0f);
+        djp.localPointB.set(startX - 10.0f, 0.0f);
         djp.bodyA = ball;
         djp.localPointA.set(0, 0);
         m_settings.system->world().createJoint(djp);

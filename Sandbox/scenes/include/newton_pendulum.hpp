@@ -9,9 +9,11 @@ namespace ps
         Circle circle;
         Edge edge;
         DistanceJointPrimitive djp;
+
     public:
         SceneNewTonPendulum() = default;
         SceneNewTonPendulum(const Settings &settings) : Scene(settings) {}
+
         void setScene() override;
     };
 }

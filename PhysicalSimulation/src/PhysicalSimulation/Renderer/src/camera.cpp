@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "render.hpp"
+#include "renderer.hpp"
 
 namespace ps
 {
@@ -35,11 +35,11 @@ namespace ps
 					if (body->sleep())
 						color = RenderConstant::Gray;
 					else
-						color = RenderConstant::Green;
+						color = RenderConstant::Pink;
 					if (body->type() == Body::BodyType::Static)
 						color = RenderConstant::Teal;
 					if (body->type() == Body::BodyType::Bullet)
-						color = RenderConstant::Pink;
+						color = RenderConstant::DarkGray;
 					RenderSDLImpl::renderShape(window, renderer, (*this), primitive, color);
 
 					if (m_velocityVisible)
@@ -101,7 +101,7 @@ namespace ps
 	}
 	void Camera::setTargetMeterToPixel(const real &meterToPixel)
 	{
-		real minScale = 0.5f;
+		real minScale = 0.01f;
 		if (meterToPixel < minScale)
 		{
 			m_targetMeterToPixel = minScale;
