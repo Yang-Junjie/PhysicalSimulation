@@ -115,7 +115,7 @@ namespace ps
                float x = center.x + radius * cosf(theta);
                float y = center.y + radius * sinf(theta);
                Vector2 worldPos{x, y};
-               Vector2 screenPos = camera.worldToScreen(worldPos); // 变换圆周点
+               Vector2 screenPos = camera.worldToScreen(worldPos);
                vertices.emplace_back(SDL_Vertex{toSDLFPoint(screenPos), fillColor, {0, 0}});
                outlinePoints.emplace_back(Vector2{x, y});
                if (i > 0)
@@ -242,7 +242,7 @@ namespace ps
 
           SDL_Color point = RenderConstant::Yellow;
           SDL_Color white = RenderConstant::White;
-          point.a = 204;
+          point.a = 255;
 
           renderPoint(window, renderer, camera, pa, point, 3 * camera.pixelToMeter());
           renderPoint(window, renderer, camera, pb, point, 3 * camera.pixelToMeter());

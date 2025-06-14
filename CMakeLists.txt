@@ -15,7 +15,7 @@ add_subdirectory(PhysicalSimulation/src/PhysicalSimulation/Physics2D)
 add_subdirectory(PhysicalSimulation/src/PhysicalSimulation/Renderer)
 add_subdirectory(Sandbox/scenes)
 
-add_executable(PhysicalSimApp PhysicalSimulation/src/PhysicalSimulation/Core/src/entryPoint.cpp)
+add_executable(PhysicalSimApp PhysicalSimulation/src/PhysicalSimulation/Core/entryPoint.cpp)
 
 target_link_libraries(PhysicalSimApp PRIVATE Core Math Physics2D Renderer imgui Scenes  "${CMAKE_SOURCE_DIR}/PhysicalSimulation/vendor/SDL3/libSDL3.dll.a")
 

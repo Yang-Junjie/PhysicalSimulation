@@ -336,5 +336,13 @@ namespace ps
 		m_jointList.emplace_back(std::move(joint));
 		return temp;
 	}
+	RevoluteJoint* PhysicsWorld::createJoint(const RevoluteJointPrimitive& primitive)
+	{
+		auto joint = std::make_unique<RevoluteJoint>(primitive);
+		RevoluteJoint* temp = joint.get();
+		temp->setId(RandomGenerator::unique());
+		m_jointList.emplace_back(std::move(joint));
+		return temp;
+	}
 
 }

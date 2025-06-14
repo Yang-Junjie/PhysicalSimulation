@@ -192,6 +192,7 @@ namespace ps
 
 		PointJoint *createJoint(const PointJointPrimitive &primitive);
 		DistanceJoint *createJoint(const DistanceJointPrimitive &primitive);
+		RevoluteJoint *createJoint(const RevoluteJointPrimitive &primitive);
 
 		real bias() const;
 		void setBias(const real &bias);

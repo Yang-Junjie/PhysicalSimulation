@@ -6,7 +6,8 @@ namespace ps
 	enum class JointType
 	{
 		Distance,
-		Point
+		Point,
+		Revolute
 	};
 	class Joint
 	{

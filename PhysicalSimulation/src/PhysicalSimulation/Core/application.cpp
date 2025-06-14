@@ -316,10 +316,17 @@ namespace ps
                 ImGui::Checkbox("求解关节位置", &m_system.solveJointPosition());
                 ImGui::Checkbox("求解接触速度", &m_system.solveContactVelocity());
                 ImGui::Checkbox("求解接触位置", &m_system.solveContactPosition());
-                ImGui::Separator();
                 
-                ImGui::EndChild();
                 ImGui::Separator();
+                ImGui::EndChild();
+            }   
+            if (ImGui::CollapsingHeader("接触设置"))
+            {
+                ImGui::BeginChild("接触设置", ImVec2(0, 300), true);
+                ImGui::InputFloat("bias", &m_system.maintainer().m_biasFactor);
+                ImGui::Checkbox("warm", &m_system.maintainer().m_warmStart);
+                ImGui::Separator();
+                ImGui::EndChild();
             }
             ImGui::End();
         }

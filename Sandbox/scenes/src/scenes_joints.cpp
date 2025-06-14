@@ -90,21 +90,31 @@ namespace ps
             board1->setBitmask(mask);
             m_settings.system->tree().insert(board1);
 
+            rjp.referenceAngle = Math::degreeToRadian(0.0f);
+
+            
+
             pjp.targetPoint.set(720.0f, 0.0f);
             pjp.bodyA = board2;
             pjp.localPointA.set(120, 0);
             pjp.maxForce = 100000.0f;
             m_settings.system->world().createJoint(pjp);
 
-            djp.minDistance = 1.0f;
-            djp.maxDistance = 1.0f;
+            // djp.minDistance = 1.0f;
+            // djp.maxDistance = 1.0f;
 
-            djp.bodyA = board2;
-            djp.localPointA.set(-120, 0);
-            djp.bodyB = board1;
-            djp.localPointB.set(-120, 0);
+            // djp.bodyA = board2;
+            // djp.localPointA.set(-120, 0);
+            // djp.bodyB = board1;
+            // djp.localPointB.set(-120, 0);
+            rjp.bodyA = board1;
+            rjp.localPointA.set(-120, 0);
+            rjp.bodyB = board2;
+            rjp.localPointB.set(-120, 0);
+            rjp.angularLimit = false;
+            
 
-            m_settings.system->world().createJoint(djp);
+            m_settings.system->world().createJoint(rjp);
         }
     }
 }

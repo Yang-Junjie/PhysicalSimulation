@@ -12,6 +12,7 @@
     src/collision/ps_sap.cpp
     src/collision/ps_simplex.cpp
     src/collision/ps_tree.cpp
+    src/collision/ps_revolute_joint.cpp
     
     src/dynamics/ps_body.cpp
     src/dynamics/ps_contact.cpp

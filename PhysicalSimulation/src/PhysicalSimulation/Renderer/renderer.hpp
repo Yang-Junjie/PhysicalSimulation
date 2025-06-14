@@ -13,7 +13,7 @@ namespace ps
     {
         constexpr real PointSize = 1.0f;
         constexpr int BorderSize = 1;
-        constexpr int FillAlpha = 38;
+        constexpr int FillAlpha = 40;
         constexpr int BasicCirclePointCount = 60;
         const SDL_Color White = {255, 255, 255, 255};
         const SDL_Color Yellow = {255, 235, 60, 255};

@@ -8,7 +8,7 @@
 
 namespace ps
 {
-	struct   VelocityConstraintPoint
+	struct VelocityConstraintPoint
 	/**
 	 * @brief 表示两个物体之间接触点的信息结构体。
 	 *
@@ -51,7 +51,7 @@ namespace ps
 		real accumulatedTangentImpulse = 0;
 	};
 
-	struct   ContactConstraintPoint
+	struct ContactConstraintPoint
 	/**
 	 * @brief 表示物理仿真中两个物体之间的接触约束点。
 	 *
@@ -84,7 +84,7 @@ namespace ps
 		Matrix2x2 normalMass;
 	};
 
-	class   ContactMaintainer
+	class ContactMaintainer
 	/**
 	 * @brief 管理物理模拟中的接触约束。
 	 *

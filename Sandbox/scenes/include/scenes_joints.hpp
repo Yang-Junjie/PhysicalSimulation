@@ -12,6 +12,7 @@ namespace ps
         Polygon small_board;
         DistanceJointPrimitive djp;
         PointJointPrimitive pjp;
+        RevoluteJointPrimitive rjp;
 
     public:
         SceneJoints() = default;
