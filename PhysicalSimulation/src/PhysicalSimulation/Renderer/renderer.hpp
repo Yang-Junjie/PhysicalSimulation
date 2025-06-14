@@ -56,13 +56,20 @@ namespace ps
                                const SDL_Color &color);
         static void renderShape(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const ShapePrimitive &shape,
                                 const SDL_Color &color);
-        static void renderJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint, const SDL_Color &color);
-        static void renderDistanceJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint, const SDL_Color &color);
-        static void renderPointJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint, const SDL_Color &color);
-        static void renderRect(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, float x, float y, float w, float h, const SDL_Color &color);
-        static void renderAABB(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const AABB &aabb, const SDL_Color &color);
-        static void renderArrow(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
-                                const Vector2 &start, const Vector2 &end, const SDL_Color &color, float arrowHeadLength = 10.0f, float arrowHeadAngle = 25.0f);
+        static void renderJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint,
+                                const SDL_Color &color);
+        static void renderDistanceJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint,
+                                        const SDL_Color &color);
+        static void renderPointJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint,
+                                     const SDL_Color &color);
+        static void renderRect(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
+                               float x, float y, float w, float h, const SDL_Color &color);
+        static void renderRevoluteJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint,
+                                        const SDL_Color &color);
+        static void renderAABB(SDL_Window *window, SDL_Renderer *renderer, Camera &camera,
+                               const AABB &aabb, const SDL_Color &color);
+        static void renderArrow(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const Vector2 &start,
+                                const Vector2 &end, const SDL_Color &color, float arrowHeadLength = 10.0f, float arrowHeadAngle = 25.0f);
     };
 }
 #endif

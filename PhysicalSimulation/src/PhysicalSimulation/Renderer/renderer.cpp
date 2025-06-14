@@ -201,6 +201,11 @@ namespace ps
                renderPointJoint(window, renderer, camera, joint, color);
                break;
           }
+          case JointType::Revolute:
+          {
+               renderRevoluteJoint(window, renderer, camera, joint, color);
+               break;
+          }
           default:
                break;
           }
@@ -254,6 +259,28 @@ namespace ps
           SDL_FRect rect = {screenCenter.x, screenCenter.y, w * camera.meterToPixel(), h * camera.meterToPixel()};
           SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
           SDL_RenderRect(renderer, &rect);
+     }
+     void RenderSDLImpl::renderRevoluteJoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, Joint *joint, const SDL_Color &color)
+     {
+          assert(joint != nullptr);
+          auto revoluteJoint = static_cast<RevoluteJoint *>(joint);
+          Vector2 s = revoluteJoint->primitive().bodyA->toWorldPoint(revoluteJoint->primitive().localPointA);
+          if (revoluteJoint->primitive().angularLimit)
+          {
+               real lower = revoluteJoint->primitive().lowerAngle + revoluteJoint->primitive().bodyB->rotation();
+               real upper = revoluteJoint->primitive().upperAngle + revoluteJoint->primitive().bodyB->rotation();
+
+               Vector2 axis(30.0f, 0.0f);
+               Vector2 low = Matrix2x2(lower).multiply(axis);
+               Vector2 up = Matrix2x2(upper).multiply(axis);
+
+               renderLine(window, renderer, camera, s, s + low, RenderConstant::Red);
+               renderLine(window, renderer, camera, s, s + up, RenderConstant::Blue);
+          }
+          else
+          {
+               renderPoint(window, renderer, camera, s, RenderConstant::Yellow, 3 * camera.pixelToMeter());
+          }
      }
      void RenderSDLImpl::renderAABB(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const AABB &aabb, const SDL_Color &color)
      {
