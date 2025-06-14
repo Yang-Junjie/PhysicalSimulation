@@ -92,29 +92,63 @@ namespace ps
 
             rjp.referenceAngle = Math::degreeToRadian(0.0f);
 
-            
-
             pjp.targetPoint.set(720.0f, 0.0f);
             pjp.bodyA = board2;
             pjp.localPointA.set(120, 0);
             pjp.maxForce = 100000.0f;
             m_settings.system->world().createJoint(pjp);
 
-            // djp.minDistance = 1.0f;
-            // djp.maxDistance = 1.0f;
-
-            // djp.bodyA = board2;
-            // djp.localPointA.set(-120, 0);
-            // djp.bodyB = board1;
-            // djp.localPointB.set(-120, 0);
             rjp.bodyA = board1;
             rjp.localPointA.set(-120, 0);
             rjp.bodyB = board2;
             rjp.localPointB.set(-120, 0);
             rjp.angularLimit = false;
-            
 
             m_settings.system->world().createJoint(rjp);
         }
+        // 角度约束
+        {
+            mask <<= 1;
+            Body *board2 = m_settings.system->world().createBody();
+            board2->setShape(&board);
+            board2->position().set({1200.0f, 0.0f});
+            board2->setMass(1);
+            board2->setType(Body::BodyType::Dynamic);
+            board2->setBitmask(mask);
+            m_settings.system->tree().insert(board2);
+
+            mask <<= 1;
+            Body *board1 = m_settings.system->world().createBody();
+            board1->setShape(&board);
+            board1->position().set({1199.0f, 0.0f});
+            board1->setMass(1);
+            board1->setType(Body::BodyType::Dynamic);
+            board1->setBitmask(mask);
+            m_settings.system->tree().insert(board1);
+
+            
+            pjp.targetPoint.set(1320.0f, 0.0f);
+            pjp.bodyA = board2;
+            pjp.localPointA.set(120, 0);
+            pjp.maxForce = 100000.0f;
+            m_settings.system->world().createJoint(pjp);
+
+            pjp.targetPoint.set(1560.0f, 0.0f);
+            pjp.bodyA = board2;
+            pjp.localPointA.set(-120, 0);
+            pjp.maxForce = 100000.0f;
+            m_settings.system->world().createJoint(pjp);
+
+            rjp.bodyA = board2;
+            rjp.localPointA.set(-120, 0);
+            rjp.bodyB = board1;
+            rjp.localPointB.set(120, 0);
+            rjp.angularLimit = true;
+            rjp.referenceAngle = Math::degreeToRadian(90.0f);
+            rjp.lowerAngle = Math::degreeToRadian(-45.0f);
+            rjp.upperAngle = Math::degreeToRadian(45.0f);
+            m_settings.system->world().createJoint(rjp);
+        }
+        
     }
 }

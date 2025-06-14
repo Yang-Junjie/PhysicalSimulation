@@ -31,6 +31,7 @@ namespace ps
 
         pjp.targetPoint.set(500.0f, 550.0f);
         pjp.bodyA = board;
+        pjp.maxForce = 10000.0f;
         pjp.localPointA.set(0, 0);
         m_settings.system->world().createJoint(pjp);
 
