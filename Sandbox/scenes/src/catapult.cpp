@@ -9,7 +9,7 @@ namespace ps
         m_settings.system->world().setAirFrictionCoefficient(0.0f);
         m_settings.system->world().setAngularVelocityDamping(0.0f);
 
-        edge.set(Vector2{0.0f, 0.0f}, Vector2{1060.0f, 0.0f});
+        edge.set(Vector2{0.0f, 0.0f}, Vector2{2000.0f, 0.0f});
         polygon.append({{0, 0}, {400, 0}, {400, 20}, {0, 20}});
         polygon1.append({{0, 0}, {30, 0}, {30, 30}, {0, 30}});
         circle.setRadius(15.0f);
@@ -24,12 +24,12 @@ namespace ps
         Body *board = m_settings.system->world().createBody();
         board->setShape(&polygon);
         board->setType(Body::BodyType::Dynamic);
-        board->position().set({500.0f, 530.0f});
+        board->position().set({500.0f, 500.0f});
         board->setMass(1);
         board->setFriction(0.8);
         m_settings.system->tree().insert(board);
 
-        pjp.targetPoint.set(500.0f, 550.0f);
+        pjp.targetPoint.set(500.0f, 500.0f);
         pjp.bodyA = board;
         pjp.maxForce = 10000.0f;
         pjp.localPointA.set(0, 0);
@@ -40,7 +40,7 @@ namespace ps
             Body *box = m_settings.system->world().createBody();
             box->setShape(&polygon1);
             box->setType(Body::BodyType::Dynamic);
-            box->position().set({350.0f + i * 30.0f, 500.0f});
+            box->position().set({380.0f + i * 30.0f, 400.0f});
             box->setMass(1);
             box->setFriction(0.8);
             m_settings.system->tree().insert(box);
@@ -49,7 +49,7 @@ namespace ps
         Body *circleBody = m_settings.system->world().createBody();
         circleBody->setShape(&circle);
         circleBody->setType(Body::BodyType::Dynamic);
-        circleBody->position().set({600.0f, 300.0f});
+        circleBody->position().set({600.0f, 200.0f});
         circleBody->setMass(10.0f);
         circleBody->setFriction(0.8);
         m_settings.system->tree().insert(circleBody);

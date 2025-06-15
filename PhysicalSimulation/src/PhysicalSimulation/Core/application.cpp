@@ -49,6 +49,7 @@ namespace ps
             SDL_Quit();
             return false;
         }
+        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGuiIO &io = ImGui::GetIO();

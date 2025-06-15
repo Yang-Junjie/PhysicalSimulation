@@ -133,7 +133,12 @@ namespace ps
      void RenderSDLImpl::renderPoint(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, const Vector2 &point, const SDL_Color &color, real pointSize)
      {
           Circle circle;
-          circle.setRadius(pointSize);
+          auto factor = camera.pixelToMeter();
+          if (factor > 1.0f)
+               circle.setRadius(pointSize);
+          else
+               circle.setRadius(pointSize * factor);
+
           ShapePrimitive shape;
           shape.shape = &circle;
           shape.transform.position = point;
@@ -249,8 +254,8 @@ namespace ps
           SDL_Color white = RenderConstant::White;
           point.a = 255;
 
-          renderPoint(window, renderer, camera, pa, point, 3 * camera.pixelToMeter());
-          renderPoint(window, renderer, camera, pb, point, 3 * camera.pixelToMeter());
+          renderPoint(window, renderer, camera, pa, point, 2);
+          renderPoint(window, renderer, camera, pb, point, 2);
           renderLine(window, renderer, camera, pa, pb, white);
      }
      void RenderSDLImpl::renderRect(SDL_Window *window, SDL_Renderer *renderer, Camera &camera, float x, float y, float w, float h, const SDL_Color &color)
@@ -265,7 +270,7 @@ namespace ps
           assert(joint != nullptr);
           auto revoluteJoint = static_cast<RevoluteJoint *>(joint);
           Vector2 s = revoluteJoint->primitive().bodyA->toWorldPoint(revoluteJoint->primitive().localPointA);
-          renderPoint(window, renderer, camera, s, RenderConstant::Yellow, 3 * camera.pixelToMeter());
+          renderPoint(window, renderer, camera, s, RenderConstant::Yellow, 2);
           if (revoluteJoint->primitive().angularLimit)
           {
                real lower = revoluteJoint->primitive().lowerAngle + revoluteJoint->primitive().bodyB->rotation();
