@@ -18,7 +18,7 @@ namespace ps
         ground->setShape(&edge);
         ground->setType(Body::BodyType::Static);
         ground->setMass(Constant::Max);
-        ground->position().set({10, 600});
+        ground->position().set({-100, 600});
         m_settings.system->tree().insert(ground);
 
         Body *board = m_settings.system->world().createBody();

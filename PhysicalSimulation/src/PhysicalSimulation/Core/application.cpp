@@ -49,7 +49,6 @@ namespace ps
             SDL_Quit();
             return false;
         }
-        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGuiIO &io = ImGui::GetIO();
@@ -70,11 +69,6 @@ namespace ps
 
     void Application::setupScene()
     {
-        // static SceneBitmask bitmask(m_settings);
-        // // static SceneCatapult catapult(m_settings);
-        // m_scene = &bitmask;
-        // m_scene->setScene();
-        // m_scene->getCamera()->setWorld(&m_system.world());
         clearALL();
         Settings settings;
         settings.camera = &m_camera;
@@ -87,6 +81,7 @@ namespace ps
             m_scene->getCamera()->setWorld(&m_system.world());
         }
     }
+
 
     void Application::mouseMove(const SDL_Event &event)
     {
@@ -171,7 +166,6 @@ namespace ps
         m_selectedBody = nullptr;
         m_scene->setCurrentBody(nullptr);
     }
-
     void Application::mouseWheel(const SDL_Event &event)
     {
 
@@ -183,6 +177,9 @@ namespace ps
         Vector2 offset = beforeWorldPos - afterWorldPos;
         m_camera.setTransform(m_camera.transform() + offset);
     }
+
+
+
 
     void Application::renderGUI()
     {
@@ -253,7 +250,7 @@ namespace ps
             ImGui::SetNextWindowSize(ImVec2(window_size, 0), ImGuiCond_Once);
             ImGui::Begin("选择场景");
             std::vector<std::string> select_m_scene = {
-                "heap", "sleep", "newton_pendulum", "simple", "point_joint", "Bitmask", "Catapult"," Joints"};
+                "heap", "sleep", "newton_pendulum", "simple", "point_joint", "Bitmask", "Catapult", " Joints"};
             std::vector<const char *> cstrs;
             for (const auto &s : select_m_scene)
                 cstrs.push_back(s.c_str());
@@ -317,10 +314,10 @@ namespace ps
                 ImGui::Checkbox("求解关节位置", &m_system.solveJointPosition());
                 ImGui::Checkbox("求解接触速度", &m_system.solveContactVelocity());
                 ImGui::Checkbox("求解接触位置", &m_system.solveContactPosition());
-                
+
                 ImGui::Separator();
                 ImGui::EndChild();
-            }   
+            }
             if (ImGui::CollapsingHeader("接触设置"))
             {
                 ImGui::BeginChild("接触设置", ImVec2(0, 300), true);
@@ -332,11 +329,11 @@ namespace ps
             ImGui::End();
         }
     }
+    
     void Application::run()
     {
         SDL_Event event;
         bool keep_going = true;
-        m_frequency = 60.0f;
         while (keep_going)
         {
             while (SDL_PollEvent(&event))
@@ -368,7 +365,7 @@ namespace ps
             ImGui::NewFrame();
 
             renderGUI();
-            // m_scene->getSystem()->step(1 / m_frequency);
+            
             simulate();
             m_scene->getCamera()->render(window, renderer);
 
@@ -376,7 +373,6 @@ namespace ps
             ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
 
             SDL_RenderPresent(renderer);
-            // SDL_Delay(0.5f);
         }
     }
     void Application::pause()
@@ -388,11 +384,13 @@ namespace ps
     {
         setupScene();
     }
+
     void Application::step()
     {
         const real dt = 1.0f / static_cast<real>(m_frequency);
         m_system.step(dt);
     }
+    
     void Application::simulate()
     {
         if (m_running)

@@ -127,6 +127,13 @@ namespace ps
           }
 
           SDL_RenderGeometry(renderer, NULL, vertices.data(), vertices.size(), indices.data(), indices.size());
+
+          real angle = 0.0f;
+          if (shape.transform.rotation)
+               angle = shape.transform.rotation;
+          Vector2 radiusDir{cosf(angle), sinf(angle)};
+          Vector2 radiusEnd = center + radius * radiusDir;
+          renderLine(window, renderer, camera, center, radiusEnd, color);
           renderLines(window, renderer, camera, outlinePoints, color);
      }
 
